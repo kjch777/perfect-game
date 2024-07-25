@@ -8,14 +8,15 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class Member {
-	private int member_id;
-	private String member_pw;
-	private String member_name;
-	private String member_phone;
-	private String member_email;
-	private String member_address;
-	private String member_address_detail;
-	private String member_post;
-	private int member_team_code;
-	private String member_img;
+	private int memberNo;
+	private String memberId;
+	private String memberPw;
+	private String memberName;
+	private String memberPhone;
+	private String memberEmail;
+	private String memberAddress;
+	private String memberAddressDetail;
+	private String memberPost;
+	private int memberTeamCode;
+	private String memberImg;
 }

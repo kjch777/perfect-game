@@ -7,8 +7,8 @@
 		select * from member
 	</select>
 	<!--  insert delete select -->
-	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="member_no">
-		insert into member(member_id, member_pw, member_name, member_phone, member_email, member_address, member_address_detail, member_post, member_team_code, member_img)
+	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="memberNo">
+		insert into member(memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress, memberAddressDetail, memberPost, memberTeamCode, memberImg)
 		values(#{member_id}, #{member_pw}, #{member_name}, #{member_phone}, #{member_email}, #{member_address}, #{member_address_detail}, #{member_post}, #{member_team_code}, #{member_img})
 	</insert>
 </mapper>
