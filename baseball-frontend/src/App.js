@@ -22,7 +22,6 @@ function App() {
   const addMember = async (member) => {
     const res = await axios.post('/members', member);
     setMembers([...members], res.data);
-
   }
 
   return (

@@ -21,17 +21,18 @@ const MemberTable = ({members}) => {
             </thead>
             <tbody>
                 {members.map(member => (
-                    <tr key={member.member_no}>
-                        <td>{member.member_id}</td>
-                        <td>{member.member_pw}</td>
-                        <td>{member.member_name}</td>
-                        <td>{member.member_phone}</td>
-                        <td>{member.member_email}</td>
-                        <td>{member.member_address}</td>
-                        <td>{member.member_address_detail}</td>
-                        <td>{member.member_post}</td>
-                        <td>{member.member_team_code}</td>
-                        <td>{member.member_img}</td>
+                    <tr key={member.memberNo}>
+                        <td>{member.memberNo}</td>
+                        <td>{member.memberId}</td>
+                        <td>{member.memberPw}</td>
+                        <td>{member.memberName}</td>
+                        <td>{member.memberPhone}</td>
+                        <td>{member.memberEmail}</td>
+                        <td>{member.memberAddress}</td>
+                        <td>{member.memberAddressDetail}</td>
+                        <td>{member.memberPost}</td>
+                        <td>{member.memberTeamCode}</td>
+                        <td>{member.memberImg}</td>
                         <td>
                             <button>회원 삭제하기</button>
                         </td>
