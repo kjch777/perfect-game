@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState, useEffect} from 'react';
+import axios from 'axios';
+import MemberForm from './components/MemberForm';
+import MemberTable from './components/MemberTable';
 
+//select, insert component 추가 작성
 function App() {
+  const [members, setMembers] = useState([]);
+
+
+  useEffect(() => {
+    findAllMember();
+  }, []);
+
+
+  const findAllMember = async () => {
+    const res = await axios.get("/members");
+    setMembers(res.data);
+  };
+
+  const addMember = async (member) => {
+    const res = await axios.post('/members', member);
+    setMembers([...members], res.data);
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Perfect Game 회원가입</h1>
+      <MemberForm addMember={addMember} />
+      <MemberTable members={members} />
     </div>
   );
 }
