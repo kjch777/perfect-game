@@ -110,7 +110,7 @@ const Weather = () => {
                         ))}
                     </div>
                     <div className="koreaMap">
-                        <img src='../image/koreaMap-gray.png' />
+                        <img src='./image/koreaMap-gray.png' />
                     </div>
                 </div>
                 <div className="weekweather-bar">
