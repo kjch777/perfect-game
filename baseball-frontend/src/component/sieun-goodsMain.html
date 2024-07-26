@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>부트스트랩 홈페이지</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="header-footer.css">
+  </head>
+  <style>
+    .card-img-top {
+      /*
+        object-fit: 이미지나 비디오를 틀 안에 어떻게 맞춰서 작성할지 선택
+        cover : 이미지나 비디오의 틀의 비율을 유지하면서 틀에 완전히 채워지도록 조정
+        */
+      object-fit: cover;
+      height: 300px;
+    }
+  </style>
+  <body>
+    <header>
+        <div id="menu">
+          <ul>
+            <li>
+              <a href="#">PERFECT GAME</a>
+            </li>
+            <li>
+              <a href="#">야구장</a>
+              <ul>
+                <li><a href="#">야구장 날씨</a></li>
+                <li><a href="#">야구장 먹거리</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">예매</a>
+            </li>
+            <li>
+              <a href="#">굿즈샵</a>
+            </li>
+            <li>
+              <a href="#">게시판</a>
+              <ul>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">야구 지식</a></li>
+                <li><a href="#">구장 소개</a></li>
+                <li><a href="#">구단 소개</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">마이페이지</a>
+              <ul>
+                <li><a href="#">내 정보</a></li>
+                <li><a href="#">예매 내역</a></li>
+                <li><a href="#">주문 내역</a></li>
+                <li><a href="#">회원 탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </header>
+    <div class="container">
+      <!--전체틀-->
+      <div class="row mt-5">
+        <!--가로-->
+        <div class="col-md-4">
+            <!--세로, md 중간사이즈로 4칸 차지-->
+            <div class="card">
+              <div class="card-body">
+                <img src="../image/귀염짱구.jpg" class="card-img-top" />
+                <h5 class="card-title">카드 타이틀</h5>
+                <p class="card-text">귀여운 짱구 컷</p>
+                <a href="#" class="btn btn-primary">구경하기</a>
+              </div>
+            </div>
+          </div>
+
+        <div class="col-md-4">
+          <!--세로, md 중간사이즈로 4칸 차지-->
+          <div class="card">
+            <div class="card-body">
+              <img src="../image/귀염짱구.jpg" class="card-img-top" />
+              <h5 class="card-title">카드 타이틀</h5>
+              <p class="card-text">귀여운 짱구 컷</p>
+              <a href="#" class="btn btn-primary">구경하기</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <!--세로, md 중간사이즈로 4칸 차지-->
+          <div class="card">
+            <div class="card-body">
+              <img src="../image/귀염짱구.jpg" class="card-img-top" />
+              <h5 class="card-title">카드 타이틀</h5>
+              <p class="card-text">귀여운 짱구 컷</p>
+              <a href="#" class="btn btn-primary">구경하기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <img src="../image/귀염짱구.jpg" class="card-img-top" />
+              <h5 class="card-title">짱구</h5>
+              <p class="card-text">눈이 반짝이는 짱구는 귀엽다.</p>
+              <a href="#" class="btn btn-primary">더보기</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <img src="../image/귀염짱구.jpg" class="card-img-top" />
+              <h5 class="card-title">짱구</h5>
+              <p class="card-text">수박을 먹는 짱구는 귀엽다.</p>
+              <a href="#" class="btn btn-primary">더보기</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <img src="../image/귀염짱구.jpg" class="card-img-top" />
+              <h5 class="card-title">짱구</h5>
+              <p class="card-text">케익을 먹는 짱구는 귀엽다.</p>
+              <a href="#" class="btn btn-primary">더보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <footer>
+    (주)PERFECT GAME | 서울 강남구 테헤란로14길 6 | 1544-9970 Copyrightⓒ
+    PERFECT GAME, All Rights Reserved.
+  </footer>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="base.ball.mapper.GoodsMapper">
+	<select id="findAll" resultType="base.ball.dto.Goods">
+		SELECT goods_id, goods_name, goods_price
+		FROM GOODS
+	</select>
+</mapper>

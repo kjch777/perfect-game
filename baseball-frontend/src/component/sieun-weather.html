@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>날씨 앱</title>
+    <link rel="stylesheet" href="header-footer.css">
+    <style>
+        .container{
+            margin: 30px;
+        }
+        .localWeather {
+            display: flex;
+            padding: 20px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .resultWeather {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px black solid;
+            border-radius: 8px;
+        }
+
+        .city {
+            font-size: 24px;
+        }
+
+        .temperature {
+            font-size: 60px;
+            margin-top: 8px;
+        }
+
+        .sky {
+            font-size: 20px;
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        .koreaMap img {
+            width: 500px;
+            height: 600px;
+            margin-left: 30px;
+        }
+
+        .weekWeather {
+            display: flex;
+            margin: 0 auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            justify-content: center;
+        }
+
+        .weather-card {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px black solid;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 180px;
+            margin-right: 20px;
+            /*vertical-align: top;*/
+            box-sizing: border-box;
+            
+        }
+
+        .localweather-bar{
+            background-color: #8A1A4D;
+            color: white;
+            border-radius: 5px;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .weekweather-bar{
+            background-color: #002063;
+            color: white;
+            border-radius: 5px;
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="menu">
+          <ul>
+            <li>
+              <a href="#">PERFECT GAME</a>
+            </li>
+            <li>
+              <a href="#">야구장</a>
+              <ul>
+                <li><a href="#">야구장 날씨</a></li>
+                <li><a href="#">야구장 먹거리</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">예매</a>
+            </li>
+            <li>
+              <a href="#">굿즈샵</a>
+            </li>
+            <li>
+              <a href="#">게시판</a>
+              <ul>
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">야구 지식</a></li>
+                <li><a href="#">구장 소개</a></li>
+                <li><a href="#">구단 소개</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">마이페이지</a>
+              <ul>
+                <li><a href="#">내 정보</a></li>
+                <li><a href="#">예매 내역</a></li>
+                <li><a href="#">주문 내역</a></li>
+                <li><a href="#">회원 탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </header>
+    <div class="container">
+        <div class="localweather-bar">
+        <h1>지역별 날씨 예보</h1>
+        </div>
+    
+        <div class="localWeather">
+            <div class="weaterInfo">
+                <div id="resultSeoul" class="resultWeather" style="display: none;">
+                    <div class="city" id="citySeoul"></div>
+                    <div class="temperature" id="temperatureSeoul"></div>
+                    <div class="sky" id="skySeoul"></div>
+                </div>
+
+                <div id="resultIncheon" class="resultWeather" style="display: none;">
+                    <div class="city" id="cityIncheon"></div>
+                    <div class="temperature" id="temperatureIncheon"></div>
+                    <div class="sky" id="skyIncheon"></div>
+                </div>
+
+                <div id="resultgwangju" class="resultWeather" style="display: none;">
+                    <div class="city" id="citygwangju"></div>
+                    <div class="temperature" id="temperaturegwangju"></div>
+                    <div class="sky" id="skygwangju"></div>
+                </div>
+            </div>
+            
+            <div class="koreaMap">
+                <img src="../image/koreaMap-gray.png">
+            </div>
+
+            <div class="map-left-weather">
+                <div id="resultBusan" class="resultWeather" style="display: none;">
+                    <div class="city" id="cityBusan"></div>
+                    <div class="temperature" id="temperatureBusan"></div>
+                    <div class="sky" id="skyBusan"></div>
+                </div>  
+
+                <div id="resultDaegu" class="resultWeather" style="display: none;">
+                    <div class="city" id="cityDaegu"></div>
+                    <div class="temperature" id="temperatureDaegu"></div>
+                    <div class="sky" id="skyDaegu"></div>
+                </div>
+
+                <div id="resultChangwon" class="resultWeather" style="display: none;">
+                    <div class="city" id="cityChangwon"></div>
+                    <div class="temperature" id="temperatureChangwon"></div>
+                    <div class="sky" id="skyChangwon"></div>
+                </div>  
+            </div>
+        </div>
+    </div>
+        <div class="weekweather-bar">
+        <h1>주간 날씨 예보</h1>
+        </div>
+        <div class="weekWeather">
+            <div id="weather-container"></div>
+        </div>
+    </div>
+
+    <script>
+         /***********************     지역별 날씨 예보     ****************************/
+        const API_KEY = 'api키';
+
+        async function fetchWeather(city, cityId) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.cod === 200) {
+                    document.getElementById(`city${cityId}`).innerText = data.name;
+                    document.getElementById(`temperature${cityId}`).innerText = Math.round(data.main.temp - 273.15) + "℃";
+                    document.getElementById(`sky${cityId}`).innerText = data.weather[0].main;
+                    document.getElementById(`result${cityId}`).style.display = 'block';
+                } else {
+                    alert(`위치를 찾을 수 없습니다. 에러 코드: ${data.cod}`);
+                }
+
+            } catch (err) {
+                alert(err);
+            }
+        }
+
+        // 서울과 부산 날씨 정보 자동으로 가져오기
+        fetchWeather('Seoul', 'Seoul');
+        fetchWeather('Incheon', 'Incheon');
+        fetchWeather('Busan', 'Busan');
+        fetchWeather('gwangju', 'gwangju');
+        fetchWeather('Daegu', 'Daegu');
+        fetchWeather('Changwon', 'Changwon');
+
+        /***********************     주간별 날씨 예보     ****************************/
+
+        const apiKey = 'api키';
+
+        // API 호출 URL
+        const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=Seoul&appid=${apiKey}&units=metric`;
+
+        // 주간날씨 정보를 불러와서 화면에 출력하는 함수
+        async function fetchWeekWeather() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                const forecast = data.list; // 모든 예보 데이터
+
+                // 요일별로 데이터 분류
+                const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const weatherByDay = {};
+
+                forecast.forEach(day => {
+                    const date = new Date(day.dt * 1000);
+                    const dayOfWeek = daysOfWeek[date.getDay()]; // 요일 가져오기
+                    if (!weatherByDay[dayOfWeek]) {
+                        weatherByDay[dayOfWeek] = {
+                            maxTemp: -Infinity,
+                            minTemp: Infinity,
+                            sky: ''
+                        };
+                    }
+                    // 최고 기온, 최저 기온 업데이트
+                    if (day.main.temp_max > weatherByDay[dayOfWeek].maxTemp) {
+                        weatherByDay[dayOfWeek].maxTemp = day.main.temp_max;
+                    }
+                    if (day.main.temp_min < weatherByDay[dayOfWeek].minTemp) {
+                        weatherByDay[dayOfWeek].minTemp = day.main.temp_min;
+                    }
+                    // 날씨 상태 업데이트 (주간 중 가장 높은 날씨 상태로 설정)
+                    if (day.weather[0].main) {
+                        weatherByDay[dayOfWeek].sky = day.weather[0].main;
+                    }
+                });
+
+                // 화면에 날씨 정보 출력
+                const weatherContainer = document.getElementById('weather-container');
+                daysOfWeek.forEach(dayOfWeek => {
+                    if (weatherByDay[dayOfWeek]) {
+                        const { maxTemp, minTemp, sky } = weatherByDay[dayOfWeek];
+
+                        const weatherCard = document.createElement('div');
+                        weatherCard.classList.add('weather-card');
+                        weatherCard.innerHTML = `
+                    <h2>${dayOfWeek}</h2>
+                    <p>최고 기온: ${maxTemp.toFixed(1)}°C</p>
+                    <p>최저 기온: ${minTemp.toFixed(1)}°C</p>
+                    <p>날씨 상태: ${sky}</p>
+                `;
+                        weatherContainer.appendChild(weatherCard);
+                    }
+                });
+            } catch (error) {
+                console.error('날씨 정보를 불러오는 중 오류가 발생했습니다.', error);
+            }
+        }
+
+        // 페이지 로드 후 날씨 정보 불러오기
+        window.onload = fetchWeekWeather;
+    </script>
+     <footer>
+        (주)PERFECT GAME | 서울 강남구 테헤란로14길 6 | 1544-9970 Copyrightⓒ
+        PERFECT GAME, All Rights Reserved.
+      </footer>
+</body>
+
+</html>

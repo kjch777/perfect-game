@@ -1,0 +1,84 @@
+.container{
+    margin: 30px;
+}
+.localWeather {
+    display: flex;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.resultWeather {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px black solid;
+    border-radius: 8px;
+}
+
+.city {
+    font-size: 24px;
+}
+
+.temperature {
+    font-size: 60px;
+    margin-top: 8px;
+}
+
+.sky {
+    font-size: 20px;
+    text-align: right;
+    margin-top: 8px;
+}
+
+.koreaMap img {
+    width: 500px;
+    height: 600px;
+    margin-left: 30px;
+}
+
+.weekWeather {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.weather-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px black solid;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 180px;
+    margin-right: 20px;
+    /*vertical-align: top;*/
+    box-sizing: border-box;
+    
+}
+
+.localweather-bar{
+    background-color: #8A1A4D;
+    color: white;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.weekweather-bar{
+    background-color: #002063;
+    color: white;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    text-align: center;
+}
