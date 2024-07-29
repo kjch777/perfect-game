@@ -1,13 +1,18 @@
 import './App.css';
-import React from 'react';
-import LoginApp from './components/LoginApp';
+import {Routes, Route} from "react-router-dom";
+import Main from './components/Layout/Main';
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
 
 function App() {
 
   return (
-    <div className="App">
-      <h1>Perfect Game 홈페이지</h1>
-      <LoginApp />
+    <div>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Main/>}></Route>
+      </Routes>
+      <Footer/>
     </div>
   );
 }

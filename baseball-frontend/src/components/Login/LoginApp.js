@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import MemberForm1 from '../components/MemberForm1';
-import MemberTable1 from '../components/MemberTable1';
-import NaverLogin from '../NaverLogin';
+import MemberForm1 from '../MemberForm1';
+import MemberTable1 from '../MemberTable1';
+import NaverLogin from '../../NaverLogin';
 
 //select, insert component 추가 작성
 function LoginApp() {
