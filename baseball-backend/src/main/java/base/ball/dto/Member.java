@@ -17,6 +17,6 @@ public class Member {
 	private String memberAddress;
 	private String memberAddressDetail;
 	private String memberPost;
-	private int memberTeamCode;
+	private String memberTeamCode;
 	private String memberImg;
 }

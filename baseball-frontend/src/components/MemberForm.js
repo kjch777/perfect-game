@@ -3,7 +3,6 @@ import React, {useState} from "react";
 const MemberForm = ({addMember}) => {
     const [member_id, setMember_id] = useState('');
     const [member_pw, setMember_pw] = useState('');
-    const [member_pw_check, setMember_pw_check] = useState('');
     const [member_name, setMember_name] = useState('');
     const [member_phone, setMember_phone] = useState('');
     const [member_email, setMember_email] = useState('');
@@ -15,9 +14,9 @@ const MemberForm = ({addMember}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addMember({member_id, member_pw, member_pw_check, member_name,
+        addMember({member_id, member_pw, member_name,
             member_phone, member_email, member_address, member_address_detail, 
-            member_post
+            member_post, member_team_code, member_img
         });
     }
 
@@ -27,6 +26,7 @@ const MemberForm = ({addMember}) => {
                 <div>
                     <label>아이디 : </label>
                     <input type="text"
+                           id="member_id"
                            value={member_id}
                            onChange={(e) => setMember_id(e.target.value)}
                            required />
@@ -34,20 +34,15 @@ const MemberForm = ({addMember}) => {
                 <div>
                     <label>비밀번호 : </label>
                     <input type="password"
+                           id="member_pw"
                            value={member_pw}
                            onChange={(e) => setMember_pw(e.target.value)}
                            required />
                 </div>
                 <div>
-                    <label>비밀번호 : </label>
-                    <input type="password"
-                           value={member_pw_check}
-                           onChange={(e) => setMember_pw_check(e.target.value)}
-                           required />
-                </div>
-                <div>
                     <label>이름 : </label>
                     <input type="text"
+                           id="member_name"
                            value={member_name}
                            onChange={(e) => setMember_name(e.target.value)}
                            required />
@@ -55,13 +50,15 @@ const MemberForm = ({addMember}) => {
                 <div>
                     <label>전화번호 : </label>
                     <input type="text"
+                           id="member_phone"
                            value={member_phone}
                            onChange={(e) => setMember_phone(e.target.value)}
                            required />
                 </div>
                 <div>
                     <label>이메일 : </label>
-                    <input type="email"
+                    <input type="text"
+                           id="member_email"
                            value={member_email}
                            onChange={(e) => setMember_email(e.target.value)}
                            required />
@@ -69,6 +66,7 @@ const MemberForm = ({addMember}) => {
                 <div>
                     <label>우편번호 : </label>
                     <input type="text"
+                           id="member_post"
                            value={member_post}
                            onChange={(e) => setMember_post(e.target.value)}
                            required />
@@ -76,6 +74,7 @@ const MemberForm = ({addMember}) => {
                 <div>
                     <label>주소 : </label>
                     <input type="text"
+                           id="member_address"
                            value={member_address}
                            onChange={(e) => setMember_address(e.target.value)}
                            required />
@@ -83,26 +82,26 @@ const MemberForm = ({addMember}) => {
                 <div>
                     <label>상세주소 : </label>
                     <input type="text"
+                           id="member_address_detail"
                            value={member_address_detail}
                            onChange={(e) => setMember_address_detail(e.target.value)}
                            required />
                 </div>
-                {/*
                 <div>
                     <label>좋아하는 팀 : </label>
                     <input type="text"
+                           id="member_team_code"
                            value={member_team_code}
                            onChange={(e) => setMember_team_code(e.target.value)}
                            required />
                 </div>
                 <div>
                     <label>이미지 : </label>
-                    <input type="file"
+                    <input type="text"
+                           id="member_img"
                            value={member_img}
-                           onChange={(e) => setMember_img(e.target.value)}
-                           required />
+                           onChange={(e) => setMember_img(e.target.value)} />
                 </div>
-                */}
                 <button type="submit">회원가입</button>
             </form>
         </div>

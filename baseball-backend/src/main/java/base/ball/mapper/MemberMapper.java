@@ -9,5 +9,6 @@ import base.ball.dto.Member;
 @Mapper
 public interface MemberMapper {
 	List<Member> findAllMember();
+	
 	void insertMember(Member member);
 }

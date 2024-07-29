@@ -6,6 +6,7 @@ import base.ball.dto.Member;
 
 public interface MemberService {
 	List<Member> findAllMember();
+	
 	void insertMember(Member member);
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MemberTable = ({members}) => {
+const MemberTable = ({members, deleteMember}) => {
     return (
         <table>
             <thead>
@@ -28,13 +28,13 @@ const MemberTable = ({members}) => {
                         <td>{member.memberName}</td>
                         <td>{member.memberPhone}</td>
                         <td>{member.memberEmail}</td>
+                        <td>{member.memberPost}</td>
                         <td>{member.memberAddress}</td>
                         <td>{member.memberAddressDetail}</td>
-                        <td>{member.memberPost}</td>
                         <td>{member.memberTeamCode}</td>
                         <td>{member.memberImg}</td>
                         <td>
-                            <button>회원 삭제하기</button>
+                            <button onClick={() => deleteMember(member.memberNo)}>유저 삭제하기</button>
                         </td>
                     </tr>
                 ))}
