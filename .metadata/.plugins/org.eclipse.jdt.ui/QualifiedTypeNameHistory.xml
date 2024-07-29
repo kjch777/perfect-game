@@ -11,4 +11,6 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
     <fullyQualifiedTypeName name="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+    <fullyQualifiedTypeName name="base.ball.mapper.TicketMapper"/>
+    <fullyQualifiedTypeName name="base.ball.service.TicketService"/>
 </qualifiedTypeNameHistroy>
