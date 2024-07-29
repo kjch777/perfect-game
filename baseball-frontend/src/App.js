@@ -1,9 +1,9 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import MemberForm from './components/MemberForm';
-import MemberTable from './components/MemberTable';
-import Login from './Login';
+import MemberForm1 from './components/MemberForm1';
+import MemberTable1 from './components/MemberTable1';
+import NaverLogin from './NaverLogin';
 
 //select, insert component 추가 작성
 function App() {
@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     findAllMember();
-  }, [members]);
+  }, []);
 
 
   const findAllMember = async () => {
@@ -19,8 +19,8 @@ function App() {
     setMembers(res.data);
   };
 
-  const addMember = async (member) => {
-    const res = await axios.post('/members', member);
+  const addMember = async (member2) => {
+    const res = await axios.post('/members', member2);
     setMembers([...members], res.data);
   }
 
@@ -32,9 +32,9 @@ function App() {
   return (
     <div className="App">
       <h1>Perfect Game 회원가입</h1>
-      <MemberForm addMember={addMember} />
-      <Login/>
-      <MemberTable members={members} deleteMember={deleteMember} />
+      <MemberForm1 addMember={addMember} />
+      <NaverLogin />
+      <MemberTable1 members={members} deleteMember={deleteMember} />
     </div>
   );
 }
