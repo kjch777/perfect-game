@@ -1,17 +1,20 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import '../css/Header.css'
 
 const Header = () => {
     return ( 
         <header>
             <div id="menu">
-                <ul>
+                <ul id="main-banner">
                     <li>
-                        <Link to="#">PERFECT GAME</Link>
+                        <Link to="/">PERFECT GAME</Link>
                     </li>
+                </ul>
+                <ul id="link-banner">
                     <li>
                         <Link to="#">야구장</Link>
-                        <ul>
+                        <ul id="ul-num-1">
                             <li><Link to="#">야구장 날씨</Link></li>
                             <li><Link to="#">야구장 먹거리</Link></li>
                         </ul>
@@ -24,16 +27,16 @@ const Header = () => {
                     </li>
                     <li>
                         <Link to="#">게시판</Link>
-                        <ul>
+                        <ul id="ul-num-2">
                             <li><Link to="#">공지사항</Link></li>
-                            <li><Link to="#">야구 지식</Link></li>
-                            <li><Link to="#">구장 소개</Link></li>
-                            <li><Link to="#">구단 소개</Link></li>
+                            <li><Link to="#">구단별 소개</Link></li>
+                            <li><Link to="#">자주하는 질문</Link></li>
+                            <li><Link to="#">규정, 자료실</Link></li>
                         </ul>
                     </li>
                     <li>
                         <Link to="#">마이페이지</Link>
-                        <ul>
+                        <ul id="ul-num-3">
                             <li><Link to="#">내 정보</Link></li>
                             <li><Link to="#">예매 내역</Link></li>
                             <li><Link to="#">주문 내역</Link></li>
