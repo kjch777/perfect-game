@@ -1,0 +1,99 @@
+.FoodSG {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  .store-info {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .location {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .store-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .menu ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .menu ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  .reviews-section {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reviews-section input,
+  .reviews-section textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .reviews-section button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #002063;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .reviews-section button:hover {
+    background-color: #001644;
+  }
+  
+  .reviews-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  
+  .review {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .review button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8A1A4D;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .review button:hover {
+    background-color: #c60055;
+  }
