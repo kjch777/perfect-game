@@ -16,7 +16,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-
 //classpath = src/main/resources 의 줄임말
 @Configuration
 @PropertySource("classpath:/config.properties")
@@ -28,15 +27,6 @@ public class DBConfig {
 	@Bean // 객체 생성, 히카리 사용하겠다 선언!
 	@ConfigurationProperties(prefix = "spring.datasource.hikari")
 	public HikariConfig hikariConfig() {
-		/*
-		config.setJdbcUrl("jdbc:mysql://localhost:3306/KH_WORKBOOK");
-		config.setUsername("root");
-		config.setPassword("kh1234");
-		config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		원래 이렇게 써야하는데 외부에다 써서 따로 빼놓고  
-		밑에 처럼 주소로 연결해서 사용
-		@PropertySource("classpath:/config.porperties") 
-		*/
 		return new HikariConfig(); //hikari DataBase 연결을 도와주는 라이브러리
 	}
 	

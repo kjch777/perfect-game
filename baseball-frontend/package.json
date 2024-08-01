@@ -2,7 +2,7 @@
   "name": "baseball-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:9020", 
+  "proxy": "http://localhost:9090",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -11,6 +11,7 @@
     "bootstrap": "^5.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.0"
   },
