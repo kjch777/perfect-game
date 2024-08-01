@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import GoodsDetail from './components/Goods/GoodsDetail.js';
 import Weather from './components/Weather.js';
 import GoodsMain from './components/Goods/GoodsMain.js';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
 
@@ -21,14 +21,13 @@ function App() {
   }, [] );
 
   return (
-    <Router>
+    
       <div className="App">
       <Routes>
         <Route path='/' element={<GoodsMain goods={goods} />}  />
         <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />}  />
       </Routes>
       </div>
-    </Router>
 
   );
 }

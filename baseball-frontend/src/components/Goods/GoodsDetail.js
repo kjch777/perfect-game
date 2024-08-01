@@ -15,7 +15,7 @@ const GoodsDetail = ({ goods }) => {
         <div className="goods-detail">
           <img
             src={`/${item.goodsImage}`}
-            className="card-img-top"
+            className="GodosDetail-img"
             style={{ objectFit: "cover" }}
             alt={item.goodsName}
           />
