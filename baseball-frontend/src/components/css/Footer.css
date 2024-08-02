@@ -1,0 +1,39 @@
+/* Footer Css */
+footer {
+  margin: 0;
+  background-color: #002063;
+  color: white;
+  padding: 20px 30px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+footer .footer-link .right > ul > li {
+  display: inline-block;
+  list-style: none;
+}
+footer .footer-link .right > ul > li > a {
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
+}
+.footer-link {
+  margin-bottom: 30px;
+}
+.left {
+  position: fixed;
+  left: 20px;
+}
+.right {
+  position: fixed;
+  right: 20px;
+}
+hr {
+  width: 100%;
+  margin: 10px 0;
+}

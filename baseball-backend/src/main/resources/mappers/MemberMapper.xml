@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="base.ball.mapper.MemberMapper">
+	<select id="findAllMember">
+		select * from member
+	</select>
+	<!--  insert delete select -->
+	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="member_no">
+		insert into member(member_id, member_pw, member_name, member_phone, member_email, member_address, member_address_detail, member_post, member_team_code, member_img)
+		values(#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAddress}, #{memberAddressDetail}, #{memberPost}, #{memberTeamCode}, #{memberImg})
+	</insert>
+
+</mapper>
