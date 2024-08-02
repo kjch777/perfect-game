@@ -6,7 +6,8 @@ import '../css/GoodsMain.css';
 const GoodsMain = ({ goods = [] }) => {
     return (
         <div className="container mt-5">
-            <h1>BEST ITEM</h1>
+            <h1><strong>BEST ITEM</strong></h1>
+            <br/>
             <div className="row">
                 {goods.map((item) => (
                     <div key={item.goodsId} className="col-md-4 mb-4">
