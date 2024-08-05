@@ -23,16 +23,17 @@ function App() {
   return (
     
       <div className="App">
-        {/* 
+       
         <Routes>
         <Route path='/' element={<GoodsMain goods={goods} />}  />
         <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />}  />
       </Routes>
-        */}
-  
+        
+      {/* 
       <Routes>
         <Route path='/' element={<Weather/>}  />
       </Routes>
+      */}
       </div>
 
   );

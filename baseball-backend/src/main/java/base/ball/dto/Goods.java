@@ -16,4 +16,5 @@ public class Goods {
 	private String goodsName;
 	private int goodsPrice;
 	private String goodsImage;
+	private String goodsDetailImage;
 }
