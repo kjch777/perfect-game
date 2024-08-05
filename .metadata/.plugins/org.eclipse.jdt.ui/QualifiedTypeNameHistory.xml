@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.CorsRegistry"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.config.annotation.WebMvcConfigurer"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="org.springframework.messaging.simp.config.MessageBrokerRegistry"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.StompEndpointRegistry"/>
+    <fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker"/>
+    <fullyQualifiedTypeName name="org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.messaging.handler.annotation.MessageMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.messaging.handler.annotation.SendTo"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+</qualifiedTypeNameHistroy>

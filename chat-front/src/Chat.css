@@ -1,0 +1,33 @@
+body{
+    margin-top: 100px;
+    margin-left: 800px;
+}
+.chat-container{
+    border: 5px ridge black;
+    width: 310px;
+    
+}
+.chat-inputbar{
+    width: 235px;
+    height: 25px;   
+}
+.button-chat{
+   height: 30px;
+    background-color: rgb(54, 54, 52);
+    color: white;
+}
+.button-chat:hover{
+    background-color: gray;
+    
+}
+.emoji{
+    margin-left: -5px;
+}
+.chat-input-section{
+    border: 5px ridge black;
+    width: 310px;
+}
+svg{
+    margin-top: 5px;
+    margin-bottom: -5px;
+}
