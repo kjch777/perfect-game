@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
+import MemberTable from "./MemberTable";
 
 const MemberForm = ({addMember}) => {
     const [memberId, setMemberId] = useState('');
