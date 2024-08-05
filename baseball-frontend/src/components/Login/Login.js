@@ -1,40 +1,38 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import LoginContext from "./LoginContext";
+import Main from "../Layout/Main";
 
 const Login = () => {
-    const {loginMember, setLoginMember} = useContext(LoginContext);
+  const { loginMember, setLoginMember } = useContext(LoginContext);
+  
+  const [memberId, serMemberId] = useState('');
+  const [memberPw, setMemberPw] = useState('');
 
-    const [id, setId] = useState("");
-    const [pw, setPw] = useState("");
+  const login = () => { 
 
-    const 로그인버튼 = () => {
-        fetch('/login', {
-            method: "POST", 
-            headers: {"Content-Type" : "application/json",
-                      "Accept" : "application/json"}, 
-            body: JSON.stringify({id : id, pw : pw})
-        })
-            .then (response => response.json())
-            .then (map => {
-                console.log(map);
-                
-                if (map.loginMember === null) {
-                    alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-                    return;
-                }
+    fetch('http://localhost:9090/members/login', {
+      method : "POST",
+      headers : {"Content-Type" : "application/json",
+                 "Accept" : "application/json" },
+      body : JSON.stringify({memberId : memberId, memberPw : memberPw})
+    })
+    .then(resp => resp.json())
+    .then(map => {
+      console.log(map);
 
-                setLoginMember(map.loginMember);
+      if(map.loginMember === null){
+        alert('아이디 또는 비밀번호가 일치하지 않습니다');
+        return;
+      }
 
-                setId('');
-                setPw('');
-                alert('로그인 성공~!');
-            })
-    }
+      setLoginMember(map.loginMember);
 
-    const 로그아웃버튼 = () => {
-      setLoginMember(null);
-      alert('로그아웃 되었습니다.')
-    }
+      serMemberId('');
+      setMemberPw('');
+    })
+   }
+
+  const logout = () => { setLoginMember(null); }
 
   return (
     <div className="login-container">
@@ -43,29 +41,39 @@ const Login = () => {
           <tr>
             <th>ID</th>
             <td>
-              <input
-                type="text"
-                onChange={(e) => setId(e.target.value)}
-                value={id}
-              />
+              <input type="text"
+                     onChange={e => serMemberId(e.target.value)}
+                     value={memberId}
+                     placeholder="아이디를 입력하세요"
+                     required />
             </td>
           </tr>
+
           <tr>
             <th>PW</th>
             <td>
-                <input type="password" onChange={e => setPw(e.target.value)} value={pw} />
+              <input type="password"
+                     onChange={e => setMemberPw(e.target.value)}
+                     value={memberPw}
+                     placeholder="비밀번호를 입력하세요"
+                     required />
             </td>
             <td>
-                <button onClick={로그인버튼}>로그인</button>
+              <button onClick={login} >Login</button>
             </td>
           </tr>
         </tbody>
       </table>
-      {/* loginMember가 null이 아닌 경우 로그아웃 버튼 보이게 하기 */}
+
       {loginMember && (
-        <button onClick={로그아웃버튼}>로그아웃</button>
+        <div>
+          <Main/>
+          <button onClick={logout}>로그아웃</button>
+        </div>
       )}
     </div>
   );
+  
 };
+
 export default Login;

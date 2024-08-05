@@ -11,6 +11,7 @@ public interface MemberService {
 	void insertMember(Member member);
 	
 	int idCheck(String memberId);
+	
 	int signup(Member member);
 	
 	Map<String, Object> login(Member member);

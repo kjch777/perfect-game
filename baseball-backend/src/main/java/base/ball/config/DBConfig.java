@@ -26,7 +26,7 @@ public class DBConfig {
 	@ConfigurationProperties(prefix = "spring.datasource.hikari")
 	public HikariConfig hikariConfig() {
 		HikariConfig config = new HikariConfig();
-		return new HikariConfig();
+		return config;
 	}
 	
 	@Bean

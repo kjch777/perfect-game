@@ -13,6 +13,7 @@ public interface MemberMapper {
 	void insertMember(Member member);
 	
 	int idCheck(String memberId);
+	
 	int signup(Member member);
 	
 	Member login(Member member);

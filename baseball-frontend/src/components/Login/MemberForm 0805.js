@@ -18,57 +18,46 @@ const MemberForm = ({ addMember }) => {
 
     const validateId = (id) => {
         const idRegex = /^[a-z0-9]{4,12}$/;
-        return idRegex.test(id) ? "" : "아이디는 4-12자의 소문자와 숫자만 사용할 수 있습니다.";
+        return idRegex.test(id) ? "아이디가 유효합니다." : "아이디는 4-12자의 소문자와 숫자만 사용할 수 있습니다.";
     };
 
     const validatePw = (pw) => {
         const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^*+=-])[a-zA-Z\d!@#$%^*+=-]{4,18}$/;
-        return pwRegex.test(pw) ? "" : "비밀번호는 4-18자의 영문 대/소문자, 숫자 및 특수문자(!@#$%^*+=-)를 포함해야 합니다.";
+        return pwRegex.test(pw) ? "비밀번호가 유효합니다." : "비밀번호는 4-18자의 영문 대/소문자, 숫자 및 특수문자(!@#$%^*+=-)를 포함해야 합니다.";
     };
 
     const validatePasswordConfirm = (pw, pwConfirm) => {
-        return pw === pwConfirm ? "" : "비밀번호가 일치하지 않습니다.";
+        return pw === pwConfirm ? "비밀번호가 일치합니다." : "비밀번호가 일치하지 않습니다.";
     };
 
     const validateName = (name) => {
         const nameRegex = /^[가-힣]{2,4}$/;
-        return nameRegex.test(name) ? "" : "이름은 2-4자의 한글만 사용할 수 있습니다.";
+        return nameRegex.test(name) ? "이름이 유효합니다." : "이름은 2-4자의 한글만 사용할 수 있습니다.";
     };
 
     const validatePhone = (phone) => {
         const phoneRegex = /^01[0-9]-\d{3,4}-\d{4}$/;
-        return phoneRegex.test(phone) ? "" : "전화번호는 01x-xxxx-xxxx 또는 01x-xxx-xxxx 형식이어야 합니다.";
+        return phoneRegex.test(phone) ? "전화번호가 유효합니다." : "전화번호는 01x-xxxx-xxxx 또는 01x-xxx-xxxx 형식이어야 합니다.";
     };
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email) ? "" : "이메일 형식이 올바르지 않습니다.";
+        return emailRegex.test(email) ? "이메일이 유효합니다." : "이메일 형식이 올바르지 않습니다.";
     };
 
     const validatePost = (post) => {
         const postRegex = /^\d{5,6}$/;
-        return postRegex.test(post) ? "" : "우편번호는 5-6자리 숫자여야 합니다.";
+        return postRegex.test(post) ? "우편번호가 유효합니다." : "우편번호는 5-6자리 숫자여야 합니다.";
     };
 
     const handleChange = (setter, validator) => (e) => {
         const value = e.target.value;
         setter(value);
-        const newErrors = { ...errors, [e.target.id]: validator(value) };
+        const newErrors = { ...errors, [e.target.id]: validator(value).includes('유효') ? "" : validator(value) };
         setErrors(newErrors);
         setValidations(prevValidations => ({
             ...prevValidations,
-            [e.target.id]: validator(value)
-        }));
-    };
-
-    const handlePasswordConfirmChange = (e) => {
-        const value = e.target.value;
-        setPasswordConfirm(value);
-        const newErrors = { ...errors, passwordConfirm: validatePasswordConfirm(memberPw, value) };
-        setErrors(newErrors);
-        setValidations(prevValidations => ({
-            ...prevValidations,
-            passwordConfirm: validatePasswordConfirm(memberPw, value)
+            [e.target.id]: validator(value).includes('유효') ? validator(value) : ""
         }));
     };
 
@@ -104,8 +93,11 @@ const MemberForm = ({ addMember }) => {
                         placeholder="아이디를 입력하세요"
                         required 
                     />
-                    {errors.memberId && <span className="error">{errors.memberId}</span>}
-                    {validations.memberId && !errors.memberId && <span className="valid">{validations.memberId}</span>}
+                    {errors.memberId ? (
+                        <span className="error">{errors.memberId}</span>
+                    ) : (
+                        validations.memberId && <span className="valid">{validations.memberId}</span>
+                    )}
                 </div>
                 <div>
                     <label>비밀번호 : </label>
@@ -117,8 +109,11 @@ const MemberForm = ({ addMember }) => {
                         placeholder="비밀번호를 입력하세요"
                         required 
                     />
-                    {errors.memberPw && <span className="error">{errors.memberPw}</span>}
-                    {validations.memberPw && !errors.memberPw && <span className="valid">{validations.memberPw}</span>}
+                    {errors.memberPw ? (
+                        <span className="error">{errors.memberPw}</span>
+                    ) : (
+                        validations.memberPw && <span className="valid">{validations.memberPw}</span>
+                    )}
                 </div>
                 <div>   
                     <label>비밀번호 확인 : </label>
@@ -126,12 +121,21 @@ const MemberForm = ({ addMember }) => {
                         type="password"
                         id="passwordConfirm"
                         value={passwordConfirm}
-                        onChange={handlePasswordConfirmChange}
+                        onChange={(e) => {
+                            setPasswordConfirm(e.target.value);
+                            setErrors(prevErrors => ({
+                                ...prevErrors,
+                                passwordConfirm: validatePasswordConfirm(memberPw, e.target.value)
+                            }));
+                        }}
                         placeholder="비밀번호를 입력하세요"
                         required 
                     />
-                    {errors.passwordConfirm && <span className="error">{errors.passwordConfirm}</span>}
-                    {validations.passwordConfirm && !errors.passwordConfirm && <span className="valid">{validations.passwordConfirm}</span>}
+                    {errors.passwordConfirm ? (
+                        <span className="error">{errors.passwordConfirm}</span>
+                    ) : (
+                        validations.passwordConfirm && <span className="valid">{validations.passwordConfirm}</span>
+                    )}
                 </div>
                 <div>
                     <label>이름 : </label>
@@ -143,8 +147,11 @@ const MemberForm = ({ addMember }) => {
                         placeholder="이름을 입력하세요"
                         required 
                     />
-                    {errors.memberName && <span className="error">{errors.memberName}</span>}
-                    {validations.memberName && !errors.memberName && <span className="valid">{validations.memberName}</span>}
+                    {errors.memberName ? (
+                        <span className="error">{errors.memberName}</span>
+                    ) : (
+                        validations.memberName && <span className="valid">{validations.memberName}</span>
+                    )}
                 </div>
                 <div>
                     <label>전화번호 : </label>
@@ -156,8 +163,11 @@ const MemberForm = ({ addMember }) => {
                         placeholder="전화번호를 입력하세요"
                         required 
                     />
-                    {errors.memberPhone && <span className="error">{errors.memberPhone}</span>}
-                    {validations.memberPhone && !errors.memberPhone && <span className="valid">{validations.memberPhone}</span>}
+                    {errors.memberPhone ? (
+                        <span className="error">{errors.memberPhone}</span>
+                    ) : (
+                        validations.memberPhone && <span className="valid">{validations.memberPhone}</span>
+                    )}
                 </div>
                 <div>
                     <label>이메일 : </label>
@@ -169,8 +179,11 @@ const MemberForm = ({ addMember }) => {
                         placeholder="이메일 주소를 입력하세요"
                         required 
                     />
-                    {errors.memberEmail && <span className="error">{errors.memberEmail}</span>}
-                    {validations.memberEmail && !errors.memberEmail && <span className="valid">{validations.memberEmail}</span>}
+                    {errors.memberEmail ? (
+                        <span className="error">{errors.memberEmail}</span>
+                    ) : (
+                        validations.memberEmail && <span className="valid">{validations.memberEmail}</span>
+                    )}
                 </div>
                 <div>
                     <label>우편번호 : </label>
@@ -182,8 +195,11 @@ const MemberForm = ({ addMember }) => {
                         placeholder="우편번호를 입력하세요"
                         required 
                     />
-                    {errors.memberPost && <span className="error">{errors.memberPost}</span>}
-                    {validations.memberPost && !errors.memberPost && <span className="valid">{validations.memberPost}</span>}
+                    {errors.memberPost ? (
+                        <span className="error">{errors.memberPost}</span>
+                    ) : (
+                        validations.memberPost && <span className="valid">{validations.memberPost}</span>
+                    )}
                 </div>
                 <div>
                     <label>주소 : </label>
