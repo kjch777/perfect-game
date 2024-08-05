@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Stadium.css";
 
 const seats = [
@@ -85,25 +85,39 @@ const lightenColor = (color, percent) => {
     .toUpperCase()}`;
 };
 
-const sections = {
-  orange: lightenColor("#FFA500", 0.3),
-  green: lightenColor("#008000", 0.3),
-  blue: lightenColor("#0000FF", 0.3),
-  purple: lightenColor("#800080", 0.3),
-};
+  const sections = {
+    orange: lightenColor("#FF7b00", 0.15), // FFA500
+    green: lightenColor("#008000", 0.15),
+    blue: lightenColor("#0000FF", 0.15),
+    purple: lightenColor("#800080", 0.15),
+  };
 
 /*
-    const sections = {
+  const sections = {
     orange: '#FFB733',
     green: '#4C8A4C',
     blue: '#3333FF',
     purple: '#A64AA2',
-    }; 
+  }; 
 */
 
 export const TicketBookingSub = () => {
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [maxSeats, setMaxSeats] = useState(0);
+  const [maxSeats, setMaxSeats] = useState(1);
+  const [countAlert, setCountAlert] = useState(null); // 여기엔 null 만 사용 가능(' ' 또는 " " 사용 시 페이지를 로드하자마자 공백 alert 가 출력되는 문제 발생)
+
+  /* alert 가 2번씩 호출되는 오류때문에 작성한 코드*/
+  useEffect(() => {
+    if (countAlert !== null) { // countAlert 가 null 이 아닐 때만 실행
+      const timer = setTimeout(() => { // 1) setTimeout 을 설정하여
+        alert(countAlert); // 3) alert 가 호출되도록 설정(countAlert 의 현재 값으로 표시)
+        setCountAlert(null); // 4) 이후 countAlert 를 null 로 상태 변경하여, 추후 다시 상태가 변경될 때까지 표시되지 않도록 설정
+      }, 1); // 2) 1ms 의 지연 시간 후에
+
+      return () => clearTimeout(timer); // 컴포넌트가 언마운트(컴포넌트가 DOM 에서 제거되는 것) 되거나, countAlert 의 상태가 변경되기 전에 타이머 정리
+      // 메모리 누수나 불필요한 작업을 방지하기 위해 필요하다.
+    }
+  }, [countAlert]); // countAlert 의 상태가 변경될 때마다 실행
 
   const handleSeatClick = (id) => {
     if (selectedSeats.includes(id)) {
@@ -116,8 +130,24 @@ export const TicketBookingSub = () => {
   };
 
   const handleMaxSeatsChange = (event) => {
-    setMaxSeats(parseInt(event.target.value, 10));
-    setSelectedSeats([]);
+    const count = parseInt(event.target.value, 10);
+
+    if (count < 1) {
+        setCountAlert('선택 가능한 좌석의 최소 수량은 1개입니다.');
+    } else if (count > 5) {
+        setCountAlert('선택 가능한 좌석의 최대 수량은 5개입니다.');
+    } else {
+        setMaxSeats(count);
+        setSelectedSeats([]);
+    }
+  };
+
+  const noTyping = (event) => {
+    event.preventDefault();
+  };
+
+  const noCursor = (event) => {
+    event.target.blur(); 
   };
 
   return (
@@ -125,7 +155,7 @@ export const TicketBookingSub = () => {
       <h1>야구장 예매</h1>
       <div className="controls">
         <label htmlFor="maxSeats">예매할 좌석 수: </label>
-        <input type="number" id="maxSeats" value={maxSeats} onChange={handleMaxSeatsChange} min="1" />
+        <input type="number" id="maxSeats" value={maxSeats} onChange={handleMaxSeatsChange} onKeyDown={noTyping} onFocus={noCursor} /> {/* min="1" max="5"*/}
       </div>
       <svg className="stadium-svg" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
         
@@ -141,16 +171,18 @@ export const TicketBookingSub = () => {
     */}
   
   <g transform="translate(0,-35) scale(1.5)">
-    <path d="M400,200 L600,400 L400,600 L200,400 Z" fill="green" stroke="black" stroke-width="2" />
-    <path d="M200,400 A200,200 0 0,1 600,400" fill="green" stroke="black" stroke-width="2" />
+    <path d="M400,200 L600,400 L400,600 L200,400 Z" fill="green" stroke="black" strokeWidth="2" /> {/* 다이아몬드 모양*/}
+    <path d="M200,400 A200,200 0 0,1 600,400" fill="green" stroke="black" strokeWidth="2" /> {/* 반원 모양*/}
 
-    <line x1="400" y1="400" x2="500" y2="500" stroke="black" stroke-width="2" />
-    <line x1="300" y1="500" x2="400" y2="400" stroke="black" stroke-width="2" />
+    <line x1="400" y1="400" x2="500" y2="500" stroke="black" strokeWidth="2" />
+    <line x1="300" y1="500" x2="400" y2="400" stroke="black" strokeWidth="2" />
     
-    <circle cx="400" cy="400" r="10" fill="white" stroke="black" stroke-width="2" />
-    <circle cx="500" cy="500" r="10" fill="white" stroke="black" stroke-width="2" />
-    <circle cx="400" cy="600" r="10" fill="white" stroke="black" stroke-width="2" />  
-    <circle cx="300" cy="500" r="10" fill="white" stroke="black" stroke-width="2" />
+    <circle cx="400" cy="400" r="10" fill="white" stroke="black" strokeWidth="2" />
+    <circle cx="500" cy="500" r="10" fill="white" stroke="black" strokeWidth="2" />
+    <circle cx="400" cy="600" r="10" fill="white" stroke="black" strokeWidth="2" />  
+    <circle cx="300" cy="500" r="10" fill="white" stroke="black" strokeWidth="2" />
+
+    <circle cx="400" cy="500" r="20" fill="#D2B48C" stroke="black" strokeWidth="2" />
   </g>
   
         {seats.map(({ id, section, angle, y }) => {
