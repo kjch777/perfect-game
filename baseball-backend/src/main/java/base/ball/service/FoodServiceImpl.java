@@ -14,7 +14,7 @@ public class FoodServiceImpl implements FoodService {
 	private FoodMapper foodMapper;
 	
 	@Override
-	public List<Food> foodAll(){
-		return foodMapper.foodAll();
+	public List<Food> foodAll(int playgroundId){
+		return foodMapper.foodAll(playgroundId);
 	}
 }

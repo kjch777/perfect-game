@@ -1,6 +1,4 @@
 import React from 'react';
-import './foodmain.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const FoodMain = () => {
   return (

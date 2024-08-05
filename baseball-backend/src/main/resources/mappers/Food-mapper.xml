@@ -8,7 +8,6 @@
             food_id AS foodId,
             food_name AS foodName,
             food_menu AS foodMenu,
-            food_price AS foodPrice,
             playground_id AS playgroundId
         FROM 
             pg_food
