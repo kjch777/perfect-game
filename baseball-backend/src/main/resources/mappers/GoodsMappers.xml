@@ -8,4 +8,9 @@
 		SELECT*
 		FROM goods
 	</select>
+	
+	  <insert id="insertOrder" parameterType="base.ball.dto.Orders">
+        INSERT INTO orders (goods_id, order_count, order_price)
+        VALUES (#{goodsId}, #{orderCount}, #{orderPrice})
+    </insert>
 </mapper>

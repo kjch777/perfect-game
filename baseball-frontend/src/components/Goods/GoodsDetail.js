@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import "../css/GoodsDetail.css";
 
 const GoodsDetail = ({ goods }) => {
   const { goodsId } = useParams(); // URL에서 goodsId를 추출합니다.
+  const navigate = useNavigate(); // 페이지 전환을 위한 useNavigate 훅을 사용합니다.
   const [quantity, setQuantity] = useState(1); // 초기 수량을 1로 설정
 
   console.log("goodsId:", goodsId);
@@ -36,6 +37,40 @@ const GoodsDetail = ({ goods }) => {
     return amount.toLocaleString();
   };
 
+  const handleOrder = async () => {
+    if (item) {
+      const orderData = {
+        goodsId: item.goodsId,
+        orderCount: quantity,
+        orderPrice: totalPrice
+      };
+
+      try {
+        const response = await fetch('/goods/order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(orderData)
+        });
+
+        if (response.ok) {
+          // 주문이 성공적으로 완료된 경우
+          alert("주문페이지로 이동합니다.");
+          navigate("/orders", { state: { item, quantity, totalPrice } }); // 상태를 전달
+        } else {
+          // 오류 처리
+          alert("주문 처리 중 오류가 발생했습니다.");
+        }
+      } catch (error) {
+        // 네트워크 오류 처리
+        console.error("주문 요청 오류:", error);
+        alert("주문 요청 중 네트워크 오류가 발생했습니다.");
+      }
+    }
+  };
+
+
   return (
     <div className="container mt-5">
       {item ? (
@@ -55,7 +90,7 @@ const GoodsDetail = ({ goods }) => {
                 <button onClick={increaseQuantity}>+</button>
               </div>
               <p className="totalPrice">총 금액: {formatCurrency(totalPrice)}원</p>
-              <button className="buy-button">구매하기</button>
+              <button className="buy-button" onClick={handleOrder}>구매하기</button>
             </div>
           </div>
           <br />

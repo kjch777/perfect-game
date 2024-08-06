@@ -3,12 +3,17 @@ package base.ball.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import base.ball.dto.Goods;
+import base.ball.dto.Orders;
 import base.ball.service.GoodsService;
 
 @RestController
@@ -25,4 +30,10 @@ public class GoodsController {
 		//return goodsService.findAll();
 		return goodsList;
 	}
+	
+	@PostMapping("/order")
+	public void insertOrder(@RequestBody Orders orders) { //@RequestBody 전체
+		goodsService.insertOrder(orders);
+	}
+	
 }

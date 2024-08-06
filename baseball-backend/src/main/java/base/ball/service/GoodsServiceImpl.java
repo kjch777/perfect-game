@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import base.ball.dto.Goods;
+import base.ball.dto.Orders;
 import base.ball.mapper.GoodsMapper;
 
 @Service
@@ -17,5 +18,10 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<Goods> findAll(){
 		return goodsMapper.findAll();
+	}
+	
+	@Override
+	public void insertOrder (Orders orders) {
+		goodsMapper.insertOrder(orders);
 	}
 }

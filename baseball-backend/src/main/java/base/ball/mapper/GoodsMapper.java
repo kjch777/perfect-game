@@ -5,8 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import base.ball.dto.Goods;
+import base.ball.dto.Orders;
 
 @Mapper
 public interface GoodsMapper {
 	List<Goods> findAll();
+	
+	void insertOrder(Orders orders);
 }
