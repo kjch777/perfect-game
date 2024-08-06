@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/Stadium.css";
+import "../css/TicketBooking.css";
 
 const seats = [
   { id: "101", section: "orange", angle: 70, y: 400 },
@@ -86,10 +86,10 @@ const lightenColor = (color, percent) => {
 };
 
   const sections = {
-    orange: lightenColor("#FF7b00", 0.15), // FFA500
+    orange: lightenColor("#FF7b00", 0.15), 
     green: lightenColor("#008000", 0.15),
-    blue: lightenColor("#0000FF", 0.15),
-    purple: lightenColor("#800080", 0.15),
+    blue: lightenColor("#0000FF", 0.3),
+    purple: lightenColor("#800080", 0.3),
   };
 
 /*
@@ -125,6 +125,8 @@ export const TicketBookingSub = () => {
     } else {
       if (selectedSeats.length < maxSeats) {
         setSelectedSeats([...selectedSeats, id]);
+      } else {
+        setCountAlert('선택 가능한 좌석 수를 초과했습니다.');
       }
     }
   };
@@ -134,8 +136,8 @@ export const TicketBookingSub = () => {
 
     if (count < 1) {
         setCountAlert('선택 가능한 좌석의 최소 수량은 1개입니다.');
-    } else if (count > 5) {
-        setCountAlert('선택 가능한 좌석의 최대 수량은 5개입니다.');
+    } else if (count > 4) {
+        setCountAlert('선택 가능한 좌석의 최대 수량은 4개입니다.');
     } else {
         setMaxSeats(count);
         setSelectedSeats([]);
@@ -152,38 +154,31 @@ export const TicketBookingSub = () => {
 
   return (
     <div className="stadium-container">
-      <h1>야구장 예매</h1>
+      <div className="ticketingSub-header">
+        <h1>야구 예매(임시)</h1>
+      </div>
       <div className="controls">
         <label htmlFor="maxSeats">예매할 좌석 수: </label>
-        <input type="number" id="maxSeats" value={maxSeats} onChange={handleMaxSeatsChange} onKeyDown={noTyping} onFocus={noCursor} /> {/* min="1" max="5"*/}
+        <input type="number" id="maxSeats" value={maxSeats} onChange={handleMaxSeatsChange} onKeyDown={noTyping} onFocus={noCursor} />
       </div>
       <svg className="stadium-svg" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
         
-    {/*
-        {/* Big Green Ground/}
-        <circle cx="600" cy="580" r="300" fill="#A2C948" />{" "}
-        
-        {/* Small White Circle/}
-        <circle cx="600" cy="600" r="20" fill="white" />{" "}
-        
-        {/* Triangle/}
-        <path d="M600,600 L600,900 L700,900 Z" fill="white" /> 
-    */}
+        <circle cx="600" cy="580" r="300" fill="#D2B48C" stroke="black" strokeWidth="3" />
   
-  <g transform="translate(0,-35) scale(1.5)">
-    <path d="M400,200 L600,400 L400,600 L200,400 Z" fill="green" stroke="black" strokeWidth="2" /> {/* 다이아몬드 모양*/}
-    <path d="M200,400 A200,200 0 0,1 600,400" fill="green" stroke="black" strokeWidth="2" /> {/* 반원 모양*/}
+        <g transform="translate(0,-35) scale(1.5)">
+          <path d="M400,200 L600,400 L400,600 L200,400 Z" fill="green" stroke="black" strokeWidth="2" /> {/* 다이아몬드 모양*/}
+          <path d="M200,400 A200,200 0 0,1 600,400" fill="green" stroke="black" strokeWidth="2" /> {/* 반원 모양*/}
 
-    <line x1="400" y1="400" x2="500" y2="500" stroke="black" strokeWidth="2" />
-    <line x1="300" y1="500" x2="400" y2="400" stroke="black" strokeWidth="2" />
-    
-    <circle cx="400" cy="400" r="10" fill="white" stroke="black" strokeWidth="2" />
-    <circle cx="500" cy="500" r="10" fill="white" stroke="black" strokeWidth="2" />
-    <circle cx="400" cy="600" r="10" fill="white" stroke="black" strokeWidth="2" />  
-    <circle cx="300" cy="500" r="10" fill="white" stroke="black" strokeWidth="2" />
+          <line x1="400" y1="400" x2="500" y2="500" stroke="black" strokeWidth="2" />
+          <line x1="300" y1="500" x2="400" y2="400" stroke="black" strokeWidth="2" />
+          
+          <path d="M400,600 L388,588 L388,576 L412,576 L412,588 Z" fill="white" stroke="black" strokeWidth="2" /> {/* Home */}
+          <rect x="480" y="500" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 500, 500)" /> {/* 1루*/}
+          <rect x="400" y="400" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 400, 400)" /> {/* 2루*/}
+          <rect x="300" y="480" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 300, 500)" /> {/* 3루*/}
 
-    <circle cx="400" cy="500" r="20" fill="#D2B48C" stroke="black" strokeWidth="2" />
-  </g>
+          <circle cx="400" cy="500" r="20" fill="#D2B48C" stroke="black" strokeWidth="2" />
+        </g>
   
         {seats.map(({ id, section, angle, y }) => {
           const isSelected = selectedSeats.includes(id);
@@ -199,23 +194,23 @@ export const TicketBookingSub = () => {
           );
         })}
 
-        <text x="600" y="130" fontFamily="Arial" fontSize="20" fill="black" textAnchor="middle">
-          전광판
+        <text x="600" y="130" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black" textAnchor="middle">전광판</text>
+        <text x="100" y="1000" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+          <tspan>2-1 GATE</tspan>
+          <tspan x="60" dy="1.2em">(내야 3루 출입구)</tspan>
         </text>
-        <text x="100" y="1000" fontFamily="Arial" fontSize="20" fill="black">
-          3루 내야 출입구
+        <text x="1000" y="1000" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+          <tspan>2-3 GATE</tspan>
+          <tspan x="960" dy="1.2em">(내야 1루 출입구)</tspan>
         </text>
-        <text x="1000" y="1000" fontFamily="Arial" fontSize="20" fill="black">
-          1루 내야 출입구
+        <text x="600" y="1150" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black" textAnchor="middle">1-1 GATE (중앙문)</text>
+        <text x="100" y="200" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+          <tspan>3-1 GATE</tspan>
+          <tspan x="60" dy="1.2em">(외야 3루 출입구)</tspan>
         </text>
-        <text x="600" y="1150" fontFamily="Arial" fontSize="20" fill="black" textAnchor="middle">
-          1-1 Gate
-        </text>
-        <text x="100" y="200" fontFamily="Arial" fontSize="20" fill="black">
-          외야 1루 출입구
-        </text>
-        <text x="1000" y="200" fontFamily="Arial" fontSize="20" fill="black">
-          외야 3루 출입구
+        <text x="1000" y="200" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+          <tspan>3-3 GATE</tspan>
+          <tspan x="960" dy="1.2em">(외야 1루 출입구)</tspan>
         </text>
       </svg>
     </div>

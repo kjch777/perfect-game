@@ -5,8 +5,10 @@ export const TicketBookingMain = () => {
     
 
     return (
-        <>
-        
-        </>
+        <div className="ticket-container">
+            <div className="banner">
+                <img />
+            </div>
+        </div>
     )
 }
