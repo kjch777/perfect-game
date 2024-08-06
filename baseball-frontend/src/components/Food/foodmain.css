@@ -1,0 +1,29 @@
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center; /* 중앙 정렬 */
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto; /* 이미지 배율 유지 */
+    max-height: 200px; /* 이미지 크기를 제한하여 균일하게 맞춥니다 */
+    object-fit: contain; /* 이미지가 크기에 맞게 조정되도록 합니다 */
+  }
+  
+  .card-title {
+    margin-top: 10px;
+  }
+  
+  .btn {
+    align-self: center; /* 버튼을 카드 하단 중앙에 배치합니다 */
+  }
+  

@@ -1,0 +1,37 @@
+.playground-box {
+    width: 50%; /* 박스의 너비 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    position: absolute; /* 절대 위치 지정 */
+    top: 50%; /* 상단으로부터 50% */
+    left: 50%; /* 왼쪽으로부터 50% */
+    transform: translate(-50%, -50%); /* 박스의 크기의 절반만큼 이동하여 정확히 가운데 위치시키기 */
+    margin: 0; /* 마진 제거 (이 경우에는 사용하지 않음) */
+}
+
+#pg {
+    padding: 30px;
+    margin: 50px;
+    background-color: #8A1A4D;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    justify-content: center;
+    justify-items: center;
+}
+
+img {
+    width: 500px;
+    height: 400px;
+}
+
+
+.food-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    text-decoration: none;
+}
