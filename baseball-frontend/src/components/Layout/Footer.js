@@ -1,12 +1,20 @@
 import React from "react";
-import '../css/Footer.css'
+import {Link} from "react-router-dom";
+import '../css/Footer.css';
+
 
 const Footer = () => {
     return (
         <footer>
             <div className="footer-link">
                 <div className="left">
-
+                    <ul id="link-banner">
+                        <li><Link to="#">야구장</Link></li>
+                        <li><Link to="#">예매</Link></li>
+                        <li><Link to="#">굿즈샵</Link></li>
+                        <li><Link to="#">게시판</Link></li>
+                        <li><Link to="#">마이페이지</Link></li>
+                    </ul>
                 </div>
                 <div className="right">
                     <ul>

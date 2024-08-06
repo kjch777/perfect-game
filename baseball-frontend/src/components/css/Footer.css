@@ -5,7 +5,7 @@ footer {
   color: white;
   padding: 20px 30px;
   text-align: center;
-  position: fixed;
+  position: relative;
   left: 0;
   right: 0;
   bottom: 0;
@@ -13,26 +13,25 @@ footer {
   box-sizing: border-box;
 }
 
-footer .footer-link .right > ul > li {
+footer .footer-link div {
+  width: 50%;
+  display: inline-block;
+}
+footer .footer-link div > ul > li {
   display: inline-block;
   list-style: none;
 }
-footer .footer-link .right > ul > li > a {
+footer .footer-link div > ul > li > a {
   text-decoration: none;
   color: white;
-  margin: 0 10px;
+  margin: 0 20px;
 }
+
+
 .footer-link {
   margin-bottom: 30px;
 }
-.left {
-  position: fixed;
-  left: 20px;
-}
-.right {
-  position: fixed;
-  right: 20px;
-}
+
 hr {
   width: 100%;
   margin: 10px 0;

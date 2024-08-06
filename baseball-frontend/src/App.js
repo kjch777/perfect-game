@@ -15,12 +15,14 @@ function App() {
     <LoginProvider>
     <div>
       <Header/>
-      <Routes>
-        <Route path="/" element={<Main/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/members/signup" element={<Signup/>}></Route>
-        <Route path="/members/membertable" element={<MemberTable/>}></Route>
-      </Routes>
+      <div id="main-content">
+        <Routes>
+          <Route path="/" element={<Main/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
+          <Route path="/members/signup" element={<Signup/>}></Route>
+          <Route path="/members/membertable" element={<MemberTable/>}></Route>
+        </Routes>
+      </div>
       <Footer/>
     </div>
     </LoginProvider>

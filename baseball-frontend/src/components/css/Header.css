@@ -1,16 +1,19 @@
 /* Header Css */
-header #login-signup {
-  position: fixed;
-  top: 0;
-  right: 20px;
+header {
+  position: relative;
 }
+header #login-signup {
+  position: absolute;
+  top: -22px;
+  right: 20px; /* 화면 오른쪽에서 20px 떨어진 위치 */
+}
+
 header #login-signup ul {
   display: flex;
 }
-
 header #login-signup ul li {
   list-style: none;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 header #login-signup ul li a {
   text-decoration: none;
@@ -29,7 +32,6 @@ header #menu {
   text-align: center;
   display: flex;
   margin-top: 21px;/**/
-  margin-bottom: 50px;
 }
 header #menu #main-banner,
 header #menu #link-banner {

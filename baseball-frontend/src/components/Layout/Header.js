@@ -6,15 +6,12 @@ const Header = () => {
     return ( 
         <header>
             <div id="login-signup">
-                <ul>
+                <ul id="login-banner">
                     <li>
                         <Link to="/login">로그인</Link>
                     </li>
                     <li>
                         <Link to="/members/signup">회원가입</Link>
-                    </li>
-                    <li>
-                        <Link to="/members/membertable">멤버보기</Link>
                     </li>
                 </ul>
             </div>

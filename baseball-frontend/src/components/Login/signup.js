@@ -15,7 +15,6 @@ function LoginApp() {
 
   return (
     <div className="App">
-      <h1>Perfect Game 회원가입</h1>
       <MemberForm addMember={addMember} />
     </div>
   );
