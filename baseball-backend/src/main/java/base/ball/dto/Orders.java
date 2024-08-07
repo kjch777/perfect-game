@@ -16,5 +16,4 @@ public class Orders {
 	 private int orderCount;
 	 private int orderPrice;
 	 private String payYn;
-	 
 }

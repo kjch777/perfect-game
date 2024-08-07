@@ -6,6 +6,7 @@ import Weather from './components/Weather.js';
 import GoodsMain from './components/Goods/GoodsMain.js';
 import { Route, Routes } from 'react-router-dom';
 import GoodsOrder from './components/Goods/GoodsOrder.js';
+import Header from './components/Header.js';
 
 function App() {
 
@@ -25,10 +26,12 @@ function App() {
     
       <div className="App">
        
-        <Routes>
-        <Route path='/' element={<GoodsMain goods={goods} />}  />
+      <Routes>
+        <Route path='/' element={<Header/>}  />
+        <Route path='/goods' element={<GoodsMain goods={goods} />}  />
         <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />}  />
         <Route path='/orders' element={<GoodsOrder />} /> 
+        <Route path='/weather' element={<Weather/>}/>
       </Routes>
         
       {/* 

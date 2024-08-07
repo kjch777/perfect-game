@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import '../../Header.css'
+import './css/Header.css';
 
 const Header = () => {
     return ( 
@@ -15,7 +15,7 @@ const Header = () => {
                     <li>
                         <Link to="#">야구장</Link>
                         <ul id="ul-num-1">
-                            <li><Link to="#">야구장 날씨</Link></li>
+                            <li><Link to="/weather">야구장 날씨</Link></li>
                             <li><Link to="#">야구장 먹거리</Link></li>
                         </ul>
                     </li>
@@ -23,7 +23,7 @@ const Header = () => {
                         <Link to="#">예매</Link>
                     </li>
                     <li>
-                        <Link to="#">굿즈샵</Link>
+                        <Link to="/goods">굿즈샵</Link>
                     </li>
                     <li>
                         <Link to="#">게시판</Link>

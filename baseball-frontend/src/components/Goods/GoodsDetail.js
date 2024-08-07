@@ -4,13 +4,13 @@ import "../css/GoodsDetail.css";
 
 const GoodsDetail = ({ goods }) => {
   const { goodsId } = useParams(); // URL에서 goodsId를 추출합니다.
-  const navigate = useNavigate(); // 페이지 전환을 위한 useNavigate 훅을 사용합니다.
+  const navigate = useNavigate(); // useNavigate 훅 = 페이지 전환
   const [quantity, setQuantity] = useState(1); // 초기 수량을 1로 설정
 
   console.log("goodsId:", goodsId);
 
   // goods 배열에서 현재 goodsId에 맞는 상품을 찾습니다.
-  const item = goods.find((good) => good.goodsId === Number(goodsId)); // 비교 시 타입을 맞춤
+  const item = goods.find((good) => good.goodsId === Number(goodsId));
 
   // goodsDetailImage를 배열로 파싱합니다.
   const detailImages =
@@ -37,6 +37,7 @@ const GoodsDetail = ({ goods }) => {
     return amount.toLocaleString();
   };
 
+  //구매하기 버튼 눌렀을 때 실행 함수
   const handleOrder = async () => {
     if (item) {
       const orderData = {
@@ -57,7 +58,7 @@ const GoodsDetail = ({ goods }) => {
         if (response.ok) {
           // 주문이 성공적으로 완료된 경우
           alert("주문페이지로 이동합니다.");
-          navigate("/orders", { state: { item, quantity, totalPrice } }); // 상태를 전달
+          navigate("/orders", { state: { item, quantity, totalPrice } }); //order페이지로 상태를 전달
         } else {
           // 오류 처리
           alert("주문 처리 중 오류가 발생했습니다.");
