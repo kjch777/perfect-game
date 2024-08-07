@@ -13,8 +13,13 @@ public class FoodServiceImpl implements FoodService {
 	@Autowired
 	private FoodMapper foodMapper;
 	
+	//@Override
+	//public List<Food> foodAll(int foodId){
+	//	return foodMapper.foodAll(foodId);
+	//}
+	
 	@Override
-	public List<Food> foodAll(int playgroundId){
-		return foodMapper.foodAll(playgroundId);
+	public Food foodAll(int foodId) {
+		return foodMapper.foodAll(foodId);
 	}
 }

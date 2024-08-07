@@ -4,14 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="base.ball.mapper.FoodMapper">
 	<select id="foodAll" parameterType="int" resultType="base.ball.dto.Food">
-		 SELECT 
-            food_id AS foodId,
-            food_name AS foodName,
-            food_menu AS foodMenu,
-            playground_id AS playgroundId
-        FROM 
-            pg_food
-        WHERE 
-            food_id = #{foodId}
+		 SELECT * FROM pg_food
 	</select>
 </mapper>

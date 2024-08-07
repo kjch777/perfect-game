@@ -10,9 +10,11 @@ function FoodDetail() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    console.log(`Fetching data for foodId: ${foodId}`);
     axios
-      .get(`http://localhost:9090/api/foods/${foodId}`)
+      .get(`http://localhost:9090/foods/${foodId}`)
       .then((response) => {
+        console.log('Response data:', response.data);
         setFood(response.data);
         setLoading(false);
       })
@@ -50,7 +52,6 @@ function FoodDetail() {
           ))}
         </div>
       </div>
-
       
     </div>
   );

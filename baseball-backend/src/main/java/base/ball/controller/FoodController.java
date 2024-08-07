@@ -12,13 +12,18 @@ import base.ball.dto.Food;
 import base.ball.service.FoodService;
 
 @RestController
-@RequestMapping("/food")
+@RequestMapping("/foods")
 public class FoodController {
 	@Autowired
 	private FoodService foodService;
 	
-	@GetMapping("/food/{playgroundId}")
-	public List<Food> foodAll(@PathVariable int playgroundId) {
-        return foodService.foodAll(playgroundId);
-    }
+	//@GetMapping("/{foodId}")
+	//public List<Food> foodAll(@PathVariable int foodId) {
+    //    return foodService.foodAll(foodId);
+    //}
+	
+	@GetMapping("/{foodId}")
+	public Food foodAll(@PathVariable("foodId") int foodId) {
+		return foodService.foodAll(foodId);
+	}
 }

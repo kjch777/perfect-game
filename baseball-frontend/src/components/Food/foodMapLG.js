@@ -10,8 +10,8 @@ const FoodMap = () => {
         </div>
         <img src="LGinside.png" alt="LG야구장내부" />
         <div className="food-container">
-            <a href="./fooddetail/{foodId}">원샷치킨</a><br />
-            <a href="#">잭슨피자</a><br />
+            <a href="./fooddetail/2">원샷치킨</a><br />
+            <a href="./fooddetail/5">잭슨피자</a><br />
         </div>
       </div>
     </div>
