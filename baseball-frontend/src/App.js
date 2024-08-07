@@ -30,7 +30,7 @@ function App() {
         <Route path='/' element={<Header/>}  />
         <Route path='/goods' element={<GoodsMain goods={goods} />}  />
         <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />}  />
-        <Route path='/orders' element={<GoodsOrder />} /> 
+        <Route path='/goods/orders' element={<GoodsOrder />} /> 
         <Route path='/weather' element={<Weather/>}/>
       </Routes>
         
