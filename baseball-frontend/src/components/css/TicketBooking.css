@@ -46,3 +46,24 @@
   font-weight: bold;
   font-size: 19px;
 }
+
+.ticket-container {
+  
+}
+
+.ticket-banner {
+  height: 25vh;
+  width: 75vw;
+  margin: 0 auto; /* 수평 가운데 정렬 */
+  margin-top: 100px;
+  margin-bottom: 100px;
+  position: relative; /* 자식 요소의 절대 위치를 위해 상대 위치 설정 */
+}
+
+.ticket-banner img {
+  height: 640px;
+  width: 100%;
+  object-fit: cover; /* 이미지 비율 유지 */
+  /* object-fit: contain; */
+  object-fit: fill; /* 이미지 채우기 */
+}
