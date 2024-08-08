@@ -7,7 +7,9 @@ import GoodsMain from './components/Goods/GoodsMain.js';
 import { Route, Routes } from 'react-router-dom';
 import GoodsOrder from './components/Goods/GoodsOrder.js';
 import Header from './components/Header.js';
-
+import PaymentSuccessPage from './components/Goods/PaymentSuccessPage.js';
+import PaymentCheckoutPage from './components/Goods/PaymentCheckoutPage.js';
+import PaymentFailPage from './components/Goods/PaymentFailPage.js'
 function App() {
 
   const [goods, setGoods] = useState([]);
@@ -25,20 +27,16 @@ function App() {
   return (
     
       <div className="App">
-       
-      <Routes>
-        <Route path='/' element={<Header/>}  />
-        <Route path='/goods' element={<GoodsMain goods={goods} />}  />
-        <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />}  />
-        <Route path='/goods/orders' element={<GoodsOrder />} /> 
-        <Route path='/weather' element={<Weather/>}/>
-      </Routes>
-        
-      {/* 
-      <Routes>
-        <Route path='/' element={<Weather/>}  />
-      </Routes>
-      */}
+       <Header />
+        <Routes>
+        <Route path='/goods' element={<GoodsMain goods={goods} />} />
+        <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />} />
+        <Route path='/goods/orders' element={<GoodsOrder />} />
+        <Route path='/weather' element={<Weather />} />
+        <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
+        <Route path="/payment/success" element={<PaymentSuccessPage />} />
+        <Route path="/payment/fail" element={<PaymentFailPage />} />
+        </Routes>
       </div>
 
   );

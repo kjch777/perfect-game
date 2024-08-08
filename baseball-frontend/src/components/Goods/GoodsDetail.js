@@ -58,7 +58,7 @@ const GoodsDetail = ({ goods }) => {
         if (response.ok) {
           // 주문이 성공적으로 완료된 경우
           alert("주문페이지로 이동합니다.");
-          navigate("/orders", { state: { item, quantity, totalPrice } }); //order페이지로 상태를 전달
+          navigate("/goods/orders", { state: { item, quantity, totalPrice } }); //order페이지로 상태를 전달
         } else {
           // 오류 처리
           alert("주문 처리 중 오류가 발생했습니다.");

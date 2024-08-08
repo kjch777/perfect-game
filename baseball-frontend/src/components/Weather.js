@@ -131,7 +131,10 @@ const Weather = () => {
             )}
           </div>
           <div className="koreaMap">
-            <img src="koreaMap-gray.png" />
+          <img
+              src={`${process.env.PUBLIC_URL}/images/koreaMap-gray.png`}
+              alt="Korea Map"
+            />
           </div>
           <div className="weaterInfo">
             {cities.slice(3).map(
