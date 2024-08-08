@@ -8,7 +8,5 @@ import base.ball.dto.Food;
 
 @Service
 public interface FoodService {
-	//List<Food> foodAll(int foodId);
-	
-	Food foodAll(int foodId);
+	List<Food> foodAll(int foodId);
 }

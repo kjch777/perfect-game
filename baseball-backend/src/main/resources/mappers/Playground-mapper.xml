@@ -4,12 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="base.ball.mapper.PlaygroundMapper">
 	<select id="PlaygroundAll" parameterType="int" resultType="base.ball.dto.Playground">
-		SELECT 
-            playground_id AS playgroundId,
-            playground_name AS playgroundName
-        FROM 
-            playground
-        WHERE 
-            playground_id = #{playgroundId}
+		SELECT * from playground
 	</select>
 </mapper>

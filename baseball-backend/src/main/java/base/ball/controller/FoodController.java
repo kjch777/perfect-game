@@ -17,13 +17,8 @@ public class FoodController {
 	@Autowired
 	private FoodService foodService;
 	
-	//@GetMapping("/{foodId}")
-	//public List<Food> foodAll(@PathVariable int foodId) {
-    //    return foodService.foodAll(foodId);
-    //}
-	
 	@GetMapping("/{foodId}")
-	public Food foodAll(@PathVariable("foodId") int foodId) {
-		return foodService.foodAll(foodId);
-	}
+	public List<Food> foodAll(@PathVariable("foodId") int foodId) {
+        return foodService.foodAll(foodId);
+    }
 }

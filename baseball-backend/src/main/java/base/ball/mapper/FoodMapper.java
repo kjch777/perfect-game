@@ -8,7 +8,5 @@ import base.ball.dto.Food;
 
 @Mapper
 public interface FoodMapper {
-	//List<Food> foodAll(int foodId);
-	
-	Food foodAll(@Param("foodId") int foodId);
+	List<Food> foodAll(int foodId);
 }

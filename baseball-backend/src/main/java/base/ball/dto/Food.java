@@ -11,6 +11,4 @@ public class Food {
 	private int foodId;
 	private String foodName;
 	private String foodMenu;
-	private String foodPrice;
-	private Playground playgroundId;
 }

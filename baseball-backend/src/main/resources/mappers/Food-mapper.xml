@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="base.ball.mapper.FoodMapper">
-	<select id="foodAll" parameterType="int" resultType="base.ball.dto.Food">
-		 SELECT * FROM pg_food
+	<select id="foodAll" resultType="base.ball.dto.Food">
+		 SELECT * FROM foods
 	</select>
 </mapper>

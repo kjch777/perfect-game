@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 function FoodDetail() {
   const { foodId } = useParams();
-  const [food, setFood] = useState("");
+  const [food, setFood] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -39,11 +39,11 @@ function FoodDetail() {
       <div className="playground-box">
         <div id="pg">
           <p>
-            <strong>{food.foodName}</strong>
+            <strong>{food.food_name}</strong>
           </p>
         </div>
         <div className="food-container">
-          {Object.entries(food.foodMenu).map(([menu, price]) => (
+          {food.foodMenu && Object.entries(food.foodMenu).map(([menu, price]) => (
             <div key={menu}>
               <p>
                 {menu}: {price}원
@@ -52,7 +52,6 @@ function FoodDetail() {
           ))}
         </div>
       </div>
-      
     </div>
   );
 }
