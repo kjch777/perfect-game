@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { Client } from '@stomp/stompjs'; //   Client from 'stomp/stompjs'  ->   @stomp/stompjs
 import SockJS from 'sockjs-client';
 import './Chat.css';
-import Emoji from './Emoji';
+import Emoji from './Emoji.js';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const [stompClient, setStompClient] = useState(null);
     const [connected, setConnected] = useState(false);
+    const [fontSize, setFontSize] = useState('16px');
+    const chatContainerRef = useRef(null);
 
     useEffect(() => {
         const socket = new SockJS('http://localhost:9001/ws');// java 쪽의 서버포트 설정과 맞춰서 작성
@@ -42,6 +44,15 @@ const Chat = () => {
             }
         };
     },[]);
+    const messagesEndRef = useRef('');
+
+    
+
+    useEffect(() => {
+        // 메시지가 업데이트될 때마다 자동으로 스크롤을 아래로 이동
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, [messages]);
+
 
     const sendMessage = () => {
         if (stompClient && connected && message){
@@ -69,19 +80,33 @@ const Chat = () => {
     const emojiMessage = (emoji) => {
         setMessage((prevMessages) => prevMessages + emoji);
     }
+    
+    const deleteMessage = (index) => {
+        const afterDelete = messages.filter((message,i) => i !== index);
+        setMessages(afterDelete);
+    }
+    const handleRefresh = () => {
+        setMessages([]);
+    }
+    const handleFontSizeChange = (e) => {
+        setFontSize(e.target.value);
+    }
+    
     return(
-        <>
-        <div className = 'chat-container'>
+        <>        
+        <div className = 'chat-container' >       
             {emojiPick && <Emoji onSelect={emojiMessage}/>}
-            <div>
+            <div ref={chatContainerRef} style={{fontSize}}>          
             {messages.map((msg, index) => (
                 <div key={index}>
                 <strong>{msg.sender}</strong>: {msg.content}
+                <button className='btn-delete' 
+                onClick={() => {deleteMessage(index)}}>&#10060;</button>
                 </div>
-                ))}
+                ))}          
+             <div ref={messagesEndRef} />
             </div>  
             </div>
-               
         <div className='chat-input-section'>
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -102,12 +127,23 @@ const Chat = () => {
             onChange={(e) => setMessage(e.target.value)}
             disabled={!connected}
             placeholder='메시지를 입력하세요.'
-            onKeyDown={pressEnter}
-            />
-            <button className='button-chat' onClick={sendMessage} disabled={!connected}>
+            onKeyDown={pressEnter}            
+            />    
+             <button className='button-chat' onClick={sendMessage} disabled={!connected}>
                 채팅
             </button>
-        </div>  
+            <button onClick={handleRefresh} className='btn-refresh'>
+                새로고침
+            </button>
+            <label htmlFor='font-size'>글자크기</label>
+            <select id="font-size" value={fontSize} onChange={handleFontSizeChange}>
+                <option value="14px">작게</option>
+                <option value="16px">보통</option>
+                <option value="18px">크게</option>
+                <option value="20px">아주 크게</option>
+            </select>
+            
+        </div>          
         {!connected && <p>서버 연결중...</p>}
         </>
     );
