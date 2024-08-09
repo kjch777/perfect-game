@@ -1,0 +1,85 @@
+.App {
+  text-align: center;
+}
+.form-container {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-container table {
+  width: 100%;
+}
+.form-container td {
+  padding: 10px;
+}
+
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.form-container label {
+  font-size: 18px;
+}
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.file-label input {
+  display: none;
+}
+
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover, .file-label:hover {
+  background-color: #d6eaff;
+  color: black;
+}
+
+
+.board-container {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.board-container tr,
+.board-container th,
+.board-container td {
+  border: 1px solid #ddd;
+}
+.board .images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.board .images img {
+  max-width: 200px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}

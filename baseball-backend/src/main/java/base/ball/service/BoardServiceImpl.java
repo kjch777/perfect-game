@@ -59,15 +59,14 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		Board board = new Board();
-		board.setBoardNo(0);
-		board.setBoardMemberNo(0);
+		//board.setBoardMemberNo(memberNo);
 		board.setBoardTitle(title);
 		board.setBoardContents(content);
 		board.setBoardImageUrl(String.join(",", fileNames));
-		board.setBoardHits(0);
-		board.setBoardLikes(0);
-		board.setBoardPrivate(content);
-		board.setBoardPassword(content);
+		//board.setBoardHits(hits);
+		//board.setBoardLikes(likes);
+		//board.setBoardPrivate(private);
+		//board.setBoardPassword(password);
 		
 		insertBoard(board);
 	}

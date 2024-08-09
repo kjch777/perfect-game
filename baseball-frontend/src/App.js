@@ -9,6 +9,7 @@ import { LoginProvider } from './components/Login/LoginContext';
 import Login from './components/Login/Login';
 import Signup from './components/Login/signup';
 import MemberTable from './components/Login/MemberTable';
+import Board from './components/Board/Board';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/members/signup" element={<Signup/>}></Route>
           <Route path="/members/membertable" element={<MemberTable/>}></Route>
+          <Route path="/board" element={<Board/>}></Route>
         </Routes>
       </div>
       <Footer/>
