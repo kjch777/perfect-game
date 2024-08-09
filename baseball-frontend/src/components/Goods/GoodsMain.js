@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import '../css/GoodsMain.css';
+import '../../css/GoodsMain.css';
 
 const GoodsMain = ({ goods = [] }) => {
     // 숫자를 3자리씩 끊어서 , 찍어주는 함수

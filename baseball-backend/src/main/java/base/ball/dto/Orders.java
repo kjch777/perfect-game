@@ -13,6 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor //필수생성자
 public class Orders {
 	 private int goodsId;
+	 private String goodsName;
 	 private int orderCount;
 	 private int orderPrice;
 	 private String payYn;

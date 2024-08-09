@@ -1,7 +1,7 @@
 import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../css/PaymentCheckoutPage.css';
+import '../../css/PaymentCheckoutPage.css';
 
 const clientKey = "test_ck_P9BRQmyarYy5GkEgnon9rJ07KzLN";
 const generateRandomString = () => window.btoa(Math.random().toString()).slice(0, 20);
@@ -61,7 +61,7 @@ export function PaymentCheckoutPage() {
       <div className="box_section">
         <h1>결제 방법을 선택해주세요</h1>
         <div id="payment-method">
-          {["CARD", "TRANSFER", "VIRTUAL_ACCOUNT", "MOBILE_PHONE", "CULTURE_GIFT_CERTIFICATE", "FOREIGN_EASY_PAY"].map((method) => (
+          {["CARD", "TRANSFER", "VIRTUAL_ACCOUNT", "MOBILE_PHONE"].map((method) => (
             <button
               key={method}
               id={method}

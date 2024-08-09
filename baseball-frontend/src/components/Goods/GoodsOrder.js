@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import "../../css/GoodsOrder.css";
 
 const GoodsOrder = () => {
   const location = useLocation();
@@ -17,7 +18,13 @@ const GoodsOrder = () => {
   //결제 버튼을 눌렀을 때 실행할 함수 
   const handlePayment = async () => {
     try {
-      navigate('/payment/checkout', { state: { ...orderData } });//-> 결제 페이지로 이동
+      setOrderData({
+        ...orderData,
+        amount: totalPrice,
+        orderName: `${item.goodsName} x ${quantity}`,
+        quantity,
+      });
+      navigate('/payment/checkout');
     } catch (err) {
       console.error('Payment initiation error:', err);
       setError(err.message || 'Payment initiation failed.');

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams,useNavigate } from "react-router-dom";
-import "../css/GoodsDetail.css";
+import "../../css/GoodsDetail.css";
 
 const GoodsDetail = ({ goods }) => {
   const { goodsId } = useParams(); // URL에서 goodsId를 추출합니다.
