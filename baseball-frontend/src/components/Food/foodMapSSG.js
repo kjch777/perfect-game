@@ -1,7 +1,7 @@
 import React from 'react';
 import './foodmap.css'
 
-const FoodMap = () => {
+const FoodMapSSG = () => {
   return (
     <div>
       <div className="playground-box">
@@ -10,12 +10,12 @@ const FoodMap = () => {
         </div>
         <img src="./images/SSGinside.png" alt="SSG야구장내부" />
         <div className="food-container">
-            <a href="./fooddetail/7">맛집7</a><br />
-            <a href="./fooddetail/8">맛집8</a><br />
+            <a href="./fooddetail/7">씬난다</a><br />
+            <a href="./fooddetail/8">순살싸다리치킨</a><br />
         </div>
       </div>
     </div>
   );
 };
 
-export default FoodMap;
+export default FoodMapSSG;

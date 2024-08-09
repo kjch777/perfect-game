@@ -2,7 +2,7 @@ import React from "react";
 import "./foodmap.css";
 import { Link } from "react-router-dom";
 
-const FoodMap = () => {
+const FoodMapLG = () => {
   return (
     <div>
       <div className="playground-box">
@@ -13,9 +13,9 @@ const FoodMap = () => {
         </div>
         <img src="./images/LGinside.png" alt="LG야구장내부" />
         <div className="food-container">
-          <Link to="./fooddetail/1">잭슨피자</Link>
+          <Link to={`/fooddetail/1`}>잭슨피자</Link>
           <br />
-          <Link to="./fooddetail/2">원샷치킨</Link>
+          <Link to={`/fooddetail/2`}>원샷치킨</Link>
           <br />
         </div>
       </div>
@@ -23,4 +23,4 @@ const FoodMap = () => {
   );
 };
 
-export default FoodMap;
+export default FoodMapLG;

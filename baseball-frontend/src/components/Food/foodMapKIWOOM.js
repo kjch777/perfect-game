@@ -1,7 +1,7 @@
 import React from 'react';
 import './foodmap.css'
 
-const FoodMap = () => {
+const FoodMapKIWOOM = () => {
   return (
     <div>
       <div className="playground-box">
@@ -10,12 +10,12 @@ const FoodMap = () => {
         </div>
         <img src="./images/KIWOOMinside.jpg" alt="고척야구장내부" />
         <div className="food-container">
-            <a href="./fooddetail/3">맛집3</a><br />
-            <a href="./fooddetail/4">맛집4</a><br />
+            <a href="./fooddetail/3">호시타코야끼</a><br />
+            <a href="./fooddetail/4">백남옥 손만두</a><br />
         </div>
       </div>
     </div>
   );
 };
 
-export default FoodMap;
+export default FoodMapKIWOOM;
