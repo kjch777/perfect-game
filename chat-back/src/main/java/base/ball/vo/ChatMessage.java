@@ -1,4 +1,4 @@
-package base.ball.common.vo;
+package base.ball.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

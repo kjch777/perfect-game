@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="base.ball.mapper.ChatMapper">
+<insert id="insertMessage" parameterType="base.ball.dto.Chat">
+	INSERT INTO chat (chat_no,member_no,member_id,message,send_time)
+	VALUES (#{chat_no},#{member_no},#{member_id},#{message},#{send_time})
+</insert>
+	 
+<delete id="deleteMessage" parameterType="base.ball.dto.Chat">
+	DELETE FROM chat (chat_no,member_no,member_id,message,send_time)
+	WHERE (#{chat_no},#{member_no},#{member_id},#{message},#{send_time})
+</delete>
+	 
+</mapper>

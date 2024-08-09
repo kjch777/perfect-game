@@ -1,4 +1,4 @@
-package base.ball.common;
+package base.ball;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
