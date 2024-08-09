@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../css/TicketBooking.css";
+import "../../css/TicketBooking.css";
 
 const seats = [
   { id: "101", section: "orange", angle: 70, y: 400 },

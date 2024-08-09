@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios';
-import { TicketBookingBanner } from './TicketBookingBanner'
-import "../css/TicketBooking.css";
+import { TicketBookingBanner } from './TicketBookingBanner';
+import '../../css/TicketBooking.css';
 
 export const TicketBookingMain = () => {
     
