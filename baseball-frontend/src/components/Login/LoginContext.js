@@ -1,15 +1,8 @@
-import React, { createContext, useState } from 'react';
+import { createContext } from 'react';
 
-const LoginContext = createContext();
+const LoginContext = createContext({
+  loginMember: null,
+  setLoginMember: () => {}
+});
 
-export const LoginProvider = ({ children }) => {
-  const [loginMember, setLoginMember] = useState(null);
-
-  return (
-    <LoginContext.Provider value={{ loginMember, setLoginMember }}>
-      {children}
-    </LoginContext.Provider>
-  );
-};
-
-export default LoginContext;
+export default LoginContext ;

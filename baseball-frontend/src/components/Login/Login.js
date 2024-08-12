@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
-import LoginContext from "./LoginContext";
+import LoginContext from '../../components/Login/LoginContext';
 import Main from "../Layout/Main";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -8,7 +9,9 @@ const Login = () => {
   const [memberId, serMemberId] = useState('');
   const [memberPw, setMemberPw] = useState('');
 
-  const login = () => { 
+  const navigate = useNavigate();
+
+  const handleLogin = () => { 
 
     fetch('http://localhost:9090/members/login', {
       method : "POST",
@@ -29,10 +32,15 @@ const Login = () => {
 
       serMemberId('');
       setMemberPw('');
+
+      navigate('/');
     })
    }
 
+  /*
   const logout = () => { setLoginMember(null); }
+  <button onClick={logout}>로그아웃</button>
+  */
 
   return (
     <div className="login-container">
@@ -59,18 +67,11 @@ const Login = () => {
                      required />
             </td>
             <td>
-              <button onClick={login} >Login</button>
+              <button onClick={handleLogin} >Login</button>
             </td>
           </tr>
         </tbody>
       </table>
-
-      {loginMember && (
-        <div>
-          <Main/>
-          <button onClick={logout}>로그아웃</button>
-        </div>
-      )}
     </div>
   );
   

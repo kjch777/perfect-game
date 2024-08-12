@@ -1,15 +1,31 @@
-import React from "react";
+import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import '../css/Header.css'
+import LoginContext from '../../components/Login/LoginContext';
 
 const Header = () => {
+    const { loginMember, setLoginMember } = useContext(LoginContext);
+
+    const handleLogout = () => {
+        setLoginMember(null);
+        localStorage.removeItem('loginMember');
+      };
+
     return ( 
         <header>
             <div id="login-signup">
                 <ul id="login-banner">
-                    <li>
-                        <Link to="/login">로그인</Link>
-                    </li>
+                    {loginMember ? (
+                        <li>
+                            <span>환영합니다, <strong>{loginMember.memberName}</strong> 님</span>
+                            <a onClick={handleLogout}>로그아웃</a>
+                        </li>
+                    ) : (
+                        <li>
+                            <Link to="/login">로그인</Link>
+                        </li>
+                    )
+                    }
                     <li>
                         <Link to="/members/signup">회원가입</Link>
                     </li>

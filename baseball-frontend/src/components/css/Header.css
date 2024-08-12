@@ -15,10 +15,16 @@ header #login-signup ul li {
   list-style: none;
   margin-right: 20px;
 }
+header #login-signup ul li span {
+  margin-right: 20px;
+}
 header #login-signup ul li a {
   text-decoration: none;
   color: #00000070;
   display: inline-block;
+}
+header #login-signup ul li a:hover {
+  cursor: pointer;
 }
 header #menu {
   position: relative;
