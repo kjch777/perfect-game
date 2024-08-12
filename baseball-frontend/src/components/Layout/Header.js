@@ -1,14 +1,17 @@
 import React, {useContext} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import '../css/Header.css'
 import LoginContext from '../../components/Login/LoginContext';
 
 const Header = () => {
     const { loginMember, setLoginMember } = useContext(LoginContext);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         setLoginMember(null);
         localStorage.removeItem('loginMember');
+        
+        navigate('/');
       };
 
     return ( 

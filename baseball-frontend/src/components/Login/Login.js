@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import LoginContext from '../../components/Login/LoginContext';
-import Main from "../Layout/Main";
 import { useNavigate } from 'react-router-dom';
+import '../css/Login.css';
 
 const Login = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -44,34 +44,28 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <table>
-        <tbody>
-          <tr>
-            <th>ID</th>
-            <td>
-              <input type="text"
-                     onChange={e => serMemberId(e.target.value)}
-                     value={memberId}
-                     placeholder="아이디를 입력하세요"
-                     required />
-            </td>
-          </tr>
-
-          <tr>
-            <th>PW</th>
-            <td>
-              <input type="password"
-                     onChange={e => setMemberPw(e.target.value)}
-                     value={memberPw}
-                     placeholder="비밀번호를 입력하세요"
-                     required />
-            </td>
-            <td>
-              <button onClick={handleLogin} >Login</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <h1>환영합니다!</h1>
+      <form className="login-input">
+        <div>
+          <p><strong>아이디</strong></p><br/>
+          <input type="text"
+                    onChange={e => serMemberId(e.target.value)}
+                    value={memberId}
+                    placeholder="아이디를 입력하세요"
+                    required />
+        </div>
+        <div>
+        <p><strong>비밀번호</strong></p><br/>
+          <input type="password"
+                    onChange={e => setMemberPw(e.target.value)}
+                    value={memberPw}
+                    placeholder="비밀번호를 입력하세요"
+                    required />
+        </div>
+        <div className="button-container">
+          <button onClick={handleLogin} >Login</button>
+        </div>
+      </form>
     </div>
   );
   
