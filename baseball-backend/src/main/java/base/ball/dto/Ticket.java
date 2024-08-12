@@ -10,6 +10,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ticket {
+	
+	private String gameCode; // 경기 번호
+	private String gameDate; // 경기 일자
+	private String gameTeamNameHome; // 주인팀 이름
+	private String gameTeamNameAway; // 원정팀 이름
 
 	private int bookingId; // 예매 id
 	private int memberNo; // 회원 번호

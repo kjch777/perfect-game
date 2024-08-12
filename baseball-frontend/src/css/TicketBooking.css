@@ -76,7 +76,7 @@
   margin-right: auto;
 }
 
-.contentOne-content ul, .contentTwo-content ul, .contentThree-content ul {
+.content-content ul {
   display: flex;
   flex-wrap: nowrap; /* 줄바꿈 비허용 */
   justify-content: space-between; /* 필요에 따라 변경 가능 */
@@ -88,7 +88,7 @@
   position: relative; /* 자식 요소의 절대 위치 설정을 위해 상대 위치로 설정 */
 }
 
-.contentOne-content li {
+.content-content li {
   padding: 0;
   margin: 0;
   position: absolute;

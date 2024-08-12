@@ -1,5 +1,7 @@
 package base.ball.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,11 @@ public class TicketServiceImpl implements TicketService {
 
 	@Autowired
 	TicketMapper ticketMapper;
+	
+	@Override
+	public List<Ticket> selectGame() {
+		return ticketMapper.selectGame();
+	}
 	
 	@Override
 	public void insertTicket(Ticket ticket) {
