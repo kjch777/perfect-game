@@ -6,12 +6,13 @@ import '../css/Login.css';
 const Login = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
   
-  const [memberId, serMemberId] = useState('');
+  const [memberId, setMemberId] = useState('');
   const [memberPw, setMemberPw] = useState('');
 
   const navigate = useNavigate();
 
-  const handleLogin = () => { 
+  const handleLogin = (event) => { 
+    event.preventDefault();
 
     fetch('http://localhost:9090/members/login', {
       method : "POST",
@@ -23,19 +24,19 @@ const Login = () => {
     .then(map => {
       console.log(map);
 
-      if(map.loginMember === null){
+      if (map.loginMember === null) {
         alert('아이디 또는 비밀번호가 일치하지 않습니다');
         return;
       }
 
       setLoginMember(map.loginMember);
 
-      serMemberId('');
+      setMemberId('');
       setMemberPw('');
 
       navigate('/');
     })
-   }
+  }
 
   /*
   const logout = () => { setLoginMember(null); }
@@ -47,15 +48,15 @@ const Login = () => {
       <h1>환영합니다!</h1>
       <form className="login-input">
         <div>
-          <p><strong>아이디</strong></p><br/>
+          <p><strong>아이디</strong></p>
           <input type="text"
-                    onChange={e => serMemberId(e.target.value)}
+                    onChange={e => setMemberId(e.target.value)}
                     value={memberId}
                     placeholder="아이디를 입력하세요"
                     required />
         </div>
         <div>
-        <p><strong>비밀번호</strong></p><br/>
+        <p><strong>비밀번호</strong></p>
           <input type="password"
                     onChange={e => setMemberPw(e.target.value)}
                     value={memberPw}

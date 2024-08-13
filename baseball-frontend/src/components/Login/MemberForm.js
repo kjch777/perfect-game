@@ -93,7 +93,7 @@ const MemberForm = ({ addMember }) => {
     };
 
     return (
-        <div>
+        <div className="signup-form">
             <h1>Perfect Game 회원가입</h1>
             <form onSubmit={handleSubmit}>
                 <div className="memberName" id="signup-container">

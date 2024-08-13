@@ -1,6 +1,7 @@
 /* Header Css */
 header {
   position: relative;
+  z-index: 1000;
 }
 header #login-signup {
   position: absolute;

@@ -27,6 +27,7 @@ h1 {
 }
 #signup-container label {
     margin-bottom: 0px;
+    font-size: 18px;
 }
 
 #signup-container input,
@@ -55,6 +56,7 @@ h1 {
 .signup-button:hover {
     background: #070063;
     cursor: pointer;
+    color: white;
 }
 .login-link {
     margin-top: 10px;
