@@ -6,8 +6,7 @@ import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import LoginContext from './components/Login/LoginContext';
 import Login from './components/Login/Login';
-import Signup from './components/Login/signup';
-import MemberTable from './components/Login/MemberTable';
+import Signup from './components/Signup/Signupp';
 import Board from './components/Board/Board';
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
           <Route path="/" element={<Main/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/members/signup" element={<Signup/>}></Route>
-          <Route path="/members/membertable" element={<MemberTable/>}></Route>
           <Route path="/board" element={<Board/>}></Route>
         </Routes>
       </div>

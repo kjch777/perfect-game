@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Link} from "react-router-dom";
 import '../css/MemberForm.css';
 
-const MemberForm = ({ addMember }) => {
+const SignupForm = ({ addMember }) => {
     const [memberId, setMemberId] = useState('');
     const [memberPw, setMemberPw] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -253,4 +253,4 @@ const MemberForm = ({ addMember }) => {
     );
 }
 
-export default MemberForm;
+export default SignupForm;

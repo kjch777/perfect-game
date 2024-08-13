@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import MemberForm from './MemberForm';
-//import MemberTable from './MemberTable';
-//import NaverLogin from '../../NaverLogin';
+import SignupForm from './SignupForm';
 
-//select, insert component 추가 작성
-function LoginApp() {
+function Signupp() {
   const [members, setMembers] = useState([]);
 
   const addMember = async (member) => {
@@ -15,9 +12,9 @@ function LoginApp() {
 
   return (
     <div className="App">
-      <MemberForm addMember={addMember} />
+      <SignupForm addMember={addMember} />
     </div>
   );
 }
 
-export default LoginApp;
+export default Signupp;
