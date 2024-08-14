@@ -14,6 +14,12 @@ const Login = () => {
   const handleLogin = (event) => { 
     event.preventDefault();
 
+    if (loginMember) {
+      alert('이미 로그인된 상태입니다');
+      navigate('/');
+      return;
+    }
+
     fetch('http://localhost:9090/members/login', {
       method : "POST",
       headers : {"Content-Type" : "application/json",
@@ -36,6 +42,10 @@ const Login = () => {
 
       navigate('/');
     })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('로그인 과정에서 오류가 발생했습니다.');
+    });
   }
 
   /*
