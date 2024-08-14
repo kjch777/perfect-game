@@ -1,8 +1,14 @@
 .stadium-container {
+/* 
   width: 100%;
-  height: 100%;
+  height: 100%; 
+*/
+  width: 1250px; 
+  height: 1250px;
   margin: 0 auto;
   position: relative;
+  overflow: hidden;
+  background-color: white;
 }
 
 .controls {
@@ -21,9 +27,21 @@
   text-align: center;
 }
 
+.svgAndBtn { /* 추후 수정 */
+  display: flex;
+  justify-content: space-between;
+}
+
 .stadium-svg {
   width: 50%;
   height: 50%;
+}
+
+.bookingInfo-rightView { /* 추후 수정 */
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .seat {
@@ -49,58 +67,77 @@
 
 /********** ▼ 예매 메인 페이지 **********/
 
-.ticket-banner {
-  width: 90%;
-  margin: 0 auto; /* 수평 가운데 정렬 */
+/***** ▼ 배너 *****/
+
+.banner-container {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.swiper-slide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-img {
+  max-width: 80%;
+  width: 960px;
   margin-top: 100px;
   margin-bottom: 100px;
-  position: relative; /* 자식 요소의 절대 위치를 위해 상대 위치 설정 */
 }
 
-.ticket-banner img {
-  height: 640px;
-  width: 100%;
-  object-fit: fill; /* 이미지 채우기 */
+.swiper-button-prev, .swiper-button-next {
+  /* 추후 추가 */
 }
+
+.swiper-pagination {
+  /* 추후 추가 */
+}
+
+/***** ▲ 배너 *****/
+
+/***** ▼ 예매 정보 *****/
 
 .ticketMain-Contents {
-  
-  position: relative;
+  margin-top: 25px;
 }
 
-.ticketMain-Contents img {
-  width: 90%;
-  height: 60px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.content-title {
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
-.content-content ul {
+.content-title img {
+  width: 100%;
+  height: 65px;
+  /* 추후 수정 */
+}
+
+.content-content {
   display: flex;
-  flex-wrap: nowrap; /* 줄바꿈 비허용 */
-  justify-content: space-between; /* 필요에 따라 변경 가능 */
-  list-style: none; /* 불필요한 리스트 스타일 제거 */
-  padding: 0; /* 기본 패딩 제거 */
-  margin: 0; /* 기본 마진 제거 */
-  width: 90%;
-  overflow: hidden; /* 너비가 넘치는 부분 숨김 */
-  position: relative; /* 자식 요소의 절대 위치 설정을 위해 상대 위치로 설정 */
-}
-
-.content-content li {
-  padding: 0;
-  margin: 0;
-  position: absolute;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
 }
 
 .sort-images {
-  display: flex;
-  flex-direction: row; /* 이미지들을 가로로 정렬함 */
+  /* 브라우저를 가로로 줄여도 CSS 깨지지 않게 만들기 */
 }
 
 .sort-images img {
-
+  width: 65px;
+  height: 65px;
 }
 
+/***** ▲ 예매 정보 *****/
+
 /********** ▲ 예매 메인 페이지 **********/
+
+/* TicketBookingSub 새로고침 시 상하/좌우 스크롤 바 생성 문제 해결하기 */

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "../../css/TicketBooking.css";
+import { Button } from "react-bootstrap";
 
 const seats = [
   { id: "101", section: "orange", angle: 70, y: 400 },
@@ -66,6 +68,20 @@ const seats = [
   { id: "009", section: "purple", angle: -40, y: 300 },
 ];
 
+const seatPrice = {
+  orange: 1,
+  green: 2,
+  blue: 3,
+  purple: 5
+};
+
+const sectionNameMapping = {
+  orange: "스탠다드 석",
+  green: "외야 응원석",
+  blue: "내야 응원석",
+  purple: "프리미엄 석"
+}
+
 const lightenColor = (color, percent) => {
   const f = parseInt(color.slice(1), 16);
   const t = percent < 0 ? 0 : 255;
@@ -102,9 +118,35 @@ const lightenColor = (color, percent) => {
 */
 
 export const TicketBookingSub = () => {
+  const navigate = useNavigate();
+  const { gameCode } = useParams();
+
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [maxSeats, setMaxSeats] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [countAlert, setCountAlert] = useState(null); // 여기엔 null 만 사용 가능(' ' 또는 " " 사용 시 페이지를 로드하자마자 공백 alert 가 출력되는 문제 발생)
+
+  const location = useLocation(); // 현재 URL의 위치 객체 가져오기
+  const query = new URLSearchParams(location.search); // 쿼리 문자열에서 데이터 가져오기
+  const home = query.get('home'); // 쿼리 파라미터에서 home 팀 이름 가져오기
+  const away = query.get('away'); // 쿼리 파라미터에서 away 팀 이름 가져오기
+  const date = query.get('date'); // 쿼리 파라미터에서 date 경기 일자 가져오기
+
+  const teamNameMapping = {
+    doosan: '두산 베어스',
+    hanwha: '한화 이글스',
+    kia: '기아 타이거즈',
+    kiwoom: '키움 히어로즈',
+    kt: 'KT 위즈',
+    lg: 'LG 트윈스',
+    lotte: '롯데 자이언츠',
+    nc: 'NC 다이노스',
+    samsung: '삼성 라이온즈',
+    ssg: 'SSG 랜더스'
+  }
+
+  const changeHomeName = teamNameMapping[home];
+  const changeAwayName = teamNameMapping[away];
 
   /* alert 가 2번씩 호출되는 오류때문에 작성한 코드*/
   useEffect(() => {
@@ -119,12 +161,15 @@ export const TicketBookingSub = () => {
     }
   }, [countAlert]); // countAlert 의 상태가 변경될 때마다 실행
 
-  const handleSeatClick = (id) => {
+  const handleSeatClick = (id, section) => {
+    
     if (selectedSeats.includes(id)) {
       setSelectedSeats(selectedSeats.filter((seat) => seat !== id));
+      setTotalPrice(totalPrice - seatPrice[section]); 
     } else {
       if (selectedSeats.length < maxSeats) {
         setSelectedSeats([...selectedSeats, id]);
+        setTotalPrice(totalPrice + seatPrice[section]);
       } else {
         setCountAlert('선택 가능한 좌석 수를 초과했습니다.');
       }
@@ -141,6 +186,7 @@ export const TicketBookingSub = () => {
     } else {
         setMaxSeats(count);
         setSelectedSeats([]);
+        setTotalPrice(0);
     }
   };
 
@@ -152,67 +198,139 @@ export const TicketBookingSub = () => {
     event.target.blur(); 
   };
 
-  return (
-    <div className="stadium-container">
+  const handleNextStep = () => {
+    
+    if(selectedSeats.length < maxSeats) {
+    
+      setCountAlert(`좌석을 ${maxSeats}개 선택하세요.`);
+    } else {
+    
+        const selectedSeatInfo = selectedSeats.map((seatId) => {
+          const seat = seats.find((s) => s.id === seatId);
+          return {
+            id: seat.id,
+            section: sectionNameMapping[seat.section],
+            price: seatPrice[seat.section]
+          };
+        });
+  
+        navigate(`/ticket/bookingSub/${gameCode}/bookingStepTwo`, { 
+          state: { 
+            selectedSeats: selectedSeatInfo, 
+            totalPrice,
+            count: selectedSeats.length,
+            homeTeamName: changeHomeName,
+            awayTeamName: changeAwayName,
+            date
+          } 
+        });
+      }
+  }
+
+  const bookingStepOne = () => (
+
+    <div>
       <div className="ticketingSub-header">
-        <h1>야구 예매(임시)</h1>
+        <span className="teamName-section">{changeHomeName} VS {changeAwayName}</span>     
+        <span className="gameDate-section">{date}</span>       
       </div>
+      
       <div className="controls">
         <label htmlFor="maxSeats">예매할 좌석 수: </label>
         <input type="number" id="maxSeats" value={maxSeats} onChange={handleMaxSeatsChange} onKeyDown={noTyping} onFocus={noCursor} />
       </div>
-      <svg className="stadium-svg" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
-        
-        <circle cx="600" cy="580" r="300" fill="#D2B48C" stroke="black" strokeWidth="3" />
-  
-        <g transform="translate(0,-35) scale(1.5)">
-          <path d="M400,200 L600,400 L400,600 L200,400 Z" fill="green" stroke="black" strokeWidth="2" /> {/* 다이아몬드 모양*/}
-          <path d="M200,400 A200,200 0 0,1 600,400" fill="green" stroke="black" strokeWidth="2" /> {/* 반원 모양*/}
 
-          <line x1="400" y1="400" x2="500" y2="500" stroke="black" strokeWidth="2" />
-          <line x1="300" y1="500" x2="400" y2="400" stroke="black" strokeWidth="2" />
+      <div className="svgAndBtn">
+
+        <svg className="stadium-svg" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
           
-          <path d="M400,600 L388,588 L388,576 L412,576 L412,588 Z" fill="white" stroke="black" strokeWidth="2" /> {/* Home */}
-          <rect x="480" y="500" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 500, 500)" /> {/* 1루*/}
-          <rect x="400" y="400" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 400, 400)" /> {/* 2루*/}
-          <rect x="300" y="480" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 300, 500)" /> {/* 3루*/}
+          <circle cx="600" cy="580" r="300" fill="#D2B48C" stroke="black" strokeWidth="3" />
+    
+          <g transform="translate(0,-35) scale(1.5)">
+            <path d="M400,200 L600,400 L400,600 L200,400 Z" fill="green" stroke="black" strokeWidth="2" /> {/* 다이아몬드 모양*/}
+            <path d="M200,400 A200,200 0 0,1 600,400" fill="green" stroke="black" strokeWidth="2" /> {/* 반원 모양*/}
 
-          <circle cx="400" cy="500" r="20" fill="#D2B48C" stroke="black" strokeWidth="2" />
-        </g>
-  
-        {seats.map(({ id, section, angle, y }) => {
-          const isSelected = selectedSeats.includes(id);
-          const fillColor = isSelected ? "#FFD700" : sections[section];
+            <line x1="400" y1="400" x2="500" y2="500" stroke="black" strokeWidth="2" />
+            <line x1="300" y1="500" x2="400" y2="400" stroke="black" strokeWidth="2" />
+            
+            <path d="M400,600 L388,588 L388,576 L412,576 L412,588 Z" fill="white" stroke="black" strokeWidth="2" /> {/* Home */}
+            <rect x="480" y="500" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 500, 500)" /> {/* 1루*/}
+            <rect x="400" y="400" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 400, 400)" /> {/* 2루*/}
+            <rect x="300" y="480" width="20" height="20" fill="white" stroke="black" strokeWidth="2" transform="rotate(45, 300, 500)" /> {/* 3루*/}
 
-          return (
-            <g key={id} transform={`translate(600,600) rotate(${angle})`}>
-              <rect className={`seat ${isSelected ? "selected" : ""}`} x="-20" y={y} width="40" height="40" rx="8" ry="8" fill={fillColor} onClick={() => handleSeatClick(id)} />
-              <text className="seat-text" x="0" y={parseInt(y, 10) + 25} fontFamily="Arial" fontSize="15" fill="black" textAnchor="middle" onClick={() => handleSeatClick(id)}>
-                {id}
-              </text>
-            </g>
-          );
-        })}
+            <circle cx="400" cy="500" r="20" fill="#D2B48C" stroke="black" strokeWidth="2" />
+          </g>
+    
+          {seats.map(({ id, section, angle, y }) => {
+            const isSelected = selectedSeats.includes(id);
+            const fillColor = isSelected ? "#FFD700" : sections[section];
 
-        <text x="600" y="130" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black" textAnchor="middle">전광판</text>
-        <text x="100" y="1000" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
-          <tspan>2-1 GATE</tspan>
-          <tspan x="60" dy="1.2em">(내야 3루 출입구)</tspan>
-        </text>
-        <text x="1000" y="1000" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
-          <tspan>2-3 GATE</tspan>
-          <tspan x="960" dy="1.2em">(내야 1루 출입구)</tspan>
-        </text>
-        <text x="600" y="1150" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black" textAnchor="middle">1-1 GATE (중앙문)</text>
-        <text x="100" y="200" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
-          <tspan>3-1 GATE</tspan>
-          <tspan x="60" dy="1.2em">(외야 3루 출입구)</tspan>
-        </text>
-        <text x="1000" y="200" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
-          <tspan>3-3 GATE</tspan>
-          <tspan x="960" dy="1.2em">(외야 1루 출입구)</tspan>
-        </text>
-      </svg>
+            return (
+              <g key={id} transform={`translate(600,600) rotate(${angle})`}>
+                <rect className={`seat ${isSelected ? "selected" : ""}`} x="-20" y={y} width="40" height="40" rx="8" ry="8" fill={fillColor} onClick={() => handleSeatClick(id, section)} />
+                <text className="seat-text" x="0" y={parseInt(y, 10) + 25} fontFamily="Arial" fontSize="15" fill="black" textAnchor="middle" onClick={() => handleSeatClick(id, section)}>
+                  {id}
+                </text>
+              </g>
+            );
+          })}
+
+          <text x="600" y="130" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black" textAnchor="middle">전광판</text>
+    
+          <text x="100" y="1000" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+            <tspan>2-1 GATE</tspan>
+            <tspan x="60" dy="1.2em">(내야 3루 출입구)</tspan>
+          </text>
+    
+          <text x="1000" y="1000" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+            <tspan>2-3 GATE</tspan>
+            <tspan x="960" dy="1.2em">(내야 1루 출입구)</tspan>
+          </text>
+    
+          <text x="600" y="1150" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black" textAnchor="middle">1-1 GATE (중앙문)</text>
+    
+          <text x="100" y="200" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+            <tspan>3-1 GATE</tspan>
+            <tspan x="60" dy="1.2em">(외야 3루 출입구)</tspan>
+          </text>
+    
+          <text x="1000" y="200" fontFamily="Arial" fontSize="20" fontWeight="bold" fill="black">
+            <tspan>3-3 GATE</tspan>
+            <tspan x="960" dy="1.2em">(외야 1루 출입구)</tspan>
+          </text>
+    
+        </svg>
+
+        {/* 임시 */}
+        <div className="bookingInfo-rightView">
+          <h1>예매 정보</h1>
+          <ul className="seat-list">
+            {selectedSeats.map((seatId) => {
+              const seat = seats.find((s) => s.id === seatId);
+              if (seat) {
+                return (
+                  <li key={seatId} className="seat-info">
+                    <span className="seat-id">좌석 번호: {seat.id}번</span>
+                    <span className="seat-section">좌석 구역: {sectionNameMapping[seat.section]}</span>
+                    <span className="seat-price">좌석 가격: {seatPrice[seat.section]}원</span>
+                  </li>
+                );
+              }
+              return null;
+            })}
+          </ul>
+          <h3 className="total-price">총 결제 가격: {totalPrice} 원</h3>
+          <Button onClick={handleNextStep}>다음 단계</Button>
+        </div>
+
+      </div>    
+
     </div>
+  )
+
+  return (
+      <div className="stadium-container">
+        {bookingStepOne()}
+      </div>
   );
 };
