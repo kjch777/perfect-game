@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {Link} from "react-router-dom";
 import '../css/MemberForm.css';
+//import DaumPostcode from 'react-daum-postcode';
 
 const SignupForm = ({ addMember }) => {
     const [memberId, setMemberId] = useState('');
@@ -16,7 +17,14 @@ const SignupForm = ({ addMember }) => {
     const [memberImg, setMemberImg] = useState('');
     const [errors, setErrors] = useState({});
     const [validations, setValidations] = useState({});
-
+/*****
+    const completeHandler = (data) => {
+        return (
+        { address, zonecode } = data,
+        props.setAddress(address),
+        props.setZonecode(zonecode))
+    };
+*****/
     const validateId = (id) => {
         const idRegex = /^[a-z0-9]{4,12}$/;
         return idRegex.test(id) ? "" : "아이디는 4-12자의 소문자와 숫자만 사용할 수 있습니다.";
