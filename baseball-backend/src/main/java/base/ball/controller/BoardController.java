@@ -23,8 +23,9 @@ public class BoardController {
 	@PostMapping("/upload")
 	public ResponseEntity<String> uploadImages(@RequestParam("files") MultipartFile[] files,
 			                                   @RequestParam("title") String title,
-			                                   @RequestParam("content") String content) {	
-		boardService.uploadImages(files, title, content);
+			                                   @RequestParam("content") String content,
+			                                   @RequestParam("name") String name) {	
+		boardService.uploadImages(files, title, content, name);
 		return ResponseEntity.ok("게시글 작성 완료!");
 	}
 	

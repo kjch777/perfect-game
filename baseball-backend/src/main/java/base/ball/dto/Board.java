@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 public class Board {
 	private int boardNo;
-	private int boardMemberNo;
+	private String boardMemberName;
 	private String boardTitle;
 	private String boardContents;
 	private String boardImageUrl;

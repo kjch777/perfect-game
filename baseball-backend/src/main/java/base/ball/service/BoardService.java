@@ -11,5 +11,5 @@ public interface BoardService {
 	
 	void insertBoard(Board board);
 	
-	void uploadImages(MultipartFile[] files, String title, String content);
+	void uploadImages(MultipartFile[] files, String title, String content, String name);
 }

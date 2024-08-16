@@ -34,7 +34,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void uploadImages(MultipartFile[] files,
 			                 String title,
-			                 String content) {
+			                 String content,
+			                 String name) {
 		File uploadDirFile = new File(uploadDir);
 		if(!uploadDirFile.exists()) {
 			System.out.println("폴더를 생성합니다.");
@@ -59,7 +60,7 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		Board board = new Board();
-		//board.setBoardMemberNo(memberNo);
+		board.setBoardMemberName(name);
 		board.setBoardTitle(title);
 		board.setBoardContents(content);
 		board.setBoardImageUrl(String.join(",", fileNames));
