@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "../../css/TicketBooking.css";
-import { Button } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 
 const seats = [
   { id: "101", section: "orange", angle: 70, y: 400 },
@@ -230,15 +230,15 @@ export const TicketBookingSub = () => {
   const bookingStepOne = () => (
 
     <div>
-      <div className="ticketingSub-header">
-        <span className="teamName-section">{changeHomeName} VS {changeAwayName}</span>     
-        <span className="gameDate-section">{date}</span>       
-      </div>
-      
-      <div className="controls">
-        <label htmlFor="maxSeats">예매할 좌석 수: </label>
-        <input type="number" id="maxSeats" value={maxSeats} onChange={handleMaxSeatsChange} onKeyDown={noTyping} onFocus={noCursor} />
-      </div>
+      <Row className="ticketingSub-header">
+        <Col className="teamName-section col-6">{changeHomeName} VS {changeAwayName}</Col>     
+        <Col className="gameDate-section col-2">{date}</Col>       
+        <Col className="imgSmall-Change col-4">
+          <img src={`/images/logo-${home}.png`} />
+          <img src="/images/Ticket-VS.png" />
+          <img src={`/images/logo-${away}.png`} />
+        </Col>
+      </Row>
 
       <div className="svgAndBtn">
 
@@ -301,25 +301,37 @@ export const TicketBookingSub = () => {
     
         </svg>
 
-        {/* 임시 */}
         <div className="bookingInfo-rightView">
-          <h1>예매 정보</h1>
-          <ul className="seat-list">
-            {selectedSeats.map((seatId) => {
-              const seat = seats.find((s) => s.id === seatId);
-              if (seat) {
-                return (
-                  <li key={seatId} className="seat-info">
-                    <span className="seat-id">좌석 번호: {seat.id}번</span>
-                    <span className="seat-section">좌석 구역: {sectionNameMapping[seat.section]}</span>
-                    <span className="seat-price">좌석 가격: {seatPrice[seat.section]}원</span>
-                  </li>
-                );
-              }
-              return null;
-            })}
-          </ul>
-          <h3 className="total-price">총 결제 가격: {totalPrice} 원</h3>
+        
+          <div className="controls">
+            <label htmlFor="maxSeats">예매할 좌석 수: </label>
+            <input type="number" id="maxSeats" className="noCursorChange" value={maxSeats} onChange={handleMaxSeatsChange} onKeyDown={noTyping} onFocus={noCursor} />
+          </div>
+
+          <Card className="booking-card">
+            <Card.Header className="bookingInfo-cardHeader">예매 정보</Card.Header>
+            <Card.Body className="booking-info">              
+              {selectedSeats.map((seatId) => {
+                const seat = seats.find((s) => s.id === seatId);
+                if (seat) {
+                  const infoColor = sections[seat.section];
+                  const borderColor = infoColor;
+                  
+                  return (
+                    <div key={seatId} className="bookingInfo-seatInfo" style={{ color: infoColor, border: `1px solid ${borderColor}`, filter: 'brightness(0.8)' }}>
+                      <div>좌석 번호: {seat.id}번</div>
+                      <div>좌석 구역: {sectionNameMapping[seat.section]}</div>
+                      <div>좌석 가격: {seatPrice[seat.section]}원</div>
+                    </div>
+                  );
+                }
+                
+                return null;
+              })}
+            </Card.Body>
+            <Card.Footer className="total-price">총 결제 가격: {totalPrice}원</Card.Footer>
+          </Card>
+
           <Button onClick={handleNextStep}>다음 단계</Button>
         </div>
 

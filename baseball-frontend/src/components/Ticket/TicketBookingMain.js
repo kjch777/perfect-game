@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { TicketBookingBanner } from './TicketBookingBanner';
 import '../../css/TicketBooking.css';
@@ -64,7 +64,7 @@ export const TicketBookingMain = () => {
                 <Container className="content-content">
                     <Row>
                         {games.map((game) => (
-                            <Col key={game.game_code} md={3} className="mb-4">
+                            <Col key={game.gameCode} md={3} className="mb-4">
                                 <Card>
                                     <Card.Body>
                                         <Row className="sort-images">

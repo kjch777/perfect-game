@@ -1,5 +1,3 @@
-// 임시
-
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "../../css/TicketBooking.css";
@@ -11,18 +9,52 @@ export const BookingStepTwo = () => {
 
     return (
         <div>
-            <h1>선택한 좌석</h1>
-            <span className="teamName-section">{homeTeamName} VS {awayTeamName}</span>     
-            <span className="gameDate-section">{date}</span>       
-            <ul>
-                {selectedSeats.map(seat => (
-                    <li key={seat.id}>
-                        {seat.section} - {seat.id}번 - {seat.price}원
-                    </li>
-                ))}
-            </ul>
-            <h2>총 가격: {totalPrice}원</h2>
-            <h2>총 좌석 수: {count}석</h2>
+            <div className="payPage-title">결제 페이지</div>
+            <div className="payPage-gameInfo">경기 정보</div>
+            <table className="gameInfo-table">
+                <thead>
+                    <tr>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>경기 일자</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{homeTeamName}</td>
+                        <td>{awayTeamName}</td>
+                        <td>{date}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>좌석 번호</th>
+                        <th>좌석 구역</th>
+                        <th>좌석 가격</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {selectedSeats.map(seat => (
+                        <tr key={seat.id}>    
+                            <td>{seat.id}</td>
+                            <td>{seat.section}</td>
+                            <td>{seat.price}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
+            <hr />
+
+            <div>총 좌석 수: {count}석</div>
+            <div>총 결제 금액: {totalPrice}원</div>
+
+            <Button>결제 하기</Button>
         </div>
     );
 };

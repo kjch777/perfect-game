@@ -12,8 +12,7 @@
 }
 
 .controls {
-  text-align: left;
-  margin-left: 250px;
+  text-align: end;
 }
 
 .controls label {
@@ -39,9 +38,9 @@
 
 .bookingInfo-rightView { /* 추후 수정 */
   width: 50%;
-  display: flex;
+  display: grid;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .seat {
@@ -63,6 +62,11 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 19px;
+}
+
+svg text {
+  cursor: default;
+  font-size: 25px;
 }
 
 /********** ▼ 예매 메인 페이지 **********/
@@ -101,6 +105,8 @@
 }
 
 /***** ▲ 배너 *****/
+
+
 
 /***** ▼ 예매 정보 *****/
 
@@ -141,3 +147,90 @@
 /********** ▲ 예매 메인 페이지 **********/
 
 /* TicketBookingSub 새로고침 시 상하/좌우 스크롤 바 생성 문제 해결하기 */
+
+.ticketingSub-header {
+  margin: 0 auto;
+  background-color: #e7f3ff;
+  border-radius: 0px;
+  border-bottom: 2px solid #a7d1ff;
+  border-right: 2px solid #a7d1ff;
+  cursor: default;
+}
+
+.teamName-section {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.gameDate-section {
+  font-size: 20px;
+  margin-top: 35px;
+}
+
+.imgSmall-Change {
+  
+}
+
+.imgSmall-Change img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.booking-card {
+  border: 2px solid #a7d1ff;
+  cursor: default;
+}
+
+.bookingInfo-cardHeader {
+  border-bottom: 2px solid #a7d1ff;
+  background-color: #e7f3ff;
+  text-align: center;
+}
+
+.booking-info {
+  width: 240px;
+  height: 390px;
+}
+
+.bookingInfo-seatInfo {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.total-price {
+  border-top: 2px solid #a7d1ff;
+  background-color: #e7f3ff;
+  text-align: center;
+}
+
+.noCursorChange {
+  cursor: default;
+}
+
+/********** **********/
+
+.payPage-title {
+  background-color: rgba(0, 0, 0, 0.777);
+  color: white;
+  padding: 25px;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+.payPage-gameInfo {
+  background-color: rgba(0, 0, 0, 0.333);
+  color: black;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+}
+
+.gameInfo-table {
+  
+}
