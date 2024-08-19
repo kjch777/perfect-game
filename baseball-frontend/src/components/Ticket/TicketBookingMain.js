@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { TicketBookingBanner } from './TicketBookingBanner';
+import LoginContext from '../Login/LoginContext';
 import '../../css/TicketBooking.css';
 import { Button, Container, Card, Col, Row } from "react-bootstrap";
 
 export const TicketBookingMain = () => {
     const [games, setGames] = useState([]);
+    const navigate = useNavigate();
+    const { loginMember } = useContext(LoginContext);
     
     const teamNameMapping = {
         doosan: '두산 베어스',
@@ -30,8 +34,16 @@ export const TicketBookingMain = () => {
 
     const handleBooking = (gameCode, gameDate, gameTeamNameHome, gameTeamNameAway) => {
         
+        if(!loginMember) {
+            alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
+            navigate("/login");
+            return;
+        }
+
+        const memberNo = loginMember.memberNo;
+
         // 작은 크기의 새 창을 열기 위해 window.open 사용
-        const newWindow = window.open(`/ticket/bookingSub/${gameCode}?date=${gameDate}&home=${gameTeamNameHome}&away=${gameTeamNameAway}`, 'BookingWindow', 'width=1200, height=800');
+        const newWindow = window.open(`/ticket/bookingSub/${gameCode}?date=${gameDate}&home=${gameTeamNameHome}&away=${gameTeamNameAway}&memberNo=${memberNo}`, 'BookingWindow', 'width=1200, height=800');
     
         if (newWindow) {
             newWindow.onload = () => {

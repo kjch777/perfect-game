@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "../../css/TicketBooking.css";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 export const BookingStepTwo = () => {
     const location = useLocation();
@@ -10,7 +10,10 @@ export const BookingStepTwo = () => {
     return (
         <div>
             <div className="payPage-title">결제 페이지</div>
-            <div className="payPage-gameInfo">경기 정보</div>
+            <Row className="payPage-info">
+                <Col className="payPage-infoOne">경기 정보</Col>
+                <Col className="payPage-infoTwo">결제 정보</Col>
+            </Row>
             <table className="gameInfo-table">
                 <thead>
                     <tr>

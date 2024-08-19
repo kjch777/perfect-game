@@ -166,6 +166,7 @@ svg text {
 
 .gameDate-section {
   font-size: 20px;
+  text-align: center;
   margin-top: 35px;
 }
 
@@ -222,13 +223,41 @@ svg text {
   text-align: center;
 }
 
-.payPage-gameInfo {
+.payPage-info {
   background-color: rgba(0, 0, 0, 0.333);
   color: black;
-  padding: 15px;
   font-weight: bold;
   font-size: 15px;
   text-align: center;
+  margin-right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.payPage-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: rgba(0, 0, 0, 0.333);
+  transform: translateX(-50%);
+  z-index: 2; /* 선이 가장 위에 표시되도록 설정 */
+}
+
+.payPage-infoOne {
+  background-color: #f0f0f0; /* 왼쪽 배경색 */
+  padding: 15px;
+  z-index: 1; /* 선 아래에 있도록 설정 */
+}
+
+.payPage-infoTwo {
+  background-color: #e0e0e0; /* 오른쪽 배경색 */
+  padding: 15px;
+  z-index: 1; /* 선 아래에 있도록 설정 */
 }
 
 .gameInfo-table {

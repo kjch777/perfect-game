@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "../../css/TicketBooking.css";
 import { Button, Card, Col, Row } from "react-bootstrap";
@@ -131,6 +131,7 @@ export const TicketBookingSub = () => {
   const home = query.get('home'); // 쿼리 파라미터에서 home 팀 이름 가져오기
   const away = query.get('away'); // 쿼리 파라미터에서 away 팀 이름 가져오기
   const date = query.get('date'); // 쿼리 파라미터에서 date 경기 일자 가져오기
+  const memberNo = query.get('memberNo'); // 쿼리 파라미터에서 memberNo 회원 번호 가져오기
 
   const teamNameMapping = {
     doosan: '두산 베어스',
@@ -147,6 +148,14 @@ export const TicketBookingSub = () => {
 
   const changeHomeName = teamNameMapping[home];
   const changeAwayName = teamNameMapping[away];
+
+  const dateFormat = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: 'numeric', day: 'numeric' };
+    const formatter = new Intl.DateTimeFormat('ko-KR', options);
+    const [month, day] = formatter.format(date).split('.');
+    return `${month}월 ${day}일`
+  }
 
   /* alert 가 2번씩 호출되는 오류때문에 작성한 코드*/
   useEffect(() => {
@@ -231,8 +240,8 @@ export const TicketBookingSub = () => {
 
     <div>
       <Row className="ticketingSub-header">
-        <Col className="teamName-section col-6">{changeHomeName} VS {changeAwayName}</Col>     
-        <Col className="gameDate-section col-2">{date}</Col>       
+        <Col className="teamName-section col-5">{changeHomeName} VS {changeAwayName}</Col>     
+        <Col className="gameDate-section col-3">경기 일자: {dateFormat(date)}</Col>       
         <Col className="imgSmall-Change col-4">
           <img src={`/images/logo-${home}.png`} />
           <img src="/images/Ticket-VS.png" />
