@@ -20,7 +20,6 @@ const SignupForm = ({ addMember }) => {
     const [validations, setValidations] = useState({});
 
     const [isDuplicate, setIsDuplicate] = useState('');
-    const [isNull, setIsNull] = useState(true);
 
     const navigate = useNavigate();
 /*****
@@ -130,6 +129,8 @@ const SignupForm = ({ addMember }) => {
             addMember({ memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress, memberAddressDetail, memberPost, memberTeamCode, memberImg });
             alert('정상적으로 회원가입이 완료되었습니다!');
             navigate('/');
+        } else if (isDuplicate === "") {
+            alert("아이디중복확인을 진행해주세요.");
         }
     };
 
