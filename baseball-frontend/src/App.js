@@ -29,7 +29,7 @@ function App() {
     <LoginContext.Provider value={{ loginMember, setLoginMember }}>
     <div>
       <Header/>
-      <div id="main-content">
+      <div id="main-content">{/* 0819 지우는 걸로 결정하긴 함 */}
         <Routes>
           <Route path="/" element={<Main/>}></Route>
           <Route path="/login" element={<Login/>}></Route>

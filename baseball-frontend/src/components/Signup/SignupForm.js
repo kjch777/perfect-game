@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import {Link} from "react-router-dom";
-import '../css/MemberForm.css';
+import {Link, useNavigate} from "react-router-dom";
+import '../css/SignupForm.css';
+import axios from "axios";
 //import DaumPostcode from 'react-daum-postcode';
 
 const SignupForm = ({ addMember }) => {
@@ -17,6 +18,11 @@ const SignupForm = ({ addMember }) => {
     const [memberImg, setMemberImg] = useState('');
     const [errors, setErrors] = useState({});
     const [validations, setValidations] = useState({});
+
+    const [isDuplicate, setIsDuplicate] = useState('');
+    const [isNull, setIsNull] = useState(true);
+
+    const navigate = useNavigate();
 /*****
     const completeHandler = (data) => {
         return (
@@ -25,40 +31,42 @@ const SignupForm = ({ addMember }) => {
         props.setZonecode(zonecode))
     };
 *****/
+    // 아이디 유효성 검사
     const validateId = (id) => {
         const idRegex = /^[a-z0-9]{4,12}$/;
         return idRegex.test(id) ? "" : "아이디는 4-12자의 소문자와 숫자만 사용할 수 있습니다.";
     };
-
+    // 비밀번호 유효성 검사
     const validatePw = (pw) => {
         const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^*+=-])[a-zA-Z\d!@#$%^*+=-]{4,18}$/;
         return pwRegex.test(pw) ? "" : "비밀번호는 4-18자의 영문 대/소문자, 숫자 및 특수문자(!@#$%^*+=-)를 포함해야 합니다.";
     };
-
+    // 비밀번호 확인
     const validatePasswordConfirm = (pw, pwConfirm) => {
         return pw === pwConfirm ? "" : "비밀번호가 일치하지 않습니다.";
     };
-
+    // 이름 유효성 검사
     const validateName = (name) => {
         const nameRegex = /^[가-힣]{2,4}$/;
         return nameRegex.test(name) ? "" : "이름은 2-4자의 한글만 사용할 수 있습니다.";
     };
-
+    // 전화번호 유효성 검사
     const validatePhone = (phone) => {
         const phoneRegex = /^01[0-9]-\d{3,4}-\d{4}$/;
         return phoneRegex.test(phone) ? "" : "전화번호는 01x-xxxx-xxxx 또는 01x-xxx-xxxx 형식이어야 합니다.";
     };
-
+    // 이메일 유효성 검사
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email) ? "" : "이메일 형식이 올바르지 않습니다.";
     };
-
+    // 우편번호 유효성 검사
     const validatePost = (post) => {
         const postRegex = /^\d{5,6}$/;
         return postRegex.test(post) ? "" : "우편번호는 5-6자리 숫자여야 합니다.";
     };
 
+    // 입력 값 변경 핸들러
     const handleChange = (setter, validator) => (e) => {
         const value = e.target.value;
         setter(value);
@@ -70,6 +78,7 @@ const SignupForm = ({ addMember }) => {
         }));
     };
 
+    // 비밀번호 확인 입력 핸들러
     const handlePasswordConfirmChange = (e) => {
         const value = e.target.value;
         setPasswordConfirm(value);
@@ -81,8 +90,30 @@ const SignupForm = ({ addMember }) => {
         }));
     };
 
+/***** 0816 아이디 중복 확인 *****/
+    const checkDuplicateId = async () => { 
+
+        if (!memberId.trim()) {
+            alert("아이디를 입력하세요");
+            setIsDuplicate(true);
+            return;
+        }
+        try {
+          const response = await axios.get('http://localhost:9090/members/idCheck', {
+            params: { id: memberId },
+          });
+          setIsDuplicate(response.data > 0);
+        } catch (error) {
+          console.error('ID 체크 중 문제 발생:', error);
+          setIsDuplicate(false);
+        }
+      };
+/***** ***** ***** ***** *****/
+
+    // 폼 제출 핸들러
     const handleSubmit = (e) => {
         e.preventDefault();
+
         const formErrors = {
             memberId: validateId(memberId),
             memberPw: validatePw(memberPw),
@@ -95,8 +126,10 @@ const SignupForm = ({ addMember }) => {
 
         setErrors(formErrors);
 
-        if (Object.values(formErrors).every(error => error === "")) {
+        if (Object.values(formErrors).every(error => error === "") && isDuplicate === false) {
             addMember({ memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress, memberAddressDetail, memberPost, memberTeamCode, memberImg });
+            alert('정상적으로 회원가입이 완료되었습니다!');
+            navigate('/');
         }
     };
 
@@ -129,6 +162,9 @@ const SignupForm = ({ addMember }) => {
                     />
                     {errors.memberId && <span className="error">{errors.memberId}</span>}
                     {validations.memberId && !errors.memberId && <span className="valid">{validations.memberId}</span>}
+                    <button type="button" onClick={checkDuplicateId}>아이디 중복 확인</button>
+                    {isDuplicate === true && <span className="error">사용 불가능한 아이디입니다.</span>}
+                    {isDuplicate === false && !errors.memberId && <span className="valid">사용 가능한 아이디입니다.</span>}
                 </div>
                 <div className="memberPw" id="signup-container">
                     <label>비밀번호</label><br/>
