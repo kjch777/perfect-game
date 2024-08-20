@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../css/Board.css';
 import LoginContext from '../../components/Login/LoginContext';
+import Sidebar from '../Layout/Board/Sidebar';
 
 function Board() {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -53,6 +54,7 @@ function Board() {
 
   return (
     <div className="App">
+      <Sidebar/>
       <div className='form-container'>
         <table>
           <tbody>

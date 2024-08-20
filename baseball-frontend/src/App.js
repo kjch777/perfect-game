@@ -7,7 +7,7 @@ import Footer from './components/Layout/Footer';
 import LoginContext from './components/Login/LoginContext';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signupp';
-import Board from './components/Board/Board';
+import BoardMain from './components/Board/BoardMain';
 
 function App() {
   const [loginMember, setLoginMember] = useState(null);
@@ -34,7 +34,7 @@ function App() {
           <Route path="/" element={<Main/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/members/signup" element={<Signup/>}></Route>
-          <Route path="/board" element={<Board/>}></Route>
+          <Route path="/board" element={<BoardMain/>}></Route>
         </Routes>
       </div>
       <Footer/>

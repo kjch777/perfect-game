@@ -58,7 +58,7 @@ const Header = () => {
                         <Link to="#">굿즈샵</Link>
                     </li>
                     <li>
-                        <Link to="#">게시판</Link>
+                        <Link to="/board">게시판</Link>
                         <ul id="ul-num-2">
                             <li><Link to="#">공지사항</Link></li>
                             <li><Link to="#">구단별 소개</Link></li>

@@ -152,7 +152,9 @@ const SignupForm = ({ addMember }) => {
                     {validations.memberName && !errors.memberName && <span className="valid">{validations.memberName}</span>}
                 </div>
                 <div className="memberId" id="signup-container">
-                    <label>아이디</label><br/>
+                    <label>아이디</label>
+                    <button type="button" onClick={checkDuplicateId}>아이디 중복 확인</button>
+                    <br/>
                     <input 
                         type="text"
                         id="memberId"
@@ -163,7 +165,6 @@ const SignupForm = ({ addMember }) => {
                     />
                     {errors.memberId && <span className="error">{errors.memberId}</span>}
                     {validations.memberId && !errors.memberId && <span className="valid">{validations.memberId}</span>}
-                    <button type="button" onClick={checkDuplicateId}>아이디 중복 확인</button>
                     {isDuplicate === true && <span className="error">사용 불가능한 아이디입니다.</span>}
                     {isDuplicate === false && !errors.memberId && <span className="valid">사용 가능한 아이디입니다.</span>}
                 </div>
