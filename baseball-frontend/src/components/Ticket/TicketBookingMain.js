@@ -4,7 +4,7 @@ import axios from 'axios';
 import { TicketBookingBanner } from './TicketBookingBanner';
 import LoginContext from '../Login/LoginContext';
 import '../../css/TicketBooking.css';
-import { Button, Container, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 
 export const TicketBookingMain = () => {
     const [games, setGames] = useState([]);
@@ -73,13 +73,13 @@ export const TicketBookingMain = () => {
                 <div className="content-title">
                     <img src="/images/Ticket-Title.jpg" />
                 </div>
-                <Container className="content-content">
-                    <Row>
+                <div className="content-content">
+                    <div className="ticketDiv-flex">
                         {games.map((game) => (
-                            <Col key={game.gameCode} md={3} className="mb-4">
-                                <Card>
+                            <div key={game.gameCode} className="ticketDiv-calc">
+                                <Card className="ticket-card">
                                     <Card.Body>
-                                        <Row className="sort-images">
+                                        <div className="sort-images">
                                             <Col>
                                                 <img src={`/images/logo-${game.gameTeamNameHome}.png`} />
                                             </Col>
@@ -89,20 +89,20 @@ export const TicketBookingMain = () => {
                                             <Col>
                                                 <img src={`/images/logo-${game.gameTeamNameAway}.png`} />
                                             </Col>
-                                        </Row>
-                                        <Card.Text className="mt-3">
-                                            {game.gameDate}
+                                        </div>
+                                        <Card.Text className="ticketCard-textDate">
+                                            경기 일자: {game.gameDate}
                                         </Card.Text>
-                                        <Card.Text>
+                                        <Card.Text className="ticketCard-textVS">
                                             {teamNameMapping[game.gameTeamNameHome]} VS {teamNameMapping[game.gameTeamNameAway]}
                                         </Card.Text>
-                                        <Button onClick={() => handleBooking(game.gameCode, game.gameDate, game.gameTeamNameHome, game.gameTeamNameAway)} className="mt-1">예매하기</Button>
+                                        <Button onClick={() => handleBooking(game.gameCode, game.gameDate, game.gameTeamNameHome, game.gameTeamNameAway)} className="ticketCard-button">예매하기</Button>
                                     </Card.Body>
                                 </Card>
-                            </Col>
+                            </div>
                         ))}
-                    </Row>
-                </Container>
+                    </div>
+                </div>
             </div>
         </div>
     )

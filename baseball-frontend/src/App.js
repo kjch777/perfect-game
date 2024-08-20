@@ -15,12 +15,11 @@ import { BookingInfoChange } from "./components/Ticket/BookingInfoChange";
 
 function App() {
   const location = useLocation();
-
+  
   const [loginMember, setLoginMember] = useState(null);
-
+  
   const hideHeaderFooter = location.pathname.startsWith('/ticket/bookingSub');
-  const addMainContent = ["/", "/login"].includes(location.pathname);
-
+  
   useEffect(() => {
     const savedMember = localStorage.getItem("loginMember");
     if(savedMember) {

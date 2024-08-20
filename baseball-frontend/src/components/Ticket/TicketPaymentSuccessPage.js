@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
-import '../../css/PaySuccess.css';
+import '../../css/TicketPaymentSuccessPage.css';
 
 export function PaymentSuccessPage() {
   const navigate = useNavigate();

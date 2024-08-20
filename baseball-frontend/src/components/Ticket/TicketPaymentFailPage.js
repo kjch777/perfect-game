@@ -1,7 +1,9 @@
 import { useSearchParams } from "react-router-dom";
 
-export function PaymentFailPage() {
+export function TicketPaymentFailPage () {
+  
   const [searchParams] = useSearchParams();
+  
   return (
     <div className="box_section" style={{ width: "600px" }}>
       <img width="100px" src="https://static.toss.im/illusts/cross-red-spot.png" alt="Fail" />
@@ -11,4 +13,3 @@ export function PaymentFailPage() {
     </div>
   );
 }
-export default PaymentFailPage;

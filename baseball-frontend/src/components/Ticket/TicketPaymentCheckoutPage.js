@@ -1,25 +1,25 @@
 import { loadTossPayments } from "@tosspayments/tosspayments-sdk";
-import { useEffect, useState } from "react";
-import { useNavigate,useLocation } from "react-router-dom";
-import '../../css/PaymentCheckoutPage.css';
-
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import '../../css/TicketPaymentCheckoutPage.css';
 
 const clientKey = "test_ck_P9BRQmyarYy5GkEgnon9rJ07KzLN";
-const generateRandomString = () => window.btoa(Math.random().toString()).slice(0, 20);
 const customerKey = generateRandomString();
+const generateRandomString = () => window.btoa(Math.random().toString()).slice(0, 20);
 
-export function PaymentCheckoutPage() {
+export function TicketPaymentCheckoutPage() {
+
+  const navigate = useNavigate();
   const [payment, setPayment] = useState(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
-  const navigate = useNavigate();
 
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);
   };
 
-   // 주문 데이터 가져오기
-   const location = useLocation();
-   const { orderName, amount, customer } = location.state || {};
+  // 주문 데이터 가져오기
+  const location = useLocation();
+  const {  } = location.state || {};
   
   useEffect(() => {
     async function fetchPayment() {
@@ -33,7 +33,6 @@ export function PaymentCheckoutPage() {
         console.error("결제 정보를 불러오는 중 오류가 발생했습니다:", error);
       }
     }
-
     fetchPayment();
   }, []);
 
@@ -83,4 +82,3 @@ export function PaymentCheckoutPage() {
     </div>
   );
 }
-export default PaymentCheckoutPage;

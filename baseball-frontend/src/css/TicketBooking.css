@@ -110,36 +110,74 @@ svg text {
 
 /***** ▼ 예매 정보 *****/
 
+.ticket-container,
 .ticketMain-Contents {
   margin-top: 25px;
+}
+
+.ticket-container {
+  width: 1900px;
 }
 
 .content-title {
   margin-left: 100px;
   margin-right: 100px;
+  text-align: center;
 }
 
 .content-title img {
-  width: 100%;
+  width: 960px;
   height: 65px;
-  /* 추후 수정 */
+  margin-bottom: 25px;
 }
 
 .content-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
   margin-top: 25px;
+  width: 960px;
+  margin: 0 auto;
+}
+
+.ticketDiv-flex {
+  display: flex;
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+  justify-content: flex-start; /* 카드들이 왼쪽부터 오른쪽으로 차례대로 배치 */
+}
+
+.ticketDiv-calc {
+  margin-bottom: 25px;
+  margin-right: 25px;
+  width: calc(23.04%); /* 카드 3개가 한 줄에 나오도록, 간격을 포함해 크기 계산 */
+}
+
+/* 한 줄의 마지막 카드에서만 margin-right 제거 */
+.ticketDiv-calc:nth-child(4n) {
+  margin-right: 0;
 }
 
 .sort-images {
   /* 브라우저를 가로로 줄여도 CSS 깨지지 않게 만들기 */
+  display: flex;
 }
 
 .sort-images img {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
+}
+
+.ticketCard-textDate {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.ticketCard-textVS {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ticketCard-button {
+  margin-left: 20px;
+  width: 150px;
 }
 
 /***** ▲ 예매 정보 *****/
@@ -214,6 +252,11 @@ svg text {
 
 /********** **********/
 
+.payPage-container {
+  border-right: 1px solid rgba(0, 0, 0, 0.333);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.333);
+}
+
 .payPage-title {
   background-color: rgba(0, 0, 0, 0.777);
   color: white;
@@ -221,6 +264,7 @@ svg text {
   font-weight: bold;
   font-size: 25px;
   text-align: center;
+  cursor: default;
 }
 
 .payPage-info {
@@ -234,6 +278,8 @@ svg text {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.333);
+  cursor: default;
 }
 
 .payPage-info::before {
@@ -242,24 +288,101 @@ svg text {
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 2px;
-  background-color: rgba(0, 0, 0, 0.333);
+  width: 1px;
+  background-color: black;
   transform: translateX(-50%);
   z-index: 2; /* 선이 가장 위에 표시되도록 설정 */
 }
 
 .payPage-infoOne {
   background-color: #f0f0f0; /* 왼쪽 배경색 */
-  padding: 15px;
+  padding: 14px;
   z-index: 1; /* 선 아래에 있도록 설정 */
+}
+
+.payPage-infoOne:hover {
+  background-color: #f9f9f9;
 }
 
 .payPage-infoTwo {
-  background-color: #e0e0e0; /* 오른쪽 배경색 */
-  padding: 15px;
+  background-color: #b0b0b0; /* 오른쪽 배경색 */
+  padding: 14px;
   z-index: 1; /* 선 아래에 있도록 설정 */
 }
 
-.gameInfo-table {
-  
+.payPage-infoTwo:hover {
+  background-color: #b9b9b9;
+}
+
+.payPage-contentRow {
+  display: flex;
+  cursor: default;
+}
+
+.payPage-halfView {
+  flex: 1;
+  border-right: 2px solid rgba(0, 0, 0, 0.555);
+  padding: 0;
+  padding-left: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
+
+.gameInfo-table, 
+.seatInfo-table,
+.theOther-payInfo,
+.theOther-memberInfo {
+  width: 85%;
+  margin: 35px;
+}
+
+.gameInfo-table,
+.theOther-payInfo {
+  margin-bottom: 0;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.gameInfo-table th,
+.theOther-memberInfo th {
+  background-color: #002063;
+  color: white;
+}
+
+.seatInfo-table th,
+.theOther-payInfo th {
+  background-color: #8A1A4D;
+  color: white;
+}
+
+tr:hover {
+  background-color: #f4f4f4;
+}
+
+.payPage-theOther {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
+
+.payPage-buttons {
+  margin-bottom: 35px;
+}
+
+.prev-step {
+  margin-right: 15px;
+  margin-left: 288px;
 }

@@ -76,10 +76,10 @@ const seatPrice = {
 };
 
 const sectionNameMapping = {
-  orange: "스탠다드 석",
+  orange: "스탠다드석",
   green: "외야 응원석",
   blue: "내야 응원석",
-  purple: "프리미엄 석"
+  purple: "프리미엄석"
 }
 
 const lightenColor = (color, percent) => {
