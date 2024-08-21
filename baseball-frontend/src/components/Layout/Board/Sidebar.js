@@ -9,7 +9,7 @@ const Sidebar = () => {
             <hr className='sidebar-hr'/>
             <ul className='sidebar-link-list-ul'>
                 <li className='sidebar-link-list-li'><Link to="#">공지사항</Link></li>
-                <li className='sidebar-link-list-li'><Link to="#">구단별 소개</Link></li>
+                <li className='sidebar-link-list-li'><Link to="/board/team">구단별 소개</Link></li>
                 <li className='sidebar-link-list-li'><Link to="#">자주하는 질문</Link></li>
                 <li className='sidebar-link-list-li'><Link to="#">규정, 자료실</Link></li>
             </ul>

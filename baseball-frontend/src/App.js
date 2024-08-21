@@ -8,6 +8,7 @@ import LoginContext from './components/Login/LoginContext';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signupp';
 import BoardMain from './components/Board/BoardMain';
+import BoardTeamIntroduce from './components/Board/BoardTeamIntroduce';
 
 function App() {
   const [loginMember, setLoginMember] = useState(null);
@@ -34,7 +35,7 @@ function App() {
           <Route path="/" element={<Main/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/members/signup" element={<Signup/>}></Route>
-          <Route path="/board" element={<BoardMain/>}></Route>
+          <Route path="/board/*" element={<BoardMain/>}></Route>
         </Routes>
       </div>
       <Footer/>
