@@ -59,11 +59,13 @@ const SignupForm = ({ addMember }) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email) ? "" : "이메일 형식이 올바르지 않습니다.";
     };
+    
     // 우편번호 유효성 검사
     const validatePost = (post) => {
         const postRegex = /^\d{5,6}$/;
         return postRegex.test(post) ? "" : "우편번호는 5-6자리 숫자여야 합니다.";
     };
+    
 
     // 입력 값 변경 핸들러
     const handleChange = (setter, validator) => (e) => {
@@ -107,6 +109,18 @@ const SignupForm = ({ addMember }) => {
           setIsDuplicate(false);
         }
       };
+/***** ***** ***** ***** *****/
+
+/***** 0820 주소 찾기 기능 *****/
+    const handleAddressSearch = () => {
+        new window.daum.Postcode({
+            oncomplete: function(data) {
+                setMemberPost(data.zonecode);
+                setMemberAddress(data.address);
+                setMemberAddressDetail('');
+            }
+        }).open();
+    };
 /***** ***** ***** ***** *****/
 
     // 폼 제출 핸들러
@@ -163,7 +177,7 @@ const SignupForm = ({ addMember }) => {
                         placeholder="아이디를 입력하세요"
                         required 
                     />
-                    {errors.memberId && <span className="error">{errors.memberId}</span>}
+                    {errors.memberId && <span className="error">{errors.memberId}<br/></span>}
                     {validations.memberId && !errors.memberId && <span className="valid">{validations.memberId}</span>}
                     {isDuplicate === true && <span className="error">사용 불가능한 아이디입니다.</span>}
                     {isDuplicate === false && !errors.memberId && <span className="valid">사용 가능한 아이디입니다.</span>}
@@ -221,7 +235,9 @@ const SignupForm = ({ addMember }) => {
                     {validations.memberEmail && !errors.memberEmail && <span className="valid">{validations.memberEmail}</span>}
                 </div>
                 <div className="memberPost" id="signup-container">
-                    <label>우편번호</label><br/>
+                    <label>우편번호</label>
+                    <button onClick={handleAddressSearch}>주소 검색</button>
+                    <br/>
                     <input 
                         type="text"
                         id="memberPost"
@@ -257,24 +273,22 @@ const SignupForm = ({ addMember }) => {
                 </div>
                 <div className="memberTeamCode" id="signup-container">
                     <label>응원하는 팀</label><br/>
-                    <select 
-                        id="memberTeamCode"
-                        value={memberTeamCode}
-                        onChange={(e) => setMemberTeamCode(e.target.value)}
-                        required
-                    >
+                    <select id="memberTeamCode"
+                            value={memberTeamCode}
+                            onChange={(e) => setMemberTeamCode(e.target.value)}
+                            required>
                         <option value="">응원하는 팀을 선택하세요</option>
                         <option disabled>----------------------------</option>
-                        <option value="1">LG 트윈스</option>
-                        <option value="2">KT wiz</option>
-                        <option value="3">SSG 랜더스</option>
-                        <option value="4">NC 다이노스</option>
-                        <option value="5">두산 베어스</option>
-                        <option value="6">KIA 타이거즈</option>
-                        <option value="7">롯데 자이언츠</option>
-                        <option value="8">삼성 라이온즈</option>
-                        <option value="9">한화 이글스</option>
-                        <option value="10">키움 히어로즈</option>
+                        <option value="LG 트윈스">LG 트윈스</option>
+                        <option value="KT wiz">KT wiz</option>
+                        <option value="SSG 랜더스">SSG 랜더스</option>
+                        <option value="NC 다이노스">NC 다이노스</option>
+                        <option value="두산 베어스">두산 베어스</option>
+                        <option value="KIA 타이거즈">KIA 타이거즈</option>
+                        <option value="롯데 자이언츠">롯데 자이언츠</option>
+                        <option value="삼성 라이온즈">삼성 라이온즈</option>
+                        <option value="한화 이글스">한화 이글스</option>
+                        <option value="키움 히어로즈">키움 히어로즈</option>
                     </select>
                 </div>
                 <div className="memberImg" id="signup-container">
