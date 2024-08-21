@@ -8,7 +8,6 @@ import LoginContext from './components/Login/LoginContext';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signupp';
 import BoardMain from './components/Board/BoardMain';
-import BoardTeamIntroduce from './components/Board/BoardTeamIntroduce';
 
 function App() {
   const [loginMember, setLoginMember] = useState(null);
