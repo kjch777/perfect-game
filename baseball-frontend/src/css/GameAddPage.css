@@ -1,0 +1,70 @@
+.gameAddPageContainer{
+    margin: 30px;
+    margin-top: 150px;
+    
+}
+
+.gameAddPageContainer h1{
+    color: #147011;
+}
+
+.gameAddPageContainer button{
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    
+}
+
+.gameAddPageContainer button:hover{
+    background-color: green;
+    cursor: pointer;
+}
+
+.gameAddParts{
+    margin-bottom: 10px;
+}
+
+.gameAddParts input{
+    width: 30%;
+    height: 30px;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.inputDate{
+    color: gray;
+}
+
+.selectBox{
+    width: 400px;
+}
+
+.allPlayersHomeAway{
+    display: flex;
+}
+
+.lineUpCheckTable{
+    color: #333
+}
+
+.allPlayersHomeAway{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#lineupToggleButton{
+    background-color: rgb(188, 218, 188);
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+}
+
+#lineupToggleButton:hover{
+    background-color: #59ecaf;
+}
+
+label button{
+    margin-bottom: 10px;
+}
