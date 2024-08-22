@@ -9,6 +9,26 @@
     color: green;
 }
 
+.duplicate-id-button {
+    background-color: #002063;
+    background: #002063;
+    width: 20%;
+    padding: 8px 4px;
+    color: white;
+    border: none ;
+    border-radius: 10px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.duplicate-id-button:hover {
+    background-color: #070063;
+}
+
+.juso-button {
+
+}
+
 
 h1 {
     margin-top: 10px;

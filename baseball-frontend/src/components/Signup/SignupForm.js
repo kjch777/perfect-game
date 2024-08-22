@@ -167,7 +167,9 @@ const SignupForm = ({ addMember }) => {
                 </div>
                 <div className="memberId" id="signup-container">
                     <label>아이디</label>
-                    <button type="button" onClick={checkDuplicateId}>아이디 중복 확인</button>
+                    <button type="button"
+                            className="duplicate-id-button"
+                            onClick={checkDuplicateId}>아이디 중복 확인</button>
                     <br/>
                     <input 
                         type="text"
@@ -236,7 +238,8 @@ const SignupForm = ({ addMember }) => {
                 </div>
                 <div className="memberPost" id="signup-container">
                     <label>우편번호</label>
-                    <button onClick={handleAddressSearch}>주소 검색</button>
+                    <button className="juso-button"
+                            onClick={handleAddressSearch}>주소 검색</button>
                     <br/>
                     <input 
                         type="text"

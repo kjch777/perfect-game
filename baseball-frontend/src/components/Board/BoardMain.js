@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import '../css/BoardMain.css';
 import Sidebar from '../Layout/Board/Sidebar';
 import BoardTeamIntroduce from './BoardTeamIntroduce';
+import Board0820 from './Board0820';
 
 function BoardMain() {
 
@@ -14,6 +15,7 @@ function BoardMain() {
         <hr className='board-main-hr'/>
         <Routes>
           <Route path="team" element={<BoardTeamIntroduce/>}></Route>
+          <Route path="ex" element={<Board0820/>}></Route>
           {/* 다른 하위 경로들을 여기에 추가 */}
         </Routes>
       </div>

@@ -4,7 +4,7 @@ import '../css/Board.css';
 import LoginContext from '../../components/Login/LoginContext';
 import Sidebar from '../Layout/Board/Sidebar';
 
-function Board() {
+function Board0820() {
   const { loginMember, setLoginMember } = useContext(LoginContext);
   const boardListAPI = "http://localhost:9090/board/lists";
   const boardUploadAPI = "http://localhost:9090/board/upload";
@@ -144,4 +144,4 @@ function Board() {
   );
 }
 
-export default Board;
+export default Board0820;
