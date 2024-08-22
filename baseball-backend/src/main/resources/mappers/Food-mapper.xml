@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="base.ball.mapper.FoodMapper">
+	<select id="getFoodById" resultType="base.ball.dto.Food">
+		 SELECT food_id AS foodId,
+               food_name AS foodName,
+               food_menu AS foodMenu,
+               foods_image AS foodsImage
+        FROM foods
+        WHERE food_id = #{foodId}
+	</select>
+</mapper>
