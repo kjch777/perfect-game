@@ -1,0 +1,81 @@
+.feeds-comment-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.comment-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.comment-btn:hover {
+    background-color: #0056b3;
+}
+
+.comment-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* 댓글 목록 */
+.comment-list {
+    max-height: 300px; /* 최대 높이 설정 */
+    overflow-y: auto;
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+/* 각 댓글 */
+.comment {
+    margin-bottom: 10px; /* 각 댓글 사이에 여백을 추가합니다. */
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+/* 사용자 이름 */
+.food-userName {
+    font-weight: bold;
+    margin-right: 10px; /* 사용자 이름과 댓글 내용 사이에 간격을 추가합니다. */
+}
+
+/* 댓글 내용 */
+.comment-content {
+    color: #333;
+}
+
+/* 댓글 시간 */
+.comment-time {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+.comment-button {
+    flex-wrap: wrap;
+    padding: 3px 6px;
+    border: none;
+    border-radius: 4px;
+    background-color: #c0c0c0a8;
+    color: #3f3f3f;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}

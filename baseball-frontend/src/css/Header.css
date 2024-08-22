@@ -7,6 +7,7 @@ header #login-signup {
   top: -22px;
   right: 20px; /* 화면 오른쪽에서 20px 떨어진 위치 */
 }
+
 header #login-signup ul {
   display: flex;
 }
@@ -55,6 +56,7 @@ header #menu #link-banner {
   display: flex;
   justify-content: center;
 }
+
 header #menu > ul > li {
   float: left;
   width: 140px; /* 너비 유지 */
@@ -62,6 +64,7 @@ header #menu > ul > li {
   list-style: none; /* 점 제거 */
   margin: 0; /* 여백 제거 */
 }
+
 header #menu > ul > li > a {
   display: block;
   text-decoration: none;
@@ -71,11 +74,13 @@ header #menu > ul > li > a {
   text-align: center; /* 텍스트 중앙 정렬 */
   line-height: 30px; /* 텍스트 수직 중앙 정렬 */
 }
+
 header #menu > ul > li > a:hover {
   text-decoration: none;
   color: #8A1A4D;
-  background: #E0E0E0; /* Hover 시 배경색 추가 */
+  background: #e0e0e0; /* Hover 시 배경색 추가 */
 }
+
 header #menu > ul > li > ul {
   width: 140px; /* 너비 유지 */
   display: none;
@@ -86,17 +91,20 @@ header #menu > ul > li > ul {
   padding: 0; /* 여백 제거 */
   margin: 0; /* 여백 제거 */
 }
+
 header #menu > ul > li:hover > ul {
   display: block;
 }
 header #menu > ul > li > ul > li {
   list-style: none; /* 점 제거 */
 }
+
 header #menu > ul > li > ul > li:hover {
   background: #002063;
   color: white;
   transition: ease 1s;
 }
+
 header #menu > ul > li > ul > li > a {
   display: block;
   text-decoration: none;
@@ -106,10 +114,12 @@ header #menu > ul > li > ul > li > a {
   text-align: center; /* 텍스트 중앙 정렬 */
   line-height: 30px; /* 텍스트 수직 중앙 정렬 */
 }
+
 header #menu > ul > li > ul > li > a:hover {
   color: white;
   background: #002063; /* Hover 시 배경색 추가 */
 }
+
 /* 중간 화면을 위한 미디어 쿼리 */
 @media (max-width: 860px) {
   header #menu {
@@ -132,6 +142,7 @@ header #menu > ul > li > ul > li > a:hover {
     width: 100%;
   }
 }
+
 /* 아주 작은 화면을 위한 미디어 쿼리 */
 @media (max-width: 400px) {
   header #menu {

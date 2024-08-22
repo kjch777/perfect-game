@@ -16,3 +16,4 @@ public interface MemberService {
 	
 	Map<String, Object> login(Member member);
 }
+}

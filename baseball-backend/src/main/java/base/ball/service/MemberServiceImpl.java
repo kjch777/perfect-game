@@ -1,4 +1,3 @@
-
 package base.ball.service;
 
 import java.util.HashMap;
@@ -46,4 +45,5 @@ public class MemberServiceImpl implements MemberService {
 		
 		return map;
 	}
+}
 }

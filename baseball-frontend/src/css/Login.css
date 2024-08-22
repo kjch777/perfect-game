@@ -2,6 +2,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+
     transform: translate(-50%, -57%);
     /* -55% :  -45%로 바꾸면 login-container가 내려감
                -65%로 바꾸면 login-container가 올라감 */
@@ -35,6 +36,16 @@
     max-width: 100%; /* 이미지의 최대 너비를 div에 맞춤 */
     height: auto; /* 이미지 비율 유지 */
     border-radius: 10px; /* 이미지의 둥근 모서리 */
+    transform: translate(-50%, -55%);
+    /* -55% :  -45%로 바꾸면 login-container가 내려감
+               -65%로 바꾸면 login-container가 올라감 */
+    width: 50%;
+    height: 50%;
+    border: 1px solid #ccc;
+    padding: 30px 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 h1 {
@@ -45,7 +56,10 @@ h1 {
     margin-top: 50px;
 }
 .login-input div {
-   
+
+  
+    margin-bottom: 30px;
+
 }
 .login-input div p {
     text-align: left;
