@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "../../css/TicketBooking.css";
 import { Button, Card, Col, Row } from "react-bootstrap";
+import axios from "axios";
 
 const seats = [
   { id: "101", section: "orange", angle: 70, y: 400 },
@@ -184,20 +185,20 @@ export const TicketBookingSub = () => {
       }
     }
   };
-
+  
   const handleMaxSeatsChange = (event) => {
     const count = parseInt(event.target.value, 10);
-
+  
     if (count < 1) {
-        setCountAlert('선택 가능한 좌석의 최소 수량은 1개입니다.');
+      setCountAlert('선택 가능한 좌석의 최소 수량은 1개입니다.');
     } else if (count > 4) {
-        setCountAlert('선택 가능한 좌석의 최대 수량은 4개입니다.');
+      setCountAlert('선택 가능한 좌석의 최대 수량은 4개입니다.');
     } else {
-        setMaxSeats(count);
-        setSelectedSeats([]);
-        setTotalPrice(0);
+      setMaxSeats(count);
+      setSelectedSeats([]);
+      setTotalPrice(0);
     }
-  };
+  };  
 
   const noTyping = (event) => {
     event.preventDefault();
@@ -230,7 +231,8 @@ export const TicketBookingSub = () => {
             count: selectedSeats.length,
             homeTeamName: changeHomeName,
             awayTeamName: changeAwayName,
-            date
+            date,
+            gameCode
           } 
         });
       }

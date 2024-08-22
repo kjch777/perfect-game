@@ -3,6 +3,8 @@ package base.ball.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,13 +28,15 @@ public class TicketController {
 		return ticketService.selectGame();
 	}
 	
-	@PostMapping
-	public void insertTicket(@RequestBody Ticket ticket) {
+	@PostMapping("/insertTicket")
+	public ResponseEntity<String> insertTicket(@RequestBody Ticket ticket) {
 		ticketService.insertTicket(ticket);
+		return ResponseEntity.ok("response");
 	}
 	
 	@DeleteMapping
 	public void deleteTicket(@RequestParam int bookingId) {
 		ticketService.deleteTicket(bookingId);
 	}
+	
 }

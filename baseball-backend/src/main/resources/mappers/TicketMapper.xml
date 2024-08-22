@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="base.ball.mapper.TicketMapper">
 	<select id="selectGame" parameterType="String" resultType="Ticket">
-		select game_code, game_date, game_team_name_home, game_team_name_away 
-		from game
-		where game_date > current_date
-		order by game_date
+		SELECT game_code, game_date, game_team_name_home, game_team_name_away 
+		FROM game
+		WHERE game_date > current_date
+		ORDER BY game_date
 	</select>
 	
 	<select id="selectTicket">
@@ -13,13 +13,9 @@
 	</select>
 	
 	<insert id="insertTicket" parameterType="Ticket" useGeneratedKeys="true" keyProperty="bookingId">
-		insert into ticket(member_no, match_code, base_price, pay_method, pay_date, bank_type, card_type, installment, is_canceled, seat_class, seat_number, total_seat_count, choose_seat_count)
-		values (#{memberNo}, #{matchCode}, #{basePrice}, #{payMethod}, #{payDate}, #{bankType}, #{cardType}, #{installment}, #{isCanceled}, #{seatClass}, #{seatNumber}, #{totalSeatCount}, #{chooseSeatCount})
+		insert into ticket(seat_id, seat_section, seat_price, select_seat_count, pay_method, pay_date, member_no, game_code)
+		values (#{seatId}, #{seatSection}, #{seatPrice}, #{selectSeatCount}, #{payMethod}, #{payDate}, #{memberNo}, #{gameCode})
 	</insert>
-	
-	<update id="updateTicket" parameterType="Ticket">	
-		update ticket set where booking_id = #{bookingId} 
-	</update>
 	
 	<delete id="deleteTicket" parameterType="int">
 		delete from ticket where booking_id = #{bookingId}

@@ -8,7 +8,7 @@ export const BookingStepTwo = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { loginMember } = useContext(LoginContext);
-    const { selectedSeats, totalPrice, count, homeTeamName, awayTeamName, date } = location.state;
+    const { selectedSeats, totalPrice, count, homeTeamName, awayTeamName, date, gameCode } = location.state;
 
     const dateFormat = (dateString) => {
         const date = new Date(dateString);
@@ -18,11 +18,31 @@ export const BookingStepTwo = () => {
         return `${month}월 ${day}일`
       }
 
+      
     const handlePrevStep = () => {
         const isConfirmed = window.confirm("선택하신 좌석이 취소됩니다. 이전 단계로 이동하시겠습니까?");
         if (isConfirmed) {
             navigate(-1);
         }
+    }
+        
+    const seatFormat = (seats) => {
+        return seats.map(seat => 
+            `${seat.id}번 (${seat.section}, ${seat.price}원)`
+        ).join(', ');
+    };
+    
+    const handlePayCheck = () => {
+        const loadSeatFormat = seatFormat(selectedSeats);
+        navigate('/ticket/paymentCheckout', {
+            state: {
+                selectedSeats: `${homeTeamName} VS ${awayTeamName} / ${dateFormat(date)} / ${loadSeatFormat}`,
+                selectSeatCount: count,
+                memberNo: loginMember.memberNo,
+                gameCode,
+                totalPrice
+            }
+        })
     }
 
     return (
@@ -108,7 +128,7 @@ export const BookingStepTwo = () => {
                     
                     <div className="payPage-buttons">
                         <Button onClick={handlePrevStep} className="prev-step">이전 단계로</Button>           
-                        <Button className="ticket-toss">결제하기</Button>
+                        <Button onClick={handlePayCheck} className="ticket-toss">결제하기</Button>
                     </div>
                 </Col>
             </Row>

@@ -9,8 +9,9 @@ import base.ball.dto.Ticket;
 public interface TicketService {
 	
 	List<Ticket> selectGame();
-
+	
 	void insertTicket(Ticket ticket);
 	
 	void deleteTicket(int bookingId);
+	
 }

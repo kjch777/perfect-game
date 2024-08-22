@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import base.ball.dto.Ticket;
 import base.ball.mapper.TicketMapper;
@@ -28,4 +29,5 @@ public class TicketServiceImpl implements TicketService {
 	public void deleteTicket(int bookingId) {
 		ticketMapper.deleteTicket(bookingId);
 	}
+	
 }
