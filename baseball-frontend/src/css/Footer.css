@@ -1,38 +1,38 @@
 /* Footer Css */
 footer {
-    margin: 0;
-    background-color: #002063;
-    color: white;
-    padding: 20px 30px;
-    text-align: center;
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  footer .footer-link div {
-    width: 50%;
-    display: inline-block;
-  }
-  footer .footer-link div > ul > li {
-    display: inline-block;
-    list-style: none;
-  }
-  footer .footer-link div > ul > li > a {
-    text-decoration: none;
-    color: white;
-    margin: 0 20px;
-  }
-  
-  
-  .footer-link {
-    margin-bottom: 30px;
-  }
-  
-  hr {
-    width: 100%;
-    margin: 10px 0;
-  }
+  margin: 0;
+  background-color: #002063;
+  color: white;
+  padding: 20px 30px;
+  text-align: center;
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+footer .footer-link div {
+  width: 50%;
+  display: inline-block;
+}
+footer .footer-link div > ul > li {
+  display: inline-block;
+  list-style: none;
+}
+footer .footer-link div > ul > li > a {
+  text-decoration: none;
+  color: white;
+  margin: 0 20px;
+}
+
+
+.footer-link {
+  margin-bottom: 30px;
+}
+
+hr {
+  width: 100%;
+  margin: 10px 0;
+}

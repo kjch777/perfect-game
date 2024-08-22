@@ -1,6 +1,21 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import {Routes, Route} from "react-router-dom";
+import GoodsDetail from './components/Goods/GoodsDetail.js';
+import Weather from './components/Weather.js';
+import GoodsMain from './components/Goods/GoodsMain.js';
+import GoodsOrder from './components/Goods/GoodsOrder.js';
+import Header from './components/Layout/Header.js';
+import PaymentSuccessPage from './components/Goods/GoodsPaymentSuccessPage.js';
+import PaymentCheckoutPage from './components/Goods/GoodsPaymentCheckoutPage.js';
+import PaymentFailPage from './components/Goods/GoodsPaymentFailPage.js'
+import Login from './components/Login/Login.js';
+import LoginContext from './components/Login/LoginContext';
+import Main from './components/Layout/Main.js';
+import Signupp from './components/Signup/Signupp.js';
+import Footer from './components/Layout/Footer.js';
+import OrderCheck from './components/Goods/OrderCheck.js';
 import FoodMain from "./components/Food/foodMain";
 import FoodMapLG from "./components/Food/foodMapLG";
 import FoodMapKIWOOM from "./components/Food/foodMapKIWOOM";
@@ -11,14 +26,21 @@ import FoodComment from "./components/Food/foodComment";
 import MyPage from './components/MyPage/myPage';
 import MyPageEdit from './components/MyPage/myPageEdit';
 import MyPageDelete from './components/MyPage/myPageDelete';
-import Signup from './components/Signup/Signupp';
-import Main from './components/Layout/Main';
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
-import LoginContext from './components/Login/LoginContext';
-import Login from './components/Login/Login';
 
 function App() {
+
+  const [goods, setGoods] = useState([]);
+
+  const 모든상품보기 = async () => {
+    const res = await axios.get('/goods');
+    setGoods(res.data);
+    console.log("goods" , res.data);
+  };
+
+  useEffect(() => {
+    모든상품보기(); 
+  }, [] );
+
   const [loginMember, setLoginMember] = useState(null);
 
   useEffect(() => {
@@ -28,6 +50,7 @@ function App() {
     }
   }, []);
 
+
   useEffect(() => {
     if (loginMember) {
       localStorage.setItem("loginMember", JSON.stringify(loginMember));
@@ -36,13 +59,13 @@ function App() {
 
   return (
     <LoginContext.Provider value={{ loginMember, setLoginMember }}>
-    <div>
-      <Header/>
+    <div className="App">
+      <Header />
       <div id="main-content">
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/members/signup" element={<Signup/>}></Route>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/members/signup" element={<Signupp/>}></Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/mypage/edit" element={<MyPageEdit />} />
         <Route path="/foodmain" element={<FoodMain />} />
@@ -53,6 +76,14 @@ function App() {
         <Route path="/fooddetail/:foodId" element={<FoodDetail />} />
         <Route path="/foodComment" element={<FoodComment />} />
         <Route path='/mypage/delete' element={<MyPageDelete />} />
+         <Route path='/goods' element={<GoodsMain goods={goods} />} />
+        <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />} />
+        <Route path='/goods/orders' element={<GoodsOrder />} />
+        <Route path='/order-check' element={<OrderCheck />} />
+        <Route path='/weather' element={<Weather />} />
+        <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
+        <Route path="/payment/success" element={<PaymentSuccessPage />} />
+        <Route path="/payment/fail" element={<PaymentFailPage />} />
         </Routes>
       </div>
       <Footer/>

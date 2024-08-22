@@ -1,4 +1,3 @@
-/* Header Css */
 header {
   position: relative;
   z-index: 1000;
@@ -34,7 +33,7 @@ header #menu {
   height:50px;
   background: #f0f0f044;
   color:black;
-  line-height: 50px; 
+  line-height: 50px;
   margin:0 auto;
   text-align: center;
   display: flex;
@@ -96,7 +95,6 @@ header #menu > ul > li > ul {
 header #menu > ul > li:hover > ul {
   display: block;
 }
-
 header #menu > ul > li > ul > li {
   list-style: none; /* 점 제거 */
 }
@@ -122,7 +120,6 @@ header #menu > ul > li > ul > li > a:hover {
   background: #002063; /* Hover 시 배경색 추가 */
 }
 
-
 /* 중간 화면을 위한 미디어 쿼리 */
 @media (max-width: 860px) {
   header #menu {
@@ -145,7 +142,7 @@ header #menu > ul > li > ul > li > a:hover {
     width: 100%;
   }
 }
-  
+
 /* 아주 작은 화면을 위한 미디어 쿼리 */
 @media (max-width: 400px) {
   header #menu {
