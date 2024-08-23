@@ -44,7 +44,7 @@ export function PaymentSuccessPage() {
   return (
     <div class="page-wrapper">
     <div class="box_section">
-        <img width="100px" src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" alt="Success" />
+        <img src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" alt="Success" />
         <h2>결제를 완료했어요</h2>
         <Link to="/goods"><button className="goMain">메인으로</button></Link>
     </div>
