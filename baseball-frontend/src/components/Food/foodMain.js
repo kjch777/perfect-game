@@ -42,7 +42,7 @@ const FoodMain = () => {
               <div className="card-body">
                 <img src="./images/Logo-Tigers.png" className="card-img-top" alt="KIA 타이거즈" style={{ margin: '20px 0' }} />
                 <h5 className="card-title">광주 기아챔피언스필드</h5>
-                <a href="./foodMapKIA" className="foodmain-btn btn-primary">구경하기</a>
+                <a href="./foodMapKIA" className="btn btn-primary">구경하기</a>
               </div>
             </div>
           </div>
