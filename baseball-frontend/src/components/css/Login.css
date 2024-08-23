@@ -65,10 +65,10 @@ h1 {
     color: white;
     border: none ;
     border-radius: 10px;
+    cursor: pointer;
 }
 .button-container button:hover {
     background: #070063;
-    cursor: pointer;
     color: white;
 }
 
