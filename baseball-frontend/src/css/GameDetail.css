@@ -1,0 +1,61 @@
+.gameDetailPageContainer{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.gameDetailPageContainer h1{
+    text-align: center;
+    color: burlywood;
+}
+
+.homeDiv h2{
+    text-align: center;
+    color: palevioletred;
+}
+
+.awayDiv h2{
+    text-align: center;
+    color: green;
+}
+
+.gameDetailPageContainer button{
+    border: none;
+    padding: 4px;
+    margin: 2px;
+    width: 50px;
+    color: white;
+    font-weight: bold;
+    background-color: yellowgreen;
+    border-radius: 5px;
+}
+.gameDetailPageContainer button:hover{
+    cursor: pointer;
+    background-color: blueviolet;
+}
+
+.twoTeamDiv{
+    /*justify-content: center;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+}
+
+.lineupTable{
+    background-color: antiquewhite;
+    border-radius: 10px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.lineupTable th{
+    border-bottom: 2px solid salmon;
+    padding: 10px;
+}
+
+.lineupTable td{
+    
+    padding: 10px;
+}
