@@ -1,0 +1,41 @@
+.mainApp{
+  justify-content: center;
+  background-color: white;
+  margin-top: 30px;
+}
+
+.mainBanner img{
+  width: 100%;
+}
+
+.mainApp h1{
+  text-align: center;
+  color: burlywood;
+  
+}
+
+.calendarFrame{
+  margin: 0 auto;
+  
+  text-align: center;
+}
+
+.calendarMonthNav{
+  font-size: 30px;
+  color: rgb(238, 178, 129);
+
+
+
+  display: flex;
+  justify-content: center;
+}
+
+.arrowButton{
+  color: rgb(211, 235, 145);
+}
+
+.arrowButton:hover{
+  color: mediumseagreen;
+  cursor: pointer;
+
+}

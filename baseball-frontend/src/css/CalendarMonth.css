@@ -1,0 +1,131 @@
+.calendarTable{
+    margin: 0 auto;
+    background-color: rgb(255, 252, 246);
+    color: rebeccapurple;
+    box-shadow: 0 0 10px gray;
+    border-radius: 5px;
+    
+}
+
+.calendarTableDiv{
+    display: flex;
+}
+.calendarTable{
+    padding: 0px;
+    margin: 0 30px;
+
+    border-collapse: collapse;/**/
+    
+}
+
+.calendarTable th{
+    border-bottom: 2px solid rgb(96, 147, 204);
+    
+}
+
+.calendarTable th{
+    padding: 15px;
+    color: rgb(38, 112, 106);
+
+}
+
+.calendarTable th:nth-child(1){
+    color: red;
+}
+
+.calendarTable td:nth-child(1){
+    color: red;
+}
+
+.calendarTable td{
+    font-size: 20px;
+    padding: 15px;/**/
+
+    font-size: 15px;    
+}
+
+.calendarTable td:hover{
+    box-shadow: 0 0 5px gray;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 0px;/**/
+    color: rgb(68, 71, 247);
+
+}
+
+.calendarGameDiv h2{
+    color: rgb(91, 50, 205);
+    
+}
+
+.gameTable{
+    margin: 0 auto;/*경기일정 표*/
+    margin-bottom: 10px;
+    color: gray;
+    padding: 20px;
+}
+
+
+.gameCodeArea:hover{
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+
+}
+
+.gameTable{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 5px gray;
+    margin: 0 auto;
+}
+
+.gameTable th{
+    color: rgb(0, 81, 255);
+}
+
+.gameTable th, .gameTable td{
+    padding: 15px;
+    width: 95px;/**/
+    
+}
+
+.gameTable button{
+    border: none;
+    padding: 10px;
+    color: aliceblue;
+    background-color: rgb(0, 81, 255);
+    border-radius: 7px;
+}
+
+.gameTable button:hover{
+    cursor: pointer;
+    background-color: rgb(19, 81, 139);
+}
+
+.gameTable .deleteButton{
+    background-color: rgb(245, 69, 24);
+}
+
+.gameTable .deleteButton:hover{
+    background-color: rgb(248, 23, 23);
+}
+
+.gameTable tr:hover{
+    font-weight: bold;
+}
+
+.gameAddButton{
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px gray;
+}
+
+.gameAddButton:hover{
+    background-color: green;
+    cursor: pointer;
+}
