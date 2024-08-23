@@ -24,6 +24,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 20px;
+  box-sizing: border-box;
 }
 .form-container label {
   font-size: 18px;

@@ -9,36 +9,30 @@
     color: green;
 }
 
-.duplicate-id-button {
-    background-color: #002063;
-    background: #002063;
-    width: 20%;
-    padding: 8px 4px;
-    color: white;
-    border: none ;
-    border-radius: 10px;
-    cursor: pointer;
-    align-self: flex-end;
+.signup-form {
+    margin: 30px 20%;/*****0822 고치기*****/
+    width: 80%;
+    max-width: 1200px;
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    gap: 30px;
+    box-sizing: border-box;
 }
-
-.duplicate-id-button:hover {
-    background-color: #070063;
-}
-
-.juso-button {
-
-}
-
 
 h1 {
     margin-top: 10px;
     margin-bottom: 10px;
+    box-sizing: border-box;
 }
 
 #signup-container {
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 50%; /* 각 컨테이너의 폭을 50%로 설정 */
+    width: 100%; /* 각 컨테이너의 폭을 50%로 설정 */
     margin-left: auto; /* 중앙 정렬을 위한 왼쪽 여백 자동 설정 */
     margin-right: auto; /* 중앙 정렬을 위한 오른쪽 여백 자동 설정 */
     text-align: left; /* 텍스트를 왼쪽 정렬로 설정 */
@@ -49,7 +43,6 @@ h1 {
     margin-bottom: 0px;
     font-size: 18px;
 }
-
 #signup-container input,
 #signup-container select {
     margin-top: 0px;
@@ -58,9 +51,48 @@ h1 {
     border-radius: 10px;
     width: 100%;
     margin-bottom: 5px;
+    box-sizing: border-box;
 }
 
+.memberId,
+.memberPost {
+    overflow: hidden;
+}
+.memberId label,
+.memberPost label {
+    float: left;
+}
+.duplicate-id-button {
+    float: right;
+    background-color: #002063;
+    background: #002063;
+    padding: 8px 20px;
+    color: white;
+    border: none ;
+    border-radius: 10px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+.duplicate-id-button:hover {
+    background-color: #070063;
+    color: white;
+}
 
+.juso-button {
+    float: right;
+    background-color: #002063;
+    background: #002063;
+    padding: 8px 20px;
+    color: white;
+    border: none ;
+    border-radius: 10px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+.juso-button:hover {
+    background-color: #070063;
+    color: white;
+}
 
 
 
@@ -72,10 +104,10 @@ h1 {
     color: white;
     border: none ;
     border-radius: 10px;
+    cursor: pointer;
 }
 .signup-button:hover {
     background: #070063;
-    cursor: pointer;
     color: white;
 }
 .login-link {

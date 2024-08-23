@@ -149,169 +149,171 @@ const SignupForm = ({ addMember }) => {
     };
 
     return (
-        <div className="signup-form">
-            <h1>Perfect Game 회원가입</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="memberName" id="signup-container">
-                    <label>이름</label><br/>
-                    <input 
-                        type="text"
-                        id="memberName"
-                        value={memberName}
-                        onChange={handleChange(setMemberName, validateName)}
-                        placeholder="이름을 입력하세요"
-                        required 
-                    />
-                    {errors.memberName && <span className="error">{errors.memberName}</span>}
-                    {validations.memberName && !errors.memberName && <span className="valid">{validations.memberName}</span>}
-                </div>
-                <div className="memberId" id="signup-container">
-                    <label>아이디</label>
-                    <button type="button"
-                            className="duplicate-id-button"
-                            onClick={checkDuplicateId}>아이디 중복 확인</button>
-                    <br/>
-                    <input 
-                        type="text"
-                        id="memberId"
-                        value={memberId}
-                        onChange={handleChange(setMemberId, validateId)}
-                        placeholder="아이디를 입력하세요"
-                        required 
-                    />
-                    {errors.memberId && <span className="error">{errors.memberId}<br/></span>}
-                    {validations.memberId && !errors.memberId && <span className="valid">{validations.memberId}</span>}
-                    {isDuplicate === true && <span className="error">사용 불가능한 아이디입니다.</span>}
-                    {isDuplicate === false && !errors.memberId && <span className="valid">사용 가능한 아이디입니다.</span>}
-                </div>
-                <div className="memberPw" id="signup-container">
-                    <label>비밀번호</label><br/>
-                    <input 
-                        type="password"
-                        id="memberPw"
-                        value={memberPw}
-                        onChange={handleChange(setMemberPw, validatePw)}
-                        placeholder="비밀번호를 입력하세요"
-                        required 
-                    />
-                    {errors.memberPw && <span className="error">{errors.memberPw}</span>}
-                    {validations.memberPw && !errors.memberPw && <span className="valid">{validations.memberPw}</span>}
-                </div>
-                <div className="passwordConfirm" id="signup-container">   
-                    <label>비밀번호 확인</label><br/>
-                    <input 
-                        type="password"
-                        id="passwordConfirm"
-                        value={passwordConfirm}
-                        onChange={handlePasswordConfirmChange}
-                        placeholder="비밀번호를 입력하세요"
-                        required 
-                    />
-                    {errors.passwordConfirm && <span className="error">{errors.passwordConfirm}</span>}
-                    {validations.passwordConfirm && !errors.passwordConfirm && <span className="valid">{validations.passwordConfirm}</span>}
-                </div>
-                <div className="memberPhone" id="signup-container">
-                    <label>핸드폰 번호</label><br/>
-                    <input 
-                        type="text"
-                        id="memberPhone"
-                        value={memberPhone}
-                        onChange={handleChange(setMemberPhone, validatePhone)}
-                        placeholder="전화번호를 입력하세요"
-                        required 
-                    />
-                    {errors.memberPhone && <span className="error">{errors.memberPhone}</span>}
-                    {validations.memberPhone && !errors.memberPhone && <span className="valid">{validations.memberPhone}</span>}
-                </div>
-                <div className="memberEmail" id="signup-container">
-                    <label>이메일</label><br/>
-                    <input 
-                        type="email"
-                        id="memberEmail"
-                        value={memberEmail}
-                        onChange={handleChange(setMemberEmail, validateEmail)}
-                        placeholder="이메일 주소를 입력하세요"
-                        required 
-                    />
-                    {errors.memberEmail && <span className="error">{errors.memberEmail}</span>}
-                    {validations.memberEmail && !errors.memberEmail && <span className="valid">{validations.memberEmail}</span>}
-                </div>
-                <div className="memberPost" id="signup-container">
-                    <label>우편번호</label>
-                    <button className="juso-button"
-                            onClick={handleAddressSearch}>주소 검색</button>
-                    <br/>
-                    <input 
-                        type="text"
-                        id="memberPost"
-                        value={memberPost}
-                        onChange={handleChange(setMemberPost, validatePost)}
-                        placeholder="우편번호를 입력하세요"
-                        required 
-                    />
-                    {errors.memberPost && <span className="error">{errors.memberPost}</span>}
-                    {validations.memberPost && !errors.memberPost && <span className="valid">{validations.memberPost}</span>}
-                </div>
-                <div className="memberAddress" id="signup-container">
-                    <label>주소</label><br/>
-                    <input 
-                        type="text"
-                        id="memberAddress"
-                        value={memberAddress}
-                        onChange={handleChange(setMemberAddress, () => "")}
-                        placeholder="주소를 입력하세요"
-                        required 
-                    />
-                </div>
-                <div className="memberAddressDetail" id="signup-container">
-                    <label>상세주소</label><br/>
-                    <input 
-                        type="text"
-                        id="memberAddressDetail"
-                        value={memberAddressDetail}
-                        onChange={handleChange(setMemberAddressDetail, () => "")}
-                        placeholder="상세주소를 입력하세요"
-                        required 
-                    />
-                </div>
-                <div className="memberTeamCode" id="signup-container">
-                    <label>응원하는 팀</label><br/>
-                    <select id="memberTeamCode"
-                            value={memberTeamCode}
-                            onChange={(e) => setMemberTeamCode(e.target.value)}
-                            required>
-                        <option value="">응원하는 팀을 선택하세요</option>
-                        <option disabled>----------------------------</option>
-                        <option value="LG 트윈스">LG 트윈스</option>
-                        <option value="KT wiz">KT wiz</option>
-                        <option value="SSG 랜더스">SSG 랜더스</option>
-                        <option value="NC 다이노스">NC 다이노스</option>
-                        <option value="두산 베어스">두산 베어스</option>
-                        <option value="KIA 타이거즈">KIA 타이거즈</option>
-                        <option value="롯데 자이언츠">롯데 자이언츠</option>
-                        <option value="삼성 라이온즈">삼성 라이온즈</option>
-                        <option value="한화 이글스">한화 이글스</option>
-                        <option value="키움 히어로즈">키움 히어로즈</option>
-                    </select>
-                </div>
-                <div className="memberImg" id="signup-container">
-                    <label>이미지</label><br/>
-                    <input 
-                        type="text"
-                        id="memberImg"
-                        value={memberImg}
-                        onChange={(e) => setMemberImg(e.target.value)} 
-                        placeholder="이미지를 선택하세요"
-                    />
-                </div>
-                <div>
-                    <button type="submit" className="signup-button">회원가입</button>
-                </div>
-                <div className="login-link">
-                    <p>계정이 있으신가요?</p>
-                    <Link to="/login">로그인</Link>
-                </div>
-            </form>
+        <div className="signup-outer-container">
+            <div className="signup-form">
+                <h1>Perfect Game 회원가입</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="memberName" id="signup-container">
+                        <label>이름</label><br/>
+                        <input 
+                            type="text"
+                            id="memberName"
+                            value={memberName}
+                            onChange={handleChange(setMemberName, validateName)}
+                            placeholder="이름을 입력하세요"
+                            required 
+                        />
+                        {errors.memberName && <span className="error">{errors.memberName}</span>}
+                        {validations.memberName && !errors.memberName && <span className="valid">{validations.memberName}</span>}
+                    </div>
+                    <div className="memberId" id="signup-container">
+                        <label>아이디</label>
+                        <button type="button"
+                                className="duplicate-id-button"
+                                onClick={checkDuplicateId}>아이디 중복 확인</button>
+                        <br/>
+                        <input 
+                            type="text"
+                            id="memberId"
+                            value={memberId}
+                            onChange={handleChange(setMemberId, validateId)}
+                            placeholder="아이디를 입력하세요"
+                            required 
+                        />
+                        {errors.memberId && <span className="error">{errors.memberId}<br/></span>}
+                        {validations.memberId && !errors.memberId && <span className="valid">{validations.memberId}</span>}
+                        {isDuplicate === true && <span className="error">사용 불가능한 아이디입니다.</span>}
+                        {isDuplicate === false && !errors.memberId && <span className="valid">사용 가능한 아이디입니다.</span>}
+                    </div>
+                    <div className="memberPw" id="signup-container">
+                        <label>비밀번호</label><br/>
+                        <input 
+                            type="password"
+                            id="memberPw"
+                            value={memberPw}
+                            onChange={handleChange(setMemberPw, validatePw)}
+                            placeholder="비밀번호를 입력하세요"
+                            required 
+                        />
+                        {errors.memberPw && <span className="error">{errors.memberPw}</span>}
+                        {validations.memberPw && !errors.memberPw && <span className="valid">{validations.memberPw}</span>}
+                    </div>
+                    <div className="passwordConfirm" id="signup-container">   
+                        <label>비밀번호 확인</label><br/>
+                        <input 
+                            type="password"
+                            id="passwordConfirm"
+                            value={passwordConfirm}
+                            onChange={handlePasswordConfirmChange}
+                            placeholder="비밀번호를 입력하세요"
+                            required 
+                        />
+                        {errors.passwordConfirm && <span className="error">{errors.passwordConfirm}</span>}
+                        {validations.passwordConfirm && !errors.passwordConfirm && <span className="valid">{validations.passwordConfirm}</span>}
+                    </div>
+                    <div className="memberPhone" id="signup-container">
+                        <label>핸드폰 번호</label><br/>
+                        <input 
+                            type="text"
+                            id="memberPhone"
+                            value={memberPhone}
+                            onChange={handleChange(setMemberPhone, validatePhone)}
+                            placeholder="전화번호를 입력하세요"
+                            required 
+                        />
+                        {errors.memberPhone && <span className="error">{errors.memberPhone}</span>}
+                        {validations.memberPhone && !errors.memberPhone && <span className="valid">{validations.memberPhone}</span>}
+                    </div>
+                    <div className="memberEmail" id="signup-container">
+                        <label>이메일</label><br/>
+                        <input 
+                            type="email"
+                            id="memberEmail"
+                            value={memberEmail}
+                            onChange={handleChange(setMemberEmail, validateEmail)}
+                            placeholder="이메일 주소를 입력하세요"
+                            required 
+                        />
+                        {errors.memberEmail && <span className="error">{errors.memberEmail}</span>}
+                        {validations.memberEmail && !errors.memberEmail && <span className="valid">{validations.memberEmail}</span>}
+                    </div>
+                    <div className="memberPost" id="signup-container">
+                        <label>우편번호</label>
+                        <button className="juso-button"
+                                onClick={handleAddressSearch}>주소 검색</button>
+                        <br/>
+                        <input 
+                            type="text"
+                            id="memberPost"
+                            value={memberPost}
+                            onChange={handleChange(setMemberPost, validatePost)}
+                            placeholder="우편번호를 입력하세요"
+                            required 
+                        />
+                        {errors.memberPost && <span className="error">{errors.memberPost}</span>}
+                        {validations.memberPost && !errors.memberPost && <span className="valid">{validations.memberPost}</span>}
+                    </div>
+                    <div className="memberAddress" id="signup-container">
+                        <label>주소</label><br/>
+                        <input 
+                            type="text"
+                            id="memberAddress"
+                            value={memberAddress}
+                            onChange={handleChange(setMemberAddress, () => "")}
+                            placeholder="주소를 입력하세요"
+                            required 
+                        />
+                    </div>
+                    <div className="memberAddressDetail" id="signup-container">
+                        <label>상세주소</label><br/>
+                        <input 
+                            type="text"
+                            id="memberAddressDetail"
+                            value={memberAddressDetail}
+                            onChange={handleChange(setMemberAddressDetail, () => "")}
+                            placeholder="상세주소를 입력하세요"
+                            required 
+                        />
+                    </div>
+                    <div className="memberTeamCode" id="signup-container">
+                        <label>응원하는 팀</label><br/>
+                        <select id="memberTeamCode"
+                                value={memberTeamCode}
+                                onChange={(e) => setMemberTeamCode(e.target.value)}
+                                required>
+                            <option value="">응원하는 팀을 선택하세요</option>
+                            <option disabled>----------------------------</option>
+                            <option value="LG 트윈스">LG 트윈스</option>
+                            <option value="KT wiz">KT wiz</option>
+                            <option value="SSG 랜더스">SSG 랜더스</option>
+                            <option value="NC 다이노스">NC 다이노스</option>
+                            <option value="두산 베어스">두산 베어스</option>
+                            <option value="KIA 타이거즈">KIA 타이거즈</option>
+                            <option value="롯데 자이언츠">롯데 자이언츠</option>
+                            <option value="삼성 라이온즈">삼성 라이온즈</option>
+                            <option value="한화 이글스">한화 이글스</option>
+                            <option value="키움 히어로즈">키움 히어로즈</option>
+                        </select>
+                    </div>
+                    <div className="memberImg" id="signup-container">
+                        <label>이미지</label><br/>
+                        <input 
+                            type="text"
+                            id="memberImg"
+                            value={memberImg}
+                            onChange={(e) => setMemberImg(e.target.value)} 
+                            placeholder="이미지를 선택하세요"
+                        />
+                    </div>
+                    <div>
+                        <button type="submit" className="signup-button">회원가입</button>
+                    </div>
+                    <div className="login-link">
+                        <p>계정이 있으신가요?</p>
+                        <Link to="/login">로그인</Link>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

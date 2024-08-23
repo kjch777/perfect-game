@@ -1,12 +1,7 @@
 .login-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -57%);
-    /* -55% :  -45%로 바꾸면 login-container가 내려감
-               -65%로 바꾸면 login-container가 올라감 */
+    margin: 3% 20%;/*****0822 고치기*****/
     width: 60%;
-    max-width: 1200px;
+    min-width: 570px;
     height: auto;
     border: 1px solid #ccc;
     padding: 30px;
@@ -54,12 +49,13 @@ h1 {
     margin-bottom: 10px;
 }
 .login-input div input {
-    width: 95%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #D9D9D9;
     border-radius: 10px;
     margin-bottom: 5px;
     text-align: left;
+    box-sizing: border-box;
 }
 .button-container button {
     margin-top: 50px;
