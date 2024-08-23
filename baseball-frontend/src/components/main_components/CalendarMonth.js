@@ -239,7 +239,7 @@ const CalendarMonth = ( {cmy, cmm}) => {
       </table>
       <div className='calendarSideDiv'>
         <p>사이드</p>
-        <img src='../hancom.jpg' alt='사이드임시이미지'/>
+        <img src='../images/hancom.jpg' alt='사이드임시이미지'/>
       </div>
       </div>
 

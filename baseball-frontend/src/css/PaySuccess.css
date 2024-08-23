@@ -24,6 +24,8 @@
 /* 이미지 스타일 */
 .box_section img {
     margin-bottom: 20px; /* 이미지와 텍스트 사이의 간격 */
+    width:100px;
+    height: 100px;
 }
 
 /* 버튼 스타일 */
