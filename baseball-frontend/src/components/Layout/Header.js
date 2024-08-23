@@ -42,7 +42,7 @@ const Header = () => {
                         <Link to="#">야구장</Link>
                         <ul id="ul-num-1">
                             <li><Link to="/weather">야구장 날씨</Link></li>
-                            <li><Link to="#">야구장 먹거리</Link></li>
+                            <li><Link to="/foodmain">야구장 먹거리</Link></li>
                         </ul>
                     </li>
                     <li>
@@ -63,10 +63,10 @@ const Header = () => {
                     <li>
                         <Link to="#">마이페이지</Link>
                         <ul id="ul-num-3">
-                            <li><Link to="#">내 정보</Link></li>
+                            <li><Link to="/mypage">내 정보</Link></li>
                             <li><Link to="#">예매 내역</Link></li>
                             <li><Link to="/order-check">주문 내역</Link></li>
-                            <li><Link to="#">회원 탈퇴</Link></li>
+                            <li><Link to="/mypage/delete">회원 탈퇴</Link></li>
                         </ul>
                     </li>
                 </ul>
