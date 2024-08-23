@@ -66,7 +66,7 @@ function App() {
       <Header />
       <div id="main-content">
       <Routes>
-        
+
         <Route path="/login" element={<Login />} />
         <Route path="/members/signup" element={<Signupp/>}></Route>
         <Route path="/mypage" element={<MyPage />} />
