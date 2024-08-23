@@ -13,8 +13,8 @@
 	</select>
 	
 	<insert id="insertTicket" parameterType="Ticket" useGeneratedKeys="true" keyProperty="bookingId">
-		insert into ticket(seat_id, seat_section, seat_price, select_seat_count, pay_method, pay_date, member_no, game_code)
-		values (#{seatId}, #{seatSection}, #{seatPrice}, #{selectSeatCount}, #{payMethod}, #{payDate}, #{memberNo}, #{gameCode})
+		insert into ticket(game_title, pay_date, member_no, game_code, seat_id_one, seat_section_one, seat_price_one, seat_id_two, seat_section_two, seat_price_two, seat_id_three, seat_section_three, seat_price_three, seat_id_four, seat_section_four, seat_price_four)
+		values (#{gameTitle}, #{payDate}, #{memberNo}, #{gameCode}, #{seatIdOne}, #{seatSectionOne}, #{seatPriceOne}, #{seatIdTwo}, #{seatSectionTwo}, #{seatPriceTwo}, #{seatIdThree}, #{seatSectionThree}, #{seatPriceThree}, #{seatIdFour}, #{seatSectionFour}, #{seatPriceFour})
 	</insert>
 	
 	<delete id="deleteTicket" parameterType="int">

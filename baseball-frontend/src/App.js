@@ -13,6 +13,7 @@ import { BookingStepTwo } from "./components/Ticket/BookingStepTwo";
 import { BookingInfoView } from "./components/Ticket/BookingInfoView";
 import { BookingInfoChange } from "./components/Ticket/BookingInfoChange";
 import { TicketPaymentCheckoutPage } from './components/Ticket/TicketPaymentCheckoutPage';
+import { TicketPaymentSuccessPage } from './components/Ticket/TicketPaymentSuccessPage';
 
 function App() {
   const location = useLocation();
@@ -46,6 +47,7 @@ function App() {
             <Route path="/ticket/bookingSub/:gameCode" element={<TicketBookingSub />} />
             <Route path="/ticket/bookingSub/:gameCode/bookingStepTwo" element={<BookingStepTwo />} />
             <Route path="/ticket/paymentCheckout" element={<TicketPaymentCheckoutPage />} />
+            <Route path="/payment/success" element={<TicketPaymentSuccessPage />} />
             <Route path="/booking/infoView" element={<BookingInfoView />} />
             <Route path="/booking/infoChange" element={<BookingInfoChange />} />
           </Routes>

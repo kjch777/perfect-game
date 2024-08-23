@@ -12,7 +12,9 @@ export function TicketPaymentCheckoutPage() {
   const location = useLocation();
   const [payment, setPayment] = useState(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
-  const { selectedSeats, selectSeatCount, memberNo, gameCode, totalPrice } = location.state;
+  const { selectedSeats, selectSeatCount, memberNo, gameCode, totalPrice, gameTitle, date, seatIdOne, seatSectionOne, seatPriceOne, seatIdTwo, seatSectionTwo, seatPriceTwo, seatIdThree, seatSectionThree, seatPriceThree, seatIdFour, seatSectionFour, seatPriceFour } = location.state;
+
+  console.log("selectedSeats: " ,selectedSeats);
 
   const selectPaymentMethod = (method) => {
     setSelectedPaymentMethod(method);

@@ -28,19 +28,50 @@ export const BookingStepTwo = () => {
         
     const seatFormat = (seats) => {
         return seats.map(seat => 
-            `${seat.id}번 (${seat.section}, ${seat.price}원)`
+            `${seat.id}번 좌석 (${seat.section})`
         ).join(', ');
     };
     
     const handlePayCheck = () => {
         const loadSeatFormat = seatFormat(selectedSeats);
+
+        const seatIdOne = selectedSeats.length > 0 ? selectedSeats[0].id : '';
+        const seatSectionOne = selectedSeats.length > 0 ? selectedSeats[0].section : '';
+        const seatPriceOne = selectedSeats.length > 0 ? selectedSeats[0].price : '';
+
+        const seatIdTwo = selectedSeats.length > 1 ? selectedSeats[1].id : '';
+        const seatSectionTwo = selectedSeats.length > 1 ? selectedSeats[1].section : '';
+        const seatPriceTwo = selectedSeats.length > 1 ? selectedSeats[1].price : null;
+
+        const seatIdThree = selectedSeats.length > 2 ? selectedSeats[2].id : '';
+        const seatSectionThree = selectedSeats.length > 2 ? selectedSeats[2].section : '';
+        const seatPriceThree = selectedSeats.length > 2 ? selectedSeats[2].price : null;
+
+        const seatIdFour = selectedSeats.length > 3 ? selectedSeats[3].id : '';
+        const seatSectionFour = selectedSeats.length > 3 ? selectedSeats[3].section : '';
+        const seatPriceFour = selectedSeats.length > 3 ? selectedSeats[3].price : null;
+
         navigate('/ticket/paymentCheckout', {
             state: {
-                selectedSeats: `${homeTeamName} VS ${awayTeamName} / ${dateFormat(date)} / ${loadSeatFormat}`,
+                selectedSeats: `${dateFormat(date)} ${homeTeamName} VS ${awayTeamName} 경기 / ${loadSeatFormat} / 총 ${count}석`,
                 selectSeatCount: count,
                 memberNo: loginMember.memberNo,
                 gameCode,
-                totalPrice
+                totalPrice,
+                gameTitle: `${homeTeamName} VS ${awayTeamName}`,
+                date,
+                seatIdOne,
+                seatSectionOne,
+                seatPriceOne,
+                seatIdTwo,
+                seatSectionTwo,
+                seatPriceTwo,
+                seatIdThree,
+                seatSectionThree,
+                seatPriceThree,
+                seatIdFour,
+                seatSectionFour,
+                seatPriceFour
             }
         })
     }
