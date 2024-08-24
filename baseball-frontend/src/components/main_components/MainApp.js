@@ -48,8 +48,7 @@ function MainApp() {//App.js는 공통파일이므로 바꿔야 할수도 있음
   
     <div className="mainApp">
       <div className="mainBanner">
-      
-      <img src='../images/main-banner-img.jpg'/>
+        <img src='../images/mainapp/main-banner-img.jpg'/>
       </div>
 
       <div className="calendarFrame">
@@ -62,7 +61,7 @@ function MainApp() {//App.js는 공통파일이므로 바꿔야 할수도 있음
           <h4 className="arrowButton" onClick={monthPlus}>
             ▶
           </h4>
-          </div>
+        </div>
         
         <div className="gameFrame">
           

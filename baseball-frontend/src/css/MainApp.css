@@ -1,5 +1,5 @@
 .mainApp{
-  justify-content: center;
+  
   background-color: white;
   margin-top: 30px;
 }
@@ -9,19 +9,21 @@
 }
 
 .mainApp h1{
-  text-align: center;
+  
   color: burlywood;
   
 }
 
 .calendarFrame{
   margin: 0 auto;
-  text-align: center;
+  
 }
 
 .calendarMonthNav{
   display: flex;
-  justify-content: center;
+  margin-left: 120px;
+  margin-top: 40px;
+  
 }
 
 .calendarMonthNav h3{
