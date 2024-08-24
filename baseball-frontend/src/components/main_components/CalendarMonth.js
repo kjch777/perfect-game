@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from "react";//useEffect를 어디에서사용할지.
 import { useNavigate } from 'react-router-dom';
 import '../../css/CalendarMonth.css';
+import Chat from "../chat/Chat";
 
 const CalendarMonth = ( {cmy, cmm}) => {
 
@@ -237,10 +238,11 @@ const CalendarMonth = ( {cmy, cmm}) => {
           ))}
         </tbody>
       </table>
+
       <div className='calendarSideDiv'>
-        <p>사이드</p>
-        <img src='../images/hancom.jpg' alt='사이드임시이미지'/>
+      <Chat/>
       </div>
+
       </div>
 
   <div className='calendarGameDiv'>

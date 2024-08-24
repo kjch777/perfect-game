@@ -29,6 +29,7 @@ import MainApp from './components/main_components/MainApp';
 import GameDetail from './components/main_components/GameDetail';
 import GameAddPage from './components/main_components/GameAddPage';
 import BoardMain from './components/Board/BoardMain';
+import Chat from './components/chat/Chat';
 
 function App() {
 
@@ -90,6 +91,7 @@ function App() {
         <Route path='/gameDetail' element={<GameDetail/>}>경기상세페이지</Route>
         <Route path='/gameAddPage' element={<GameAddPage/>}>경기추가페이지</Route>
         <Route path="/board/*" element={<BoardMain/>}></Route>
+        <Route path="/Chat" element={<Chat/>}></Route>
         </Routes>
       </div>
       <Footer/>
