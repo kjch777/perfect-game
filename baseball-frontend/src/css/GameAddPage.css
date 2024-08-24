@@ -30,6 +30,7 @@
     width: 30%;
     height: 30px;
     max-width: 400px;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 

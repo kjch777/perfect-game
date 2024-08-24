@@ -10,7 +10,7 @@ const FoodMapKIWOOM = () => {
             <strong>서울 고척스카이돔</strong>
           </p>
         </div>
-        <img className="foodmap-img" src="./images/KIWOOMinside.jpg" alt="고척야구장내부" />
+        <img src="./images/KIWOOMinside.jpg" alt="고척야구장내부" />
         <div className="food-container">
           <div className="food-item">
             <a href="./fooddetail/3">호시타코야끼</a>
