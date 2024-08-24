@@ -11,7 +11,7 @@ const FoodMapLG = () => {
             <strong>서울 잠실야구장</strong>
           </p>
         </div>
-        <img src="./images/LGinside.png" alt="LG야구장내부" />
+        <img className="foodmap-img" src="./images/LGinside.png" alt="LG야구장내부" />
         <div className="food-container">
           <div className="food-item">
             <Link to={`/fooddetail/1`}>잭슨피자</Link>
