@@ -10,7 +10,7 @@ const FoodMapSSG = () => {
             <strong>인천 SSG랜더스필드</strong>
           </p>
         </div>
-        <img src="./images/SSGinside.png" alt="SSG야구장내부" />
+        <img className="foodmap-img" src="./images/SSGinside.png" alt="SSG야구장내부" />
         <div className="food-container">
           <div className="food-item">
             <a href="./fooddetail/7">씬난다</a>
