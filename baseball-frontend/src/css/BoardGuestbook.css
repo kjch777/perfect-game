@@ -57,7 +57,7 @@
   color: #555;
 }
 
-input[type='text'],
+/*input[type='text'],
 textarea {
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -70,7 +70,7 @@ textarea {
 textarea {
   resize: vertical;
   height: 100px;
-}
+}*/
 
 .img-input {
   border: 1px solid #ddd;
@@ -78,7 +78,7 @@ textarea {
   padding: 5px;
 }
 
-button {
+/*button {
   background-color: #007bff;
   color: white;
   border: none;
@@ -92,7 +92,7 @@ button {
 button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
-}
+}*/
 
 .guestbook-image-preview-list {
   display: flex;
