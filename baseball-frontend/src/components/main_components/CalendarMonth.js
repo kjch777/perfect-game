@@ -216,79 +216,89 @@ const CalendarMonth = ( {cmy, cmm}) => {
   return(
     <div className='calendarMonthContainer'>
       <div className='calendarTableDiv'>
-    <table className='calendarTable'>
-        <thead>
-          <tr>
-            <th>일</th>
-            <th>월</th>
-            <th>화</th>
-            <th>수</th>
-            <th>목</th>
-            <th>금</th>
-            <th>토</th>
-          </tr>
-        </thead>
-        <tbody>
-          {calendarArrayMake(cmy, cmm-1).map((v,i) => (
+        <div className='ctd_tableDiv'>
+        <table className='calendarTable'>
+          <thead>
             <tr>
-              {v.map( (d,j) => (
-                <td onClick={() => dayClick(d)}>{d>0 ? d : ''}</td>
-              ))}
+              <th>일</th>
+              <th>월</th>
+              <th>화</th>
+              <th>수</th>
+              <th>목</th>
+              <th>금</th>
+              <th>토</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {calendarArrayMake(cmy, cmm-1).map((v,i) => (
+              <tr>
+                {v.map( (d,j) => (
+                  <td onClick={() => dayClick(d)}>{d>0 ? d : ''}</td>
+                  ))}
+              </tr>
+              ))}
+          </tbody>
+        </table>
+        </div>
 
-      <div className='calendarSideDiv'>
-      <Chat/>
+        <div className='calendarCenterDiv'>
+          <img src='../../images/mainapp/baseball-7985433_1280.jpg' />
+        </div>
+
+        <div className='calendarSideDiv'>
+          <Chat/>
+        </div>
+
       </div>
 
-      </div>
+      <div className='calendarGameDiv'>
+        <h2>{clickedGameDate} 경기일정</h2>
 
-  <div className='calendarGameDiv'>
-      <h2>{clickedGameDate} 경기일정</h2>
-
-      <table className='gameTable'>
-        <thead>
-          <tr>
-            <th>경기코드</th>
-            <th>승리팀</th>
-            <th>경기날짜</th>
-            <th>홈팀</th>
-            <th>원정팀</th>
-            <th>구장번호</th>
-            <th>라인업</th>
-          </tr>
-        </thead>
-        <tbody>
-      {games.map((game)=>(
-        <tr key={game.gameCode}>
-        <td className='gameCodeArea' onClick={()=>gameClick(game.gameCode)}>{game.gameCode}</td>
-        <td>{game.gameWinnerTeamName}</td>
-        <td>{game.gameDate}</td>
-        <td>{game.gameTeamNameHome}</td>
-        <td>{game.gameTeamNameAway}</td>
-        
-        <td>{game.gamePlaygroundId}</td>
-        <td><button 
-        onClick={() => 
-        gameDetailClick(game.gameCode, game.gameTeamNameHome, game.gameTeamNameAway)}>
-        자세히
-        </button></td>
-        {/*삭제는로그인세션추가할것*/}
-        <td><button 
-        className='deleteButton' 
-        onClick={() =>
-          gameDeleteClick(game.gameCode)
-        }>삭제</button></td>
-      </tr>
-      ))}
-      </tbody>
-      </table>
-      {clickedGameDate &&
-      <button className='gameAddButton' onClick={() => gameAddClick(clickedGameDate)}>{clickedGameDate}경기추가</button>}
+        <table className='gameTable'>
+          <thead>
+            <tr>
+              <th>경기코드</th>
+              <th>승리팀</th>
+              <th>경기날짜</th>
+              <th>홈팀</th>
+              <th>원정팀</th>
+              <th>구장번호</th>
+              <th>라인업</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {games.map((game)=>(
+              <tr key={game.gameCode}>
+              <td className='gameCodeArea' onClick={()=>gameClick(game.gameCode)}>{game.gameCode}</td>
+              <td>{game.gameWinnerTeamName}</td>
+              <td>{game.gameDate}</td>
+              <td>{game.gameTeamNameHome}</td>
+              <td>{game.gameTeamNameAway}</td>
+              
+              <td>{game.gamePlaygroundId}</td>
+              <td><button 
+                onClick={() => 
+                gameDetailClick(game.gameCode, game.gameTeamNameHome, game.gameTeamNameAway)}
+                >
+                자세히
+                </button></td>
+                {/*삭제는로그인세션추가할것*/}
+              <td><button 
+                className='deleteButton' 
+                onClick={() => gameDeleteClick(game.gameCode)}
+                >삭제
+                </button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {clickedGameDate &&
+        <button className='gameAddButton' 
+          onClick={() => gameAddClick(clickedGameDate)}
+        >{clickedGameDate}경기추가</button>}
       </div>
-</div>
+    </div>
   );
 };
 export default CalendarMonth;
