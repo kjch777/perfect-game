@@ -16,16 +16,12 @@
 
 .calendarFrame{
   margin: 0 auto;
-  
   text-align: center;
 }
 
 .calendarMonthNav{
   font-size: 30px;
   color: rgb(238, 178, 129);
-
-
-
   display: flex;
   justify-content: center;
 }

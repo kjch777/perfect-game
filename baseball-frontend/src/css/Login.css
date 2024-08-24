@@ -32,16 +32,16 @@
     border-radius: 10px; /* 이미지의 둥근 모서리 */
 }
 
-h1 {
+/* h1 {
     text-align: left;
-}
+}*/
 
 .login-input {
     margin-top: 50px;
 }
-.login-input div {
+/*.login-input div {
    
-}
+}*/
 .login-input div p {
     text-align: left;
     font-size: 18px;

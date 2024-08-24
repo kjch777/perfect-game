@@ -23,13 +23,15 @@
     font-size: 2em; /* 텍스트 크기 증가 */
 }
 
+/*
 img {
-    width: calc(100% - 40px); /* 이미지 너비를 박스 너비에서 40px 빼기 */
-    height: auto; /* 이미지 비율 유지 */
-    border-radius: 12px; /* 이미지 테두리 둥글게 */
-    display: block; /* 이미지 주변 여백 제거 */
-    margin: 0 auto 30px; /* 자동 중앙 정렬 및 아래쪽 여백 추가 */
+    width: calc(100% - 40px); 
+    height: auto;
+    border-radius: 12px;
+    display: block; 
+    margin: 0 auto 30px; 
 }
+*/
 
 .food-container {
     display: flex;

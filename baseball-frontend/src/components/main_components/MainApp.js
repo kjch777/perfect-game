@@ -49,7 +49,7 @@ function MainApp() {//App.js는 공통파일이므로 바꿔야 할수도 있음
     <div className="mainApp">
       <div className="mainBanner">
       
-      <img src='../images/main-banner-image.jpg'/>
+      <img src='../images/main-banner-img.jpg'/>
       </div>
 
       <div className="calendarFrame">
