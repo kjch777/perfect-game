@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="base.ball.mapper.BoardMapper">
+	<select id ="findAllBoard" resultType="base.ball.dto.Board">
+		SELECT * FROM board2
+	</select>
+	<insert id="insertBoard" parameterType="base.ball.dto.Board" useGeneratedKeys="true" keyProperty="boardNo">
+		INSERT INTO board2 (
+			board_member_name, board_title, board_contents, board_image_url,
+			board_hits, board_likes, board_private, board_password)
+		VALUES (
+			#{boardMemberName}, #{boardTitle}, #{boardContents}, #{boardImageUrl},
+			#{boardHits}, #{boardLikes}, #{boardPrivate}, #{boardPassword})
+	</insert>
+</mapper>

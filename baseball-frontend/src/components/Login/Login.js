@@ -80,7 +80,7 @@ const Login = () => {
             </form>
         </div>
         <div className="login-image">
-          <img src="/images/login-image.jpg" alt="login-image"/>
+          <img src="/images/team/login-image.jpg" alt="login-image"/>
         </div>
       </div>
   );

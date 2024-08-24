@@ -12,7 +12,6 @@ import PaymentCheckoutPage from './components/Goods/GoodsPaymentCheckoutPage.js'
 import PaymentFailPage from './components/Goods/GoodsPaymentFailPage.js'
 import Login from './components/Login/Login.js';
 import LoginContext from './components/Login/LoginContext';
-import Main from './components/Layout/Main.js';
 import Signupp from './components/Signup/Signupp.js';
 import Footer from './components/Layout/Footer.js';
 import OrderCheck from './components/Goods/OrderCheck.js';
@@ -29,6 +28,7 @@ import MyPageDelete from './components/MyPage/myPageDelete';
 import MainApp from './components/main_components/MainApp';
 import GameDetail from './components/main_components/GameDetail';
 import GameAddPage from './components/main_components/GameAddPage';
+import BoardMain from './components/Board/BoardMain';
 
 function App() {
 
@@ -66,7 +66,6 @@ function App() {
       <Header />
       <div id="main-content">
       <Routes>
-
         <Route path="/login" element={<Login />} />
         <Route path="/members/signup" element={<Signupp/>}></Route>
         <Route path="/mypage" element={<MyPage />} />
@@ -79,7 +78,7 @@ function App() {
         <Route path="/fooddetail/:foodId" element={<FoodDetail />} />
         <Route path="/foodComment" element={<FoodComment />} />
         <Route path='/mypage/delete' element={<MyPageDelete />} />
-         <Route path='/goods' element={<GoodsMain goods={goods} />} />
+        <Route path='/goods' element={<GoodsMain goods={goods} />} />
         <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />} />
         <Route path='/goods/orders' element={<GoodsOrder />} />
         <Route path='/order-check' element={<OrderCheck />} />
@@ -90,6 +89,7 @@ function App() {
         <Route path='/' element={<MainApp/>}>메인페이지(달력,경기)</Route>
         <Route path='/gameDetail' element={<GameDetail/>}>경기상세페이지</Route>
         <Route path='/gameAddPage' element={<GameAddPage/>}>경기추가페이지</Route>
+        <Route path="/board/*" element={<BoardMain/>}></Route>
         </Routes>
       </div>
       <Footer/>

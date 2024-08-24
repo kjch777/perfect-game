@@ -1,0 +1,40 @@
+.sidebar-container {
+    margin-top: 50px;
+    margin-left: 20px;
+    width: 140px;
+    height: 186px;
+    text-align: left;
+    padding: 20px;
+}
+
+.sidebar-hr {
+    width: 100%;
+    border: 0;
+    height: 5px;
+    background-color: #000;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.sidebar-board-link {
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    margin: 10px 0;
+}
+
+.sidebar-link-list-li{
+    text-align: left;
+    margin-bottom: 10px;
+    list-style: none;
+}
+.sidebar-link-list-li a {
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+}
+.sidebar-link-list-li a:hover {
+    font-weight: bold;
+}
