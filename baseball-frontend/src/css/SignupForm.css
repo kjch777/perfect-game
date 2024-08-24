@@ -1,6 +1,6 @@
-* {
+/* * {
     text-align: center;
-}
+}*/
 .error {
     color: red;
 }
@@ -23,11 +23,13 @@
     box-sizing: border-box;
 }
 
+/*
 h1 {
     margin-top: 10px;
     margin-bottom: 10px;
     box-sizing: border-box;
 }
+    */
 
 #signup-container {
     margin-top: 5px;
@@ -124,7 +126,7 @@ h1 {
     text-decoration: none;
     color:blue;
 }
-
+/*
 form {
     margin-bottom: 30px;
-}
+}*/

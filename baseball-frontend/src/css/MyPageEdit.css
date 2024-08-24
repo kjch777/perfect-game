@@ -46,7 +46,7 @@
     text-align: left;
     padding-left: 10px;
 }
-
+/*
 input[type="text"],
 input[type="email"],
 select {
@@ -61,14 +61,17 @@ select {
     box-sizing: border-box;
     transition: border-color 0.3s ease;
 }
+    */
 
+/*
 input[type="text"]:focus,
 input[type="email"]:focus,
 select:focus {
     border-color: #8A1A4D;
     outline: none;
 }
-
+    */
+/*
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -80,6 +83,7 @@ select {
     background-size: 10px;
     padding-right: 40px;
 }
+    */
 .button-group {
     display: flex;
     justify-content: center;

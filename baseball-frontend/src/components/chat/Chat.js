@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useRef, useContext} from 'react';
 import { Client } from '@stomp/stompjs'; //   Client from 'stomp/stompjs'  ->   @stomp/stompjs
 import SockJS from 'sockjs-client';
-import './Chat.css';
+import '../../css/Chat.css';
 import Emoji from './Emoji.js';
 import LoginContext from '../Login/LoginContext.js';
 import {DateTime} from 'luxon';
-import './Emoji.css';
+import '../../css/Emoji.css';
 import axios from 'axios';
 
 
