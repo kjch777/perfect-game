@@ -36,7 +36,7 @@ export function TicketPaymentCheckoutPage() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("ticketInfo", JSON.stringify(location.state));
+    sessionStorage.setItem("ticketInfo", JSON.stringify(location.state));
   }, [location.state]);
 
   const requestPayment = async () => {
@@ -50,8 +50,8 @@ export function TicketPaymentCheckoutPage() {
         },
         orderId,
         orderName: selectedSeats,
-        successUrl: window.location.origin + "/payment/success",
-        failUrl: window.location.origin + "/payment/fail",
+        successUrl: window.location.origin + "/ticket/paymentSuccess",
+        failUrl: window.location.origin + "/ticket/paymentFail",
         customerEmail: "customer123@gmail.com",
         customerName: "김토스",
         customerMobilePhone: "01012341234",
