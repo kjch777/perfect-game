@@ -4,6 +4,7 @@ import "../../css/MainApp.css";
 import CalendarMonth from "./CalendarMonth";
 
 
+
 function MainApp() {//App.js는 공통파일이므로 바꿔야 할수도 있음
 
   //const clickedDate = useContext(DateContext);//App이최상위컴포넌트라는가정
@@ -66,7 +67,7 @@ function MainApp() {//App.js는 공통파일이므로 바꿔야 할수도 있음
         <div className="gameFrame">
           
           <CalendarMonth cmy={yearVar} cmm={monthVar} />
-
+          
         </div>
         
 
