@@ -20,14 +20,19 @@
 }
 
 .calendarMonthNav{
-  font-size: 30px;
-  color: rgb(238, 178, 129);
   display: flex;
   justify-content: center;
 }
 
+.calendarMonthNav h3{
+  font-size: 35px;
+  font-weight: bold;
+  color: rgb(196, 42, 162);  
+}
+
 .arrowButton{
   color: rgb(211, 235, 145);
+  font-size: 35px;
 }
 
 .arrowButton:hover{
