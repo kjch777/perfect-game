@@ -72,6 +72,7 @@ function MyPageEdit() {
           <input
             type="text"
             name="memberName"
+            className="mypageInput"
             value={formData.memberName}
             onChange={handleInputChange}
             required
@@ -84,6 +85,7 @@ function MyPageEdit() {
           <input
             type="text"
             name="memberPhone"
+            className="mypageInput"
             value={formData.memberPhone}
             onChange={handleInputChange}
             required
@@ -96,6 +98,7 @@ function MyPageEdit() {
           <input
             type="email"
             name="memberEmail"
+            className="mypageInput"
             value={formData.memberEmail}
             onChange={handleInputChange}
             required
@@ -108,6 +111,7 @@ function MyPageEdit() {
           <select
             type="text"
             name="memberTeamCode"
+            className="select-box"
             value={formData.memberTeamCode}
             onChange={handleInputChange}
           >
