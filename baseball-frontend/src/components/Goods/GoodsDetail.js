@@ -104,7 +104,7 @@ const GoodsDetail = ({ goods }) => {
           </div>
           <br />
           <hr />
-          <h4>show detail</h4>
+          <h4 className='show-detail-h4'>show detail</h4>
           <hr />
           <div className="goods-show-detail">
             {detailImages.length > 0 ? (
