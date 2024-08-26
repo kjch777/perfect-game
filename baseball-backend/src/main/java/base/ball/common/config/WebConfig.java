@@ -12,7 +12,6 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry r) {
 		r.addResourceHandler("/images/**")
 		 .addResourceLocations("file:C:/Users/user1/Desktop/final-project-test/perfect-game/baseball-frontend/public/board-images/");
-		 	//바탕화면에 지정한 이미지 경로 넣어주기("file: + application.properties에 저장한 경로 + /")
 	}
 	
 	@Override
