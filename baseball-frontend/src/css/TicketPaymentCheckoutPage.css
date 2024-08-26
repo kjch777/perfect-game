@@ -9,7 +9,7 @@
   box-sizing: border-box; /* padding이 요소의 전체 크기에 포함되도록 설정 */
 }
 
-h1 {
+.temp-hOne {
   font-size: 24px;
   color: #333;
 }

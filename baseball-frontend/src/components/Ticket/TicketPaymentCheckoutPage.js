@@ -64,7 +64,7 @@ export function TicketPaymentCheckoutPage() {
   return (
     <div className="wrapper">
       <div className="box_section">
-        <h1>결제 방법을 선택해주세요.</h1>
+        <h1 className="temp-hOne">결제 방법을 선택해주세요.</h1>
         <div id="payment-method">
           {["CARD", "TRANSFER", "VIRTUAL_ACCOUNT", "MOBILE_PHONE"].map((method) => (
             <button

@@ -346,13 +346,23 @@ svg text {
   margin-bottom: 0;
 }
 
-th, td {
+.gameInfo-table th, 
+.seatInfo-table th, 
+.theOther-payInfo th, 
+.theOther-memberInfo th,
+.gameInfo-table td, 
+.seatInfo-table td, 
+.theOther-payInfo td, 
+.theOther-memberInfo td {
   border: 1px solid #dddddd;
   padding: 10px;
   text-align: center;
 }
 
-th {
+.gameInfo-table th, 
+.seatInfo-table th, 
+.theOther-payInfo th, 
+.theOther-memberInfo th {
   font-size: 15px;
   font-weight: bold;
 }
@@ -369,7 +379,10 @@ th {
   color: white;
 }
 
-tr:hover {
+.gameInfo-table tr:hover, 
+.seatInfo-table tr:hover, 
+.theOther-payInfo tr:hover, 
+.theOther-memberInfo tr:hover {
   background-color: #f4f4f4;
 }
 
