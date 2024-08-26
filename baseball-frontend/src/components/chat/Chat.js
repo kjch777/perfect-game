@@ -146,9 +146,6 @@ const Chat = () => {
         operateDeleteMessage({msgSubstance,msgTime});
     }
 
-    const handleRefresh = () => {
-        setMessages([]);
-    }
     const handleFontSizeChange = (e) => {
         setFontSize(e.target.value);
     }
@@ -157,6 +154,11 @@ const Chat = () => {
    
     return(
         <> 
+        <div className="chat-icon">
+        <img src="./images/chat-glove-icon.png" alt="chat-icon" />
+      </div>
+        <img></img>
+        <h3 className='chat-title'>퍼펙트게임 플레이</h3>
         <div className = 'chat-container' >       
         {emojiPick && <Emoji onSelect={emojiMessage}/>} 
             <div ref={chatContainerRef} style={{fontSize}}>          
@@ -176,6 +178,7 @@ const Chat = () => {
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
+            className='smile-icon'
             fill="currentColor"
             class="bi bi-emoji-smile emoji-icon"
             viewBox="0 0 16 16"
@@ -196,13 +199,11 @@ const Chat = () => {
             />    
          
              <button className='button-chat' onClick={sendMessage} disabled={!loginMember || !connected}>
-                채팅
+                <strong>채팅</strong>
             </button>
-            <button onClick={handleRefresh} className='btn-refresh' disabled = {!connected}>
-                새로고침
-            </button>
-            <label className="font-size" htmlFor='font-size'>글자크기</label>
-            <select id="font-size" value={fontSize} onChange={handleFontSizeChange} disabled={!loginMember}>
+            <br />
+            <label className="font-size" htmlFor='font-size'><strong>글자크기 : </strong></label>
+            <select className="font-size" value={fontSize} onChange={handleFontSizeChange} disabled={!loginMember}>
                 <option value="14px">작게</option>
                 <option value="16px">보통</option>
                 <option value="18px">크게</option>
