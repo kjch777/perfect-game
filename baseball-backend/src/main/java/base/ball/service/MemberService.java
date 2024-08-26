@@ -1,7 +1,6 @@
 package base.ball.service;
 
 import java.util.List;
-
 import java.util.Map;
 
 import base.ball.dto.Member;
@@ -17,3 +16,4 @@ public interface MemberService {
 	
 	Map<String, Object> login(Member member);
 }
+

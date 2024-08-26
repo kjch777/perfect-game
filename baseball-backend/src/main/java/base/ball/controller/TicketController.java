@@ -34,7 +34,12 @@ public class TicketController {
 		return ResponseEntity.ok("response");
 	}
 	
-	@DeleteMapping
+	@GetMapping("/bookingInfoView")
+	public List<Ticket> selectTicket() {
+		return ticketService.selectTicket();
+	}
+	
+	@DeleteMapping("/deleteTicket")
 	public void deleteTicket(@RequestParam int bookingId) {
 		ticketService.deleteTicket(bookingId);
 	}

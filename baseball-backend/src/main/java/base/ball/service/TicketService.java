@@ -12,6 +12,8 @@ public interface TicketService {
 	
 	void insertTicket(Ticket ticket);
 	
+	List<Ticket> selectTicket();
+	
 	void deleteTicket(int bookingId);
 	
 }

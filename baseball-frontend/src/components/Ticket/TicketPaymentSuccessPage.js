@@ -51,6 +51,13 @@ export function TicketPaymentSuccessPage() {
     }
   };
 
+  const handleSelect = () => {
+    if (window.opener) {
+      window.opener.location.href = '/ticket/bookingInfoView';
+      window.close();
+    }
+  }
+
   return (
     <div className="page-wrapper">
       <div className="box_section">
@@ -59,12 +66,9 @@ export function TicketPaymentSuccessPage() {
           src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" 
           alt="Success" 
         />
-        <h2>결제가 완료되었습니다.</h2>
-        <Link to="/">
-          <Button className="goMain">메인으로</Button>
-        </Link>
-        <Link to="/">
-          <Button className="goOrderCheck">주문확인하러가기</Button>
+        <h2>예매가 완료되었습니다.</h2>
+        <Link to="/ticket/bookingInfoView">
+          <Button className="" onClick={handleSelect}>예매 내역 조회하기</Button>
         </Link>
       </div>
     </div>

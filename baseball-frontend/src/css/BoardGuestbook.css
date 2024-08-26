@@ -1,0 +1,156 @@
+/*.App {
+  text-align: center;
+}*/
+
+
+/*************/
+.guestbook-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.guestbook-container h1 {
+  text-align: center;
+  font-size: 2em; /*em = 16px, 2.5em = 40px*/
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.guestbook-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.guestbook-container li {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.guestbook-container li:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.02);
+}
+
+.guestbook-title,
+.guestbook-content,
+.guestbook-writer,
+.guestbook-image {
+  margin-bottom: 15px;
+}
+
+.guestbook-title label,
+.guestbook-content label,
+.guestbook-writer label,
+.guestbook-image label {
+  font-weight: bold;
+  color: #555;
+}
+
+/*input[type='text'],
+textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}*/
+
+.img-input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/*button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}*/
+
+.guestbook-image-preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.guestbook-image-preview {
+  flex-basis: 32%;
+}
+
+.guestbook-image-preview img {
+  width: 100%; /* 이미지의 너비를 25%로 설정 */
+  
+  flex: 1; /* div의 크기를 자동으로 조정하려면 이 속성을 사용합니다 */
+  /* 이미지가 들어갈 공간의 크기를 지정할 수도 있습니다, 예를 들면: */
+  background-color: #ccc; /* 배경색을 지정해 예시로 사용 */
+}
+
+/*************/
+.guestbook-submit-button {
+  background-color: #002063;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.guestbook-submit-buttonbutton:hover {
+  background-color: #070063;
+  color: white;
+}
+
+.board-container {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.board-container tr,
+.board-container th,
+.board-container td {
+  border: 1px solid #ddd;
+}
+.board .images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.board .images img {
+  max-width: 180px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}

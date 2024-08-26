@@ -1,8 +1,8 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 const LoginContext = createContext({
-    loginMember: null,
-    setLoginMember: () => {}
+  loginMember: null,
+  setLoginMember: () => {}
 });
 
-export default LoginContext;
+export default LoginContext ;

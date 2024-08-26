@@ -14,6 +14,8 @@ public interface TicketMapper {
 
 	void insertTicket(Ticket ticket);
 	
+	List<Ticket> selectTicket();
+	
 	void deleteTicket(int bookingId);
 	
 }

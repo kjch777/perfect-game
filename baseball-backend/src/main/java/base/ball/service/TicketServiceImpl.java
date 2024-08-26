@@ -26,6 +26,11 @@ public class TicketServiceImpl implements TicketService {
 	}
 	
 	@Override
+	public List<Ticket> selectTicket() {
+		return ticketMapper.selectTicket();
+	}
+	
+	@Override
 	public void deleteTicket(int bookingId) {
 		ticketMapper.deleteTicket(bookingId);
 	}

@@ -54,30 +54,35 @@ const Login = () => {
   */
 
   return (
-    <div className="login-container">
-      <h1>환영합니다!</h1>
-      <form className="login-input">
-        <div>
-          <p><strong>아이디</strong></p>
-          <input type="text"
-                    onChange={e => setMemberId(e.target.value)}
-                    value={memberId}
-                    placeholder="아이디를 입력하세요"
-                    required />
+      <div className="login-container">
+        <div className="login-form">
+            <h1>환영합니다!</h1>
+            <form className="login-input">
+              <div>
+                <p><strong>아이디</strong></p>
+                <input type="text"
+                          onChange={e => setMemberId(e.target.value)}
+                          value={memberId}
+                          placeholder="아이디를 입력하세요"
+                          required />
+              </div>
+              <div>
+              <p><strong>비밀번호</strong></p>
+                <input type="password"
+                          onChange={e => setMemberPw(e.target.value)}
+                          value={memberPw}
+                          placeholder="비밀번호를 입력하세요"
+                          required />
+              </div>
+              <div className="button-container">
+                <button onClick={handleLogin} >Login</button>
+              </div>
+            </form>
         </div>
-        <div>
-        <p><strong>비밀번호</strong></p>
-          <input type="password"
-                    onChange={e => setMemberPw(e.target.value)}
-                    value={memberPw}
-                    placeholder="비밀번호를 입력하세요"
-                    required />
+        <div className="login-image">
+          <img src="/images/team/login-image.jpg" alt="login-image"/>
         </div>
-        <div className="button-container">
-          <button onClick={handleLogin} >Login</button>
-        </div>
-      </form>
-    </div>
+      </div>
   );
   
 };

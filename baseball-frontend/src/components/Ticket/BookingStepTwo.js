@@ -51,7 +51,7 @@ export const BookingStepTwo = () => {
         const seatSectionFour = selectedSeats.length > 3 ? selectedSeats[3].section : null;
         const seatPriceFour = selectedSeats.length > 3 ? selectedSeats[3].price : null;
 
-        navigate('/ticket/paymentCheckout', {
+        navigate('/ticket/payment/checkout', {
             state: {
                 selectedSeats: `${dateFormat(date)} ${homeTeamName} VS ${awayTeamName} 경기 / ${loadSeatFormat} / 총 ${count}석`,
                 selectSeatCount: count,
