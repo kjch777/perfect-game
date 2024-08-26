@@ -31,6 +31,8 @@ import GameDetail from './components/main_components/GameDetail';
 import GameAddPage from './components/main_components/GameAddPage';
 import BoardMain from './components/Board/BoardMain';
 import Chat from './components/chat/Chat';
+import NaverApi from './components/NaverLogin/NaverApi.js';
+import NaverSignup from './components/NaverLogin/NaverSignup.js';
 import { TicketBookingMain } from "./components/Ticket/TicketBookingMain";
 import { TicketBookingSub } from "./components/Ticket/TicketBookingSub";
 import { BookingStepTwo } from "./components/Ticket/BookingStepTwo";
@@ -79,6 +81,9 @@ function App() {
         <div id="main-content">
           <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/naverlogin" element={<Login/>} />
+          <Route path="/api/naver" element={<NaverApi/>} />
+          <Route path="/signup/naver" element={<NaverSignup/>} />
           <Route path="/members/signup" element={<Signupp/>}></Route>
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/edit" element={<MyPageEdit />} />

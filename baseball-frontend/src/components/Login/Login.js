@@ -76,6 +76,7 @@ const Login = () => {
               </div>
               <div className="button-container">
                 <button onClick={handleLogin} >Login</button>
+                <button><a href="http://localhost:3000/api/naver">네이버 로그인</a></button>
               </div>
             </form>
         </div>
