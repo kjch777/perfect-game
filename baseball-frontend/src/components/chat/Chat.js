@@ -164,8 +164,13 @@ const Chat = () => {
                 <div key={chatNo}>
                 <strong>{msg.sender}</strong>: {msg.content}
                <span className='chat-time'>{msg.nowtime}</span>
-                <button className='btn-delete' 
-                onClick={() => handleDeleteClick({msgSubstance:msg.content, msgTime:msg.presentTime})}>&#10060;</button>
+               {loginMember.memberId === 'admin' &&
+                            <button
+                                className="btn-delete"
+                                onClick={() => handleDeleteClick({ msgSubstance: msg.content, msgTime: msg.presenttime })}
+                            >
+                                &#10060;
+                            </button>}
                 </div>
                 ))}          
              <div ref={messagesEndRef} />
@@ -198,9 +203,7 @@ const Chat = () => {
              <button className='button-chat' onClick={sendMessage} disabled={!loginMember || !connected}>
                 채팅
             </button>
-            <button onClick={handleRefresh} className='btn-refresh' disabled = {!connected}>
-                새로고침
-            </button>
+            
             <label className="font-size" htmlFor='font-size'>글자크기</label>
             <select id="font-size" value={fontSize} onChange={handleFontSizeChange} disabled={!loginMember}>
                 <option value="14px">작게</option>
