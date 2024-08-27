@@ -63,10 +63,10 @@ const Chat = () => {
 
     
 
-    useEffect(() => {
+    /*useEffect(() => {
         // 메시지가 업데이트될 때마다 자동으로 스크롤을 아래로 이동
         messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-      }, [messages]);
+      }, [messages]);*/
     
 
       const sendMessage = () => {     

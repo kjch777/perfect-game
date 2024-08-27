@@ -7,17 +7,42 @@
 
 .gameDetailPageContainer h1{
     text-align: center;
-    color: burlywood;
+    color: rgb(3, 92, 73);
+    font-weight: bold;
+}
+
+.gameDetailPageContainer h3{
+    font-weight: bold;
+    color: #9893d3;
+}
+
+.homeDiv{
+    background-image: 
+    url('../components/main_components/ground_architecture.jpg');
+    width: 30%;
+    height: 500px;
+    display: grid;
+
 }
 
 .homeDiv h2{
     text-align: center;
-    color: palevioletred;
+    font-weight: bold;
+    color: rgb(248, 137, 73);
+}
+
+.awayDiv{
+    background-image: 
+    url('../components/main_components/ground_architecture.jpg');
+    width: 30%;
+    height: 500px;
+    display: grid;
 }
 
 .awayDiv h2{
     text-align: center;
-    color: green;
+    font-weight: bold;
+    color: rgb(71, 70, 173);
 }
 
 .gameDetailPageContainer button{
@@ -27,35 +52,43 @@
     width: 50px;
     color: white;
     font-weight: bold;
-    background-color: yellowgreen;
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+    width: 80px;
+    height: 40px;
+    justify-self: center;
 }
 .gameDetailPageContainer button:hover{
     cursor: pointer;
-    background-color: blueviolet;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .twoTeamDiv{
     /*justify-content: center;*/
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     
 }
 
 .lineupTable{
-    background-color: antiquewhite;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
     border-radius: 10px;
     border-collapse: collapse;
     text-align: center;
 }
 
 .lineupTable th{
-    border-bottom: 2px solid salmon;
+    border-bottom: 2px solid rgb(253, 238, 237);
     padding: 10px;
 }
 
 .lineupTable td{
     
     padding: 10px;
+}
+
+.versusCenter{
+    margin-top: 200px;
 }
