@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import '../../css/BoardGuestbook.css';
 import LoginContext from '../../components/Login/LoginContext';
@@ -18,6 +19,12 @@ function BoardGuestbook() {
   const [files, setFiles] = useState([]);
   const [board, setBoard] = useState([]);
 
+  const [boardToEdit, setBoardToEdit] = useState(null);
+
+  const {id} = useParams();
+  //{id} : {} = 특정 값을 받아오는 것, [] = 변수명을 설정하는 것
+  console.log("id : ", id);
+
   const uploadToJava = () => {
     const formData = new FormData();
 
@@ -36,9 +43,12 @@ function BoardGuestbook() {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
+    }).then(() => {
+      alert("게시글 작성 완료!");
+      getBoard();
+    }).catch(error => {
+      console.error("게시글 작성 중 오류 발생:", error);
     });
-    alert("게시글 작성 완료!");
-    getBoard();
   }
 
   const getBoard = () => {
@@ -72,10 +82,14 @@ function BoardGuestbook() {
   }
   /*************************/
   /* 0827 수정버튼 추가하기 */
-  const [boardToEdit, setBoardToEdit] = useState(null);
 
- // 게시글 수정 함수 추가
-  const handleModify = async () => {
+  const handleModify = (board) => {
+    setBoardToEdit(board);
+    setTitle(board.boardTitle);
+    setContent(board.boardContents);
+  }
+
+  const handleUpdate = async () => {
     try {
       if (!boardToEdit || !boardToEdit.boardNo) {
         throw new Error('수정할 게시글 정보를 찾을 수 없습니다.');
@@ -83,32 +97,27 @@ function BoardGuestbook() {
 
       const updatedBoard = {
         ...boardToEdit,
-        boardNo: Number(boardToEdit.boardNo) // boardNo를 숫자로 변환
+        boardTitle: title,
+        boardContents: content
       };
 
       await axios.put(`/board/lists/${updatedBoard.boardNo}`, updatedBoard, {
         headers: {
-          'Content-Type': 'application/json' // JSON 형식으로 데이터 전송
+          'Content-Type': 'application/json'
         }
       });
 
       alert('게시글이 수정되었습니다.');
-      getBoard(); // 게시글 목록 새로고침
-      setBoardToEdit(null); // 수정 완료 후 상태 초기화
+      getBoard();
+      setBoardToEdit(null);
     } catch (error) {
       console.error("게시글 수정 중 오류 발생:", error);
     }
   };
 
-    /***** 유저 정보 수정을 완료하면 유저 목록에 수정된 유저를 전달하는 기능 *****/
-    const editBoard = (board) => {
-      setBoardToEdit(board);
-    }
-  
-    /***** 수정하기 버튼이 있다면 수정 취소하기 확인 *****/
-    const cancelEdit = () => {
-      setBoardToEdit(null);//유저정보 수정 취소할 때 null 빈 칸으로 변경하는 트릭
-    }
+  const cancelEdit = () => {
+    setBoardToEdit(null);
+  }
 
   /* 0827 삭제버튼 추가하기 */
   const handleDelete = async (boardNo) => {
@@ -256,20 +265,31 @@ function BoardGuestbook() {
                 </td>
               </>
               }
-              {boardToEdit && (
-                <div className='edit-form'>
-                  <h3>게시글 수정</h3>
-                  <input type='text' value={boardToEdit.boardTitle} onChange={(e) => setBoardToEdit({...boardToEdit, boardTitle: e.target.value})} />
-                  <textarea value={boardToEdit.boardContents} onChange={(e) => setBoardToEdit({...boardToEdit, boardContents: e.target.value})} />
-                  <button onClick={handleModify}>수정 완료</button>
-                  <button onClick={cancelEdit}>수정 취소</button>
-                </div>
-              )}
             </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {/* 수정 폼 표시: 현재 수정 중인 게시글만 표시 */}
+        {boardToEdit && (
+        <div className='edit-form'>
+          <h3>게시글 수정</h3>
+          <div>
+            <label>제목</label>
+            <input type='text'
+                   value={boardToEdit.boardTitle}
+                   onChange={(e) => setBoardToEdit({...boardToEdit, boardTitle: e.target.value})} />
+          </div>
+          <div>
+            <label>내용</label>
+            <textarea value={boardToEdit.boardContents}
+                      onChange={(e) => setBoardToEdit({...boardToEdit, boardContents: e.target.value})} />
+          </div>
+          <button onClick={handleUpdate}>수정 완료</button>
+          <button onClick={cancelEdit}>수정 취소</button>
+        </div>
+      )}
     </>
   );
 }
