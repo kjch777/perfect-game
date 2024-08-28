@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import '../../css/BoardGuestbook.css';
 import LoginContext from '../../components/Login/LoginContext';
 
-function BoardGuestbook0828() {
-  const { loginMember, setLoginMember } = useContext(LoginContext);
+function BoardGuestbook() {
+  const { loginMember } = useContext(LoginContext);
+  const [board, setBoard] = useState([]);
+  const navigate = useNavigate('');
+
+
+
   const boardListAPI = "http://localhost:9090/board/lists";
   const boardUploadAPI = "http://localhost:9090/board/upload";
 
@@ -16,7 +22,8 @@ function BoardGuestbook0828() {
   const [selectPrivate, setSelectPrivate] = useState('N');
 
   const [files, setFiles] = useState([]);
-  const [board, setBoard] = useState([]);
+
+
 
   const uploadToJava = () => {
     const formData = new FormData();
@@ -36,9 +43,12 @@ function BoardGuestbook0828() {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
+    }).then(() => {
+      alert("게시글 작성 완료!");
+      getBoard();
+    }).catch(error => {
+      console.error("게시글 작성 중 오류 발생:", error);
     });
-    alert("게시글 작성 완료!");
-    getBoard();
   }
 
   const getBoard = () => {
@@ -59,29 +69,34 @@ function BoardGuestbook0828() {
     getBoard();
   }, [loginMember]);
 
-    //이미지 파일 여러 개 입력 시 files를 배열을 변화
-    const handleFileChange = (e) => {
-      const fileList = Array.from(e.target.files);
-      setFiles(fileList);
-    };
-    
-    /*************************/
-    /* 0828 비밀번호 설정 추가하기 */
-    const handleSelectPrivateChange = (e) => {
-      setSelectPrivate(e.target.checked ? 'Y' : 'N');
+  //이미지 파일 여러 개 입력 시 files를 배열을 변화
+  const handleFileChange = (e) => {
+    const fileList = Array.from(e.target.files);
+    setFiles(fileList);
+  };
+  
+  /*************************/
+  /* 0828 비밀번호 설정 추가하기 */
+  const handleSelectPrivateChange = (e) => {
+    setSelectPrivate(e.target.checked ? 'Y' : 'N');
+  }
+
+  /* 0827 삭제버튼 추가하기 */
+  const handleDelete = async (boardNo) => {
+    try {
+      if (typeof boardNo !== 'number') {
+        throw new Error('유효하지 않은 boardNo');
+      }
+  
+      await axios.delete(`/board/lists?boardNo=${encodeURIComponent(boardNo)}`);
+      setBoard(board.filter(b => b.boardNo !== boardNo));
+    } catch (error) {
+      console.error("게시글 삭제 중 오류 발생:", error);
     }
-    /*************************/
-    /* 0827 수정버튼 추가하기 */
-    const handleModify = () => {
+  };
 
-    }
 
-    /* 0827 삭제버튼 추가하기 */
-    const handleDelete = () => {
-
-    }
-
-    /*************************/
+  /*************************/
 
   return (
     <> 
@@ -195,17 +210,18 @@ function BoardGuestbook0828() {
               <td  className="board-container-createdat">
                 {b.createdAt}
               </td>
+              
               {name === b.boardMemberName &&
               <>
                 <td className="board-container-modify">
                   <button className="board-container-modify-button"
-                          onClick={handleModify}>
+                          onClick={() => handleModify(b.boardNo)}>
                     수정
                   </button>
                 </td>
                 <td className="board-container-delete">
                   <button className="board-container-delete-button"
-                          onClick={handleDelete}>
+                          onClick={() => handleDelete(b.boardNo)}>
                     삭제
                   </button>
                 </td>
@@ -216,8 +232,28 @@ function BoardGuestbook0828() {
           </tbody>
         </table>
       </div>
+
+      {/* 수정 폼 표시: 현재 수정 중인 게시글만 표시 */}
+        {boardToEdit && (
+        <div className='edit-form'>
+          <h3>게시글 수정</h3>
+          <div>
+            <label>제목</label>
+            <input type='text'
+                   value={boardToEdit.boardTitle}
+                   onChange={(e) => setBoardToEdit({...boardToEdit, boardTitle: e.target.value})} />
+          </div>
+          <div>
+            <label>내용</label>
+            <textarea value={boardToEdit.boardContents}
+                      onChange={(e) => setBoardToEdit({...boardToEdit, boardContents: e.target.value})} />
+          </div>
+          <button onClick={handleUpdate}>수정 완료</button>
+          <button onClick={cancelEdit}>수정 취소</button>
+        </div>
+      )}
     </>
   );
 }
 
-export default BoardGuestbook0828;
+export default BoardGuestbook;

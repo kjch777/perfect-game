@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 import '../../css/BoardGuestbook.css';
 import LoginContext from '../../components/Login/LoginContext';
@@ -19,12 +18,58 @@ function BoardGuestbook() {
   const [files, setFiles] = useState([]);
   const [board, setBoard] = useState([]);
 
-  const [boardToEdit, setBoardToEdit] = useState(null);
+  /***** 0828 게시글 수정 ******/
+  /*const {id} = useParams();
+  console.log("id : ", id);*/
+  const [boardDetail, setBoardDetail] = useState(null);
+  const [editData, setEditData] = useState({
+    title: "",
+    content: "",
+    password: "",
+    selectPrivate: ""
+  })
+  const [isEditing, setIsEditing] = useState(false);
+  /*const navigate = useNavigate();*/
 
-  const {id} = useParams();
-  //{id} : {} = 특정 값을 받아오는 것, [] = 변수명을 설정하는 것
-  console.log("id : ", id);
+/*
+  useEffect (() => {
+    axios.get(`http://localhost:9090/board/lists/${id}`)
+    .then(response => {
+        setBoardDetail(response.data);
+        setEditData({
+          title: response.data.title, 
+          content : response.data.content,
+          password : response.data.password,
+          selectPrivate : response.data.selectPrivate
+        })
+    })
+    .catch(e=> alert("불러오는데 문제가 발생했습니다."));
+  }, [])
+*/
 
+/*
+  const handleSaveEdit = () => {
+    axios.put(`http://localhost:9091/api/chicken/${id}`, editData)
+    .then(response => {
+        setChicken(response.data);//기존의 DB에 저장된 내용 가져오기
+        setIsEditing(false);
+    })
+    .catch(error => {
+        console.error("수정하는데 문제가 발생했습니다.", error);
+    })
+  }
+*/
+
+  const handleEdit = () => {
+      setIsEditing(true);
+  }
+
+  const handleCancelEdit = () => {
+      setIsEditing(false);
+  }
+  /****************************/
+
+  /***** ***** 게시글 작성 ***** *****/
   const uploadToJava = () => {
     const formData = new FormData();
 
@@ -50,7 +95,30 @@ function BoardGuestbook() {
       console.error("게시글 작성 중 오류 발생:", error);
     });
   }
+  /***** ***** 회원 이름, 아이디 가져오기 ***** *****/
+  useEffect(() => {
+    if (loginMember) {
+      setWriterId(loginMember.memberId);
+      setName(loginMember.memberName);
+    }
+    getBoard();
+  }, [loginMember]);
+  /**************************************************/
 
+  /***** ***** 이미지 파일 여러 개 입력 시 files를 배열을 변화 ***** *****/
+  const handleFileChange = (e) => {
+    const fileList = Array.from(e.target.files);
+    setFiles(fileList);
+  };
+  /**************************************************/
+  /* 0828 비밀번호 설정 추가하기 */
+  const handleSelectPrivateChange = (e) => {
+    setSelectPrivate(e.target.checked ? 'Y' : 'N');
+  }
+  /**************************************************/
+  /**************************************************/
+
+  /***** ***** 게시글 보기 ***** *****/
   const getBoard = () => {
     axios.get(boardListAPI)
     .then(response => {
@@ -60,29 +128,23 @@ function BoardGuestbook() {
       console.error("게시글 목록 가져오기 중 오류 발생:", error);
     });
   }
-
-  useEffect(() => {
-    if (loginMember) {
-      setWriterId(loginMember.memberId);
-      setName(loginMember.memberName);
-    }
-    getBoard();
-  }, [loginMember]);
-
-  //이미지 파일 여러 개 입력 시 files를 배열을 변화
-  const handleFileChange = (e) => {
-    const fileList = Array.from(e.target.files);
-    setFiles(fileList);
-  };
+  /**************************************************/
+  /* 0828 삭제버튼 추가하기 */
+  const handleDelete = async (boardNo) => {
+    try {
+      if (typeof boardNo !== 'number') {
+        throw new Error('유효하지 않은 boardNo');
+      }
   
-  /*************************/
-  /* 0828 비밀번호 설정 추가하기 */
-  const handleSelectPrivateChange = (e) => {
-    setSelectPrivate(e.target.checked ? 'Y' : 'N');
-  }
+      await axios.delete(`/board/lists?boardNo=${encodeURIComponent(boardNo)}`);
+      setBoard(board.filter(b => b.boardNo !== boardNo));
+    } catch (error) {
+      console.error("게시글 삭제 중 오류 발생:", error);
+    }
+  };
   /*************************/
   /* 0827 수정버튼 추가하기 */
-
+/*
   const handleModify = (board) => {
     setBoardToEdit(board);
     setTitle(board.boardTitle);
@@ -119,22 +181,7 @@ function BoardGuestbook() {
     setBoardToEdit(null);
   }
 
-  /* 0827 삭제버튼 추가하기 */
-  const handleDelete = async (boardNo) => {
-    try {
-      if (typeof boardNo !== 'number') {
-        throw new Error('유효하지 않은 boardNo');
-      }
-  
-      await axios.delete(`/board/lists?boardNo=${encodeURIComponent(boardNo)}`);
-      setBoard(board.filter(b => b.boardNo !== boardNo));
-    } catch (error) {
-      console.error("게시글 삭제 중 오류 발생:", error);
-    }
-  };
-
-
-  /*************************/
+*/
 
   return (
     <> 
@@ -213,83 +260,50 @@ function BoardGuestbook() {
       </div>
 
 
-      <div>
-        <table className="board-container">
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성자</th>
-              {/* ******************** */}
-              <th>내용</th>
-              <th>이미지</th>
-              {/* ******************** */}
-              <th>작성일자</th>
-              <th style={{color: "orange"}}>수정</th>
-              <th style={{color: "red"}}>삭제</th>
-            </tr>
-          </thead>
-          <tbody>
-            {board.map(b => (
-            <tr key={b.boardNo} className="board">
-              <td>{b.boardNo}</td>
-              <td>{b.boardTitle}</td>
-              <td>{b.boardMemberName}</td>
-              {/* ******************** */}
-              <td className="board-container-boardcontents">
-                {b.boardContents}
-              </td>
-              <td className="images">
+      <div className="board-container">
+        <ul>
+          <li className='board-item'>
+            <div className='board-item-no'>번호</div>
+            <div className='board-item-title'>제목</div>
+            <div className='board-item-contents'>내용</div>
+            <div className='board-item-writerName'>작성자</div>
+            <div className='board-item-image'>이미지</div>
+            <div className='board-item-createdAt'>수정일자</div>
+            <div className='board-item-edit-button'
+                  style={{color: "orange"}}>수정</div>
+            <div className='board-item-delete-button'
+                  style={{color: "red"}}>삭제</div>
+          </li>
+
+          {board.map(b => (
+            <li key={b.boardNo} className='board-item'>
+              <div className='board-item-no'>{b.boardNo}</div>
+              <div className='board-item-title'>{b.boardTitle}</div>
+              <div className='board-item-contents'>{b.boardContents}</div>
+              <div className='board-item-writerName'>{b.boardMemberName}</div>
+              <div className='board-item-image'>
                 {b.boardImageUrl.split(',').map(image => 
                   <img key={image} src={`http://localhost:9090/images/${image}`}/>
                 )}
-              </td>
-              {/* ******************** */}
-              <td  className="board-container-createdat">
-                {b.createdAt}
-              </td>
-              
-              {name === b.boardMemberName &&
-              <>
-                <td className="board-container-modify">
-                  <button className="board-container-modify-button"
-                          onClick={() => handleModify(b.boardNo)}>
-                    수정
-                  </button>
-                </td>
-                <td className="board-container-delete">
-                  <button className="board-container-delete-button"
-                          onClick={() => handleDelete(b.boardNo)}>
-                    삭제
-                  </button>
-                </td>
-              </>
-              }
-            </tr>
-            ))}
-          </tbody>
-        </table>
+              </div>
+              <div className='board-item-createdAt'>{b.createdAt}</div>
+              <div className='board-item-edit-button'>
+                <button>
+                  수정
+                </button>
+              </div>
+              <div className='board-item-delete-button'>
+                <button onClick={() => handleDelete(b.boardNo)}>
+                  삭제
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* 수정 폼 표시: 현재 수정 중인 게시글만 표시 */}
-        {boardToEdit && (
-        <div className='edit-form'>
-          <h3>게시글 수정</h3>
-          <div>
-            <label>제목</label>
-            <input type='text'
-                   value={boardToEdit.boardTitle}
-                   onChange={(e) => setBoardToEdit({...boardToEdit, boardTitle: e.target.value})} />
-          </div>
-          <div>
-            <label>내용</label>
-            <textarea value={boardToEdit.boardContents}
-                      onChange={(e) => setBoardToEdit({...boardToEdit, boardContents: e.target.value})} />
-          </div>
-          <button onClick={handleUpdate}>수정 완료</button>
-          <button onClick={cancelEdit}>수정 취소</button>
-        </div>
-      )}
+
+
     </>
   );
 }
