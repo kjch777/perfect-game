@@ -8,6 +8,7 @@ import { DateTime } from 'luxon';
 import axios from 'axios';
 import '../../css/Emoji.css';
 
+
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
@@ -18,7 +19,7 @@ const Chat = () => {
     const { loginMember } = useContext(LoginContext);       
     const [deleteMessage, setDeleteMessage] = useState(null);
     const [emojiPick, setEmojiPick] = useState(false);
-
+   
     // STOMP 클라이언트 연결 설정
     useEffect(() => {
         const socket = new SockJS('http://localhost:9090/ws');
@@ -67,6 +68,14 @@ const Chat = () => {
         }
     }, [messages]);
 
+    useEffect(() => {
+        if (!loginMember || !loginMember.memberId) {
+            console.log('로그인 정보가 없습니다.');
+            return;
+        }  
+       
+    }, [loginMember]);
+
     // 메시지 전송 함수
     const sendMessage = () => {
         if (stompClient && connected && message) {
@@ -90,7 +99,7 @@ const Chat = () => {
         } else if (!connected) {
             console.error('연결이 안됩니다. 관리자에 문의하세요.');
         }
-        if (!loginMember || !loginMember.memberId) {
+        if (!loginMember || !loginMember.memberId) {            
             alert('로그인 후 이용하세요.');
             return;
         }
