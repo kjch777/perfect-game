@@ -6,6 +6,7 @@ import Emoji from './Emoji.js';
 import LoginContext from '../Login/LoginContext.js';
 import { DateTime } from 'luxon';
 import axios from 'axios';
+import '../../css/Emoji.css';
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
