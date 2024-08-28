@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +28,12 @@ public class BoardController {
 	public ResponseEntity<String> uploadImages(@RequestParam("files") MultipartFile[] files,
 			                                   @RequestParam("title") String title,
 			                                   @RequestParam("content") String content,
+			                                   @RequestParam("writerId") String writerId,
+			                                   @RequestParam("password") String password,
+			                                   @RequestParam("selectPrivate") String selectPrivate,
 			                                   @RequestParam("name") String name) {	
-		boardService.uploadImages(files, title, content, name);
-		return ResponseEntity.ok("�Խñ� �ۼ� �Ϸ�!");
+		boardService.uploadImages(files, title, content, writerId, password, selectPrivate, name);
+		return ResponseEntity.ok("게시글 작성 완료!");
 	}
 	
 	@GetMapping("/lists")
@@ -37,4 +44,18 @@ public class BoardController {
 	/*
 	@GetMapping("/lists" + ${boardNo})
 	*/
+	
+	@DeleteMapping("/lists")
+	public ResponseEntity<Void> deleteBoard(@RequestParam("boardNo") int boardNo) {
+	    boardService.deleteBoard(boardNo);
+	    return ResponseEntity.noContent().build();
+	}
+	
+	@PutMapping("/lists/{boardNo}")
+	public ResponseEntity<String> updateBoard(@PathVariable("boardNo") int boardNo,
+			                                  @RequestBody Board board) {
+	    board.setBoardNo(boardNo);
+	    boardService.updateBoard(board);
+	    return ResponseEntity.ok("게시글 수정 완료!");
+	}
 }
