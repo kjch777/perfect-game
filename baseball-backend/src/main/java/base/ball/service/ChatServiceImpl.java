@@ -22,7 +22,6 @@ public class ChatServiceImpl implements ChatService{
 	
 	@Override
 	public void deleteMessage(@Param("memberId") String memberId,@Param("message") String message,@Param("sendTime") String sendTime) {
-		chatMapper.deleteMessage(memberId,message,sendTime);
-		
+		chatMapper.deleteMessage(memberId,message,sendTime);		
 	}
 }

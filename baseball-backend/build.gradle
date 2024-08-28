@@ -19,7 +19,7 @@ repositories {
 	mavenCentral()
 }
 dependencies {
-    implementation 'org.webjars:jquery:3.6.4'
+     implementation 'org.webjars:jquery:3.6.4'
     implementation 'org.webjars:bootstrap:5.2.3'
     implementation 'org.webjars:sockjs-client:1.5.1'
     implementation 'org.projectlombok:lombok:1.18.26'
