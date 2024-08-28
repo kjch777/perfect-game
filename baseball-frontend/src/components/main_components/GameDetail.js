@@ -22,6 +22,8 @@ const GameDetail = () => {
     const loStHome = location.state?.home;
     const loStAway = location.state?.away;
 
+    const [isEditing, setIsEditing] = useState(false);
+
     //순서1번-경기코드로 라인업문자열받아오기
     const homeLineUp = async() => {
 
@@ -122,31 +124,68 @@ const GameDetail = () => {
 
     }
 
+    const handleEditClick = () => {
+        setIsEditing(true);
+    }
+
+    const [editData, setEditData] = useState(
+        {
+            pno:"",
+            pname:"",
+            pposition:""
+        }
+    );
+
     
     useEffect(() => {
         
         homeLineUp();
         awayLineUp();
 
-        playerInfosMaker();
+        //playerInfosMaker();
         
-        playerInfosMakerAway();
+        //playerInfosMakerAway();
 
-        setHomePlayers('');
-        setAwayPlayers('');
-        setListHomePlayers([]);
-        setListAwayPlayers([]);
+        //setHomePlayers('');
+        //setAwayPlayers('');
+        //setListHomePlayers([]);
+        //setListAwayPlayers([]);
     },[listHomePlayers.length, playerInfo.length, listAwayPlayers.length, playerInfoAway.length])
     
     return(
         <div className="gameDetailPageContainer">
+            {isEditing ? (
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>등번호</th>
+                            <th>이름</th>
+                            <th>포지션</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {playerInfo.length>0 && playerInfo.map( (j) => {
+                    return(
+                    <tr key={j[0].playerBackNo}>
+                        <td>{j[0].playerBackNo}</td>
+                        <td><input value={j[0].playerName} onChange={(e) => setEditData({...editData, pname:e.target.value})}/></td>
+                        <td>{j[0].playerPosition}</td>
+                    </tr>
+                    )
+                    
+                })}
+                        </tbody>
+                    </table>
+                </div>):(
+                    <div>
         
         <h1>경기정보</h1>
         <h3>경기코드 : {loStCode}</h3>
-        <hr/>
+        
         <div className="twoTeamDiv">
         <div className="homeDiv">
-        <h2>홈- {loStHome} 라인업</h2>
+        <h2>Home - {loStHome}</h2>
         {/*
         <p>homePlayers(String) : {homePlayers}</p>
         <p>listHomePlayers(Array) : {listHomePlayers}</p>
@@ -174,15 +213,18 @@ const GameDetail = () => {
             </tbody>
         </table>
         <button hidden onClick={()=>homeLineUp()}>2번클릭</button>
-        <button hidden onClick={()=>playerInfosMaker()}>클릭</button>
+        <button  onClick={()=>playerInfosMaker()}>클릭</button>
+        
         </div>
+        <h2 className="versusCenter">VS</h2>
 
         <div className="awayDiv">
-        <h2>원정-{loStAway} 라인업</h2>
+        <h2>Away - {loStAway}</h2>
         {/*
         <p>awaylayers(String) : {awayPlayers}</p>
         <p>listAwayPlayers(Array) : {listAwayPlayers}</p>
         */}
+        
 
         <table className="lineupTable">
             <thead>
@@ -193,23 +235,26 @@ const GameDetail = () => {
                 </tr>
             </thead>
             <tbody>
-                {playerInfoAway.length>0 && playerInfoAway.map( (j) => {// 0 17 20에 해당하는선수들json 3번돌것.
-                    return(
+                {playerInfoAway.length>0 && playerInfoAway.map( (j) => (// 0 17 20에 해당하는선수들json 3번돌것.
+                    <>
                     <tr key={j[0].playerBackNo}>
                         <td>{j[0].playerBackNo}</td>
                         <td>{j[0].playerName}</td>
                         <td>{j[0].playerPosition}</td>
                     </tr>
-                    )//홈라인업버튼2번,선수정보1번누르면 실행됨
-                    
-                })}
+                    </>
+                ))}
             </tbody>
         </table>
         <button hidden onClick={()=>awayLineUp()}>2번클릭</button>
-        <button hidden onClick={()=>playerInfosMakerAway()}>클릭</button>
+        <button  onClick={()=>playerInfosMakerAway()}>클릭</button>
+        
         </div>
+        <button onClick={handleEditClick}>수정하기</button>
         </div>
         
+        
+        </div>)}
         </div>
     )
 

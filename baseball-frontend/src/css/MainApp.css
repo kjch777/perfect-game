@@ -21,7 +21,7 @@
 
 .calendarMonthNav{
   display: flex;
-  margin-left: 120px;
+  margin-left: 450px;
   margin-top: 40px;
   
 }
@@ -29,7 +29,7 @@
 .calendarMonthNav h3{
   font-size: 35px;
   font-weight: bold;
-  color: rgb(196, 42, 162);  
+  color: rgb(70, 59, 223);  
 }
 
 .arrowButton{

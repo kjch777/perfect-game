@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useState } from "react";//useEffect를 어디에서사용할지.
+import React, { useState, useContext, useEffect } from "react";//useEffect를 어디에서사용할지.
 import { useNavigate } from 'react-router-dom';
 import '../../css/CalendarMonth.css';
 import Chat from "../chat/Chat";
+import LoginContext from '../../components/Login/LoginContext';
 
 const CalendarMonth = ( {cmy, cmm}) => {
+
+  const { loginMember, setLoginMember } = useContext(LoginContext);
 
   const navigate = useNavigate();
 
@@ -213,9 +216,67 @@ const CalendarMonth = ( {cmy, cmm}) => {
     );
   }
 
+  useEffect(() => {
+    const curMember = localStorage.getItem('loginMember');
+    if (curMember) {
+      setLoginMember(JSON.parse(curMember));
+    }
+  }, [setLoginMember]);
+
   return(
     <div className='calendarMonthContainer'>
       <div className='calendarTableDiv'>
+      <div className='calendarGameDiv'>
+        <h2>{clickedGameDate} 경기일정</h2>
+
+        <table className='gameTable'>
+          <thead>
+            <tr>
+              <th>코드</th>
+              <th>승리팀</th>
+              {/*<th>경기날짜</th>*/}
+              <th>홈팀</th>
+              <th>원정팀</th>
+              <th>구장</th>
+              <th>라인업</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {games.map((game)=>(
+              <tr key={game.gameCode}>
+              <td className='gameCodeArea' onClick={()=>gameClick(game.gameCode)}>{game.gameCode}</td>
+              <td>{game.gameWinnerTeamName}</td>
+              {/*<td>{game.gameDate}</td>*/}
+              <td>{game.gameTeamNameHome}</td>
+              <td>{game.gameTeamNameAway}</td>
+              
+              <td>{game.gamePlaygroundId}</td>
+              <td><button 
+                onClick={() => 
+                gameDetailClick(game.gameCode, game.gameTeamNameHome, game.gameTeamNameAway)}
+                >
+                자세히
+                </button></td>
+                {/*삭제는로그인세션추가할것*/}
+              <td>
+                {loginMember!==null && loginMember.memberId ==='admin' &&
+                <button 
+                className='deleteButton' 
+                onClick={() => gameDeleteClick(game.gameCode)}
+                >삭제
+                </button>
+                }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {clickedGameDate && loginMember!==null && loginMember.memberId ==='admin' &&
+        <button className='gameAddButton' 
+          onClick={() => gameAddClick(clickedGameDate)}
+        >{clickedGameDate}경기추가</button>}
+      </div>
         <div className='ctd_tableDiv'>
         <table className='calendarTable'>
           <thead>
@@ -240,10 +301,11 @@ const CalendarMonth = ( {cmy, cmm}) => {
           </tbody>
         </table>
         </div>
-
+{/*
         <div className='calendarCenterDiv'>
-          <img src='../../images/mainapp/baseball-7985433_1280.jpg' />
+          <img src='../../images/mainapp/stadium-1118445_1280.jpg' />
         </div>
+        */}
 
         <div className='calendarSideDiv'>
           <Chat/>
@@ -251,53 +313,7 @@ const CalendarMonth = ( {cmy, cmm}) => {
 
       </div>
 
-      <div className='calendarGameDiv'>
-        <h2>{clickedGameDate} 경기일정</h2>
-
-        <table className='gameTable'>
-          <thead>
-            <tr>
-              <th>경기코드</th>
-              <th>승리팀</th>
-              <th>경기날짜</th>
-              <th>홈팀</th>
-              <th>원정팀</th>
-              <th>구장번호</th>
-              <th>라인업</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {games.map((game)=>(
-              <tr key={game.gameCode}>
-              <td className='gameCodeArea' onClick={()=>gameClick(game.gameCode)}>{game.gameCode}</td>
-              <td>{game.gameWinnerTeamName}</td>
-              <td>{game.gameDate}</td>
-              <td>{game.gameTeamNameHome}</td>
-              <td>{game.gameTeamNameAway}</td>
-              
-              <td>{game.gamePlaygroundId}</td>
-              <td><button 
-                onClick={() => 
-                gameDetailClick(game.gameCode, game.gameTeamNameHome, game.gameTeamNameAway)}
-                >
-                자세히
-                </button></td>
-                {/*삭제는로그인세션추가할것*/}
-              <td><button 
-                className='deleteButton' 
-                onClick={() => gameDeleteClick(game.gameCode)}
-                >삭제
-                </button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {clickedGameDate &&
-        <button className='gameAddButton' 
-          onClick={() => gameAddClick(clickedGameDate)}
-        >{clickedGameDate}경기추가</button>}
-      </div>
+      
     </div>
   );
 };

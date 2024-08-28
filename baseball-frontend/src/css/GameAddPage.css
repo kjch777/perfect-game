@@ -34,6 +34,12 @@
     border: 1px solid gray;
 }
 
+.gameAddParts input:focus{
+    border: 2px solid #3360dd;
+    outline: none;
+    box-shadow: 0 0 3px #36adc2;
+}
+
 .inputDate{
     color: gray;
 }
@@ -67,4 +73,18 @@
 
 .allPlayers label button{
     margin-bottom: 10px;
+}
+
+/**lienup table**/
+.gameAddParts table{
+    border-collapse: collapse;
+}
+
+.gameAddParts th, .gameAddParts td{
+    text-align: center;
+    padding: 5px;
+}
+
+.gameAddParts th{
+    border-bottom: 1px solid #ccc;
 }
