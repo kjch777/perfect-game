@@ -30,3 +30,9 @@
     padding: 1.25rem; /* 카드 내용 영역 패딩 설정 */
     flex-grow: 1; /* 카드 내용 영역이 가능한 공간을 채우도록 설정 */
 }
+.teamCheck{
+    justify-content: center;
+}
+.goods-card-title, .goods-card-text {
+    text-align: center;
+}

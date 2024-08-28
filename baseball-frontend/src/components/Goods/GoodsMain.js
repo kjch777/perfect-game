@@ -32,21 +32,21 @@ const GoodsMain = ({ goods = [] }) => {
             <div className="btn-group mb-4" role="group" aria-label="Team selection">
                 <button
                     type="button"
-                    className={`btn btn-secondary ${selectedTeam === 'all' ? 'active' : ''}`}
+                    className={`teamCheck btn btn-secondary ${selectedTeam === 'all' ? 'active' : ''}`}
                     onClick={() => setSelectedTeam('all')}
                 >
                     모든 팀
                 </button>
                 <button
                     type="button"
-                    className={`btn btn-secondary ${selectedTeam === 'samseong' ? 'active' : ''}`}
+                    className={`teamCheck btn btn-secondary ${selectedTeam === 'samseong' ? 'active' : ''}`}
                     onClick={() => setSelectedTeam('samseong')}
                 >
                     삼성
                 </button>
                 <button
                     type="button"
-                    className={`btn btn-secondary ${selectedTeam === 'hanwha' ? 'active' : ''}`}
+                    className={`teamCheck btn btn-secondary ${selectedTeam === 'hanwha' ? 'active' : ''}`}
                     onClick={() => setSelectedTeam('hanwha')}
                 >
                     한화
@@ -66,8 +66,8 @@ const GoodsMain = ({ goods = [] }) => {
                                 />
                             </div>
                             <div className="goods-card-body d-flex flex-column">
-                                <h5 className="card-title">{item.goodsName}</h5>
-                                <p className="card-text">가격 : {formatCurrency(item.goodsPrice)}원</p>
+                                <h5 className="goods-card-title">{item.goodsName}</h5>
+                                <p className="goods-card-text">가격 : {formatCurrency(item.goodsPrice)}원</p>
                                 <Link to={`/goods/${item.goodsId}`} className="btn btn-primary mt-auto">구경하기</Link>
                             </div>
                         </div>
