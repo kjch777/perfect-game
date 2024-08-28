@@ -16,6 +16,4 @@ public interface GoodsMapper {
 	
 	void updateAddress(Member member);
 	
-	void deleteOrderById(int orderId);
-	
 }

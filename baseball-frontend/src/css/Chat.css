@@ -2,70 +2,64 @@
     margin-top: 100px;
     margin-left: 800px;
 }*/
-.chat-container {
+.chat-container{
     border-top: 4px solid #002063;
-    border-left: 4px solid #002063;
-    border-right: 4px solid #002063;
-    width: 340px;
-    height: 400px;
-    overflow-y: auto;
-    background-color: #f0f0f0;
-  }
-  .chat-inputbar {
+  border-left: 4px solid #002063;
+  border-right: 4px solid #002063;
+  width: 340px;
+  height: 400px;
+  overflow-y: auto;
+  background-color: #F0F0F0;
+}
+
+.chat-inputbar{
     width: 230px;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.button-chat{
     height: 30px;
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-left: 5px;
-  }
-  .button-chat {
-    height: 30px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #002063;
-    color: white;
-    text-align: center;
-    justify-content: center;
-    border: none;
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-  .button-chat:hover {
-    background-color: gray;
-  }
-  .chat-input-section {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #002063;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  border: none;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+.button-chat:hover{
+    background-color: rgb(55, 58, 248);    
+}
+.chat-input-section{
     border: 4px solid #002063;
     width: 340px;
-    background-color: #f0f0f0;
-  }
-  /*svg{
-      margin-top: 5px;
-      margin-bottom: -5px;
-      background-color: yellow;
-      border-radius: 100%;
-  }*/
-  .chat-input-section svg {
+    background-color: #F0F0F0;
+}
+/*svg{
+    margin-top: 5px;
+    margin-bottom: -5px;
+    background-color: yellow;
+    border-radius: 100%;
+}*/
+.chat-input-section svg {
     margin: 5px;
     background-color: yellow;
     border-radius: 100%;
-  }
-  .btn-delete {
+}
+
+.btn-delete{
     border-radius: 100%;
-    background-color: #f0f0f0;
-    padding: 1px;
-    font-size: 10px;
-    border: none;
-  }
-  .btn-refresh {
-    background-color: rgb(54, 54, 52);
-    color: white;
-    border: none;
-    margin-left: 113px;
-  }
-  .btn-refresh:hover {
-    background-color: gray;
-  }
-  .font-size {
+  background-color: #F0F0F0;
+  padding: 1px;
+  font-size: 10px;
+  border: none;
+}
+
+.font-size {
     font-size: 14px;
     justify-content: center;
     text-align: center;
@@ -77,12 +71,10 @@
   .chat-time {
     font-size: 12px;
   }
-  
   .chat-title {
       font-weight: bold;
       text-align: center;
   }
-  
   .chat-icon {
       margin-bottom: -60px;
   }
