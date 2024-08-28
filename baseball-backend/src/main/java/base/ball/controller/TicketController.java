@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import base.ball.dto.SeatLockRequest;
 import base.ball.dto.Ticket;
 import base.ball.service.TicketService;
 
@@ -44,4 +45,25 @@ public class TicketController {
 		ticketService.deleteTicket(bookingId);
 	}
 	
+	/** Seat **/
+	
+	@PostMapping("/lockSeat")
+	public ResponseEntity<String> lockSeat(@RequestBody SeatLockRequest seatLockRequest) {
+		
+		boolean success = ticketService.lockSeat(seatLockRequest.getSeatId(), seatLockRequest.getMemberNo());
+		
+		if (success) {
+			
+			return ResponseEntity.ok("Seat locked successfully");
+		} else {
+			
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Seat is already locked or reserved by another user");
+		}
+	}
+	
+	@GetMapping("/checkSeat")
+	public ResponseEntity<Boolean> checkSeat(@RequestParam("seatId") String seatId) {
+		boolean isLocked = ticketService.isSeatLocked(seatId);
+		return ResponseEntity.ok(isLocked);
+	}
 }
