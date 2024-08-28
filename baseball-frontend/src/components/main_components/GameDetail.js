@@ -154,30 +154,7 @@ const GameDetail = () => {
     
     return(
         <div className="gameDetailPageContainer">
-            {isEditing ? (
-                <div>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>등번호</th>
-                            <th>이름</th>
-                            <th>포지션</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {playerInfo.length>0 && playerInfo.map( (j) => {
-                    return(
-                    <tr key={j[0].playerBackNo}>
-                        <td>{j[0].playerBackNo}</td>
-                        <td><input value={j[0].playerName} onChange={(e) => setEditData({...editData, pname:e.target.value})}/></td>
-                        <td>{j[0].playerPosition}</td>
-                    </tr>
-                    )
-                    
-                })}
-                        </tbody>
-                    </table>
-                </div>):(
+            
                     <div>
         
         <h1>경기정보</h1>
@@ -185,7 +162,7 @@ const GameDetail = () => {
         
         <div className="twoTeamDiv">
         <div className="homeDiv">
-        <h2>Home - {loStHome}</h2>
+        
         {/*
         <p>homePlayers(String) : {homePlayers}</p>
         <p>listHomePlayers(Array) : {listHomePlayers}</p>
@@ -208,18 +185,20 @@ const GameDetail = () => {
                         <td>{j[0].playerPosition}</td>
                     </tr>
                     )//홈라인업버튼2번,선수정보1번누르면 실행됨
-                    
                 })}
             </tbody>
         </table>
         <button hidden onClick={()=>homeLineUp()}>2번클릭</button>
         <button  onClick={()=>playerInfosMaker()}>클릭</button>
+        {/*<button onClick={handleEditClick}>수정하기</button>*/}
         
         </div>
-        <h2 className="versusCenter">VS</h2>
+        
+        <h2 className="versusCenter">(홈){loStHome.toString().toUpperCase()} vs {loStAway.toString().toUpperCase()}</h2>
+        
 
         <div className="awayDiv">
-        <h2>Away - {loStAway}</h2>
+        
         {/*
         <p>awaylayers(String) : {awayPlayers}</p>
         <p>listAwayPlayers(Array) : {listAwayPlayers}</p>
@@ -250,11 +229,11 @@ const GameDetail = () => {
         <button  onClick={()=>playerInfosMakerAway()}>클릭</button>
         
         </div>
-        <button onClick={handleEditClick}>수정하기</button>
+        
         </div>
         
         
-        </div>)}
+        </div>
         </div>
     )
 

@@ -5,7 +5,7 @@ import '../../css/CalendarMonth.css';
 import Chat from "../chat/Chat";
 import LoginContext from '../../components/Login/LoginContext';
 
-const CalendarMonth = ( {cmy, cmm}) => {
+const CalendarMonth = ( {cmy, cmm, cmd}) => {
 
   const { loginMember, setLoginMember } = useContext(LoginContext);
 
@@ -20,6 +20,7 @@ const CalendarMonth = ( {cmy, cmm}) => {
 
   let yearVar = cmy;
   let monthVar = cmm;
+  let dayVar = cmd;
   
   const dayClick = async(d) => {
 
@@ -223,6 +224,10 @@ const CalendarMonth = ( {cmy, cmm}) => {
     }
   }, [setLoginMember]);
 
+  useEffect(() => {
+    dayClick(dayVar);
+  },[]);
+
   return(
     <div className='calendarMonthContainer'>
       <div className='calendarTableDiv'>
@@ -239,7 +244,9 @@ const CalendarMonth = ( {cmy, cmm}) => {
               <th>원정팀</th>
               <th>구장</th>
               <th>라인업</th>
+              {loginMember!==null && loginMember.memberId ==='admin' &&
               <th></th>
+              }
             </tr>
           </thead>
           <tbody>
@@ -259,15 +266,17 @@ const CalendarMonth = ( {cmy, cmm}) => {
                 자세히
                 </button></td>
                 {/*삭제는로그인세션추가할것*/}
-              <td>
+              
                 {loginMember!==null && loginMember.memberId ==='admin' &&
+                <td>
                 <button 
                 className='deleteButton' 
                 onClick={() => gameDeleteClick(game.gameCode)}
                 >삭제
                 </button>
-                }
                 </td>
+                }
+                
               </tr>
             ))}
           </tbody>
@@ -275,7 +284,7 @@ const CalendarMonth = ( {cmy, cmm}) => {
         {clickedGameDate && loginMember!==null && loginMember.memberId ==='admin' &&
         <button className='gameAddButton' 
           onClick={() => gameAddClick(clickedGameDate)}
-        >{clickedGameDate}경기추가</button>}
+        >경기추가</button>}
       </div>
         <div className='ctd_tableDiv'>
         <table className='calendarTable'>

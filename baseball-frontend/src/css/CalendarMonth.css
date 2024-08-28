@@ -84,6 +84,7 @@
 .gameTable{
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 5px gray;
+    border-radius: 10px;
     margin: 0 auto;
     margin-bottom: 10px;
     /*padding: 20px;*/
@@ -104,11 +105,12 @@
     border-bottom: 1px solid #ccc;/*내부 크기 보기위한 임시 선*/
     
 }
-/*
+
 .gameTable th:nth-child(1){
     width: 130px;
     
 }
+/*
 .gameTable th:nth-child(3){
     width: 150px;
     
@@ -118,7 +120,7 @@
     border: none;
     padding: 5px;
     color: aliceblue;
-    background-color: rgb(0, 81, 255);
+    background-color: rgb(0, 140, 255);
     border-radius: 7px;
     font-size: 9px;
 }

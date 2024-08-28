@@ -1,10 +1,12 @@
 import React, {useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import '../../css/GameAddPage.css';
 
 const GameAddPage = () => {
+
+    const navigate = useNavigate();
 
     const [codeNo, setCodeNo] = useState('');
     const [gameCode, setGameCode] = useState('');
@@ -129,13 +131,14 @@ const GameAddPage = () => {
             gamePlayerListAway, 
             gamePlaygroundId})
             .catch(err=>console.log(err));
-            alert('handleSubmit finish');
+            /*alert('handleSubmit finish');*/
+            navigate('/');
 
     }
 
     const addGame = async(game) => {
         const res = await axios.post('/game/add', game);
-        alert('경기추가클릭됨');
+        alert('경기등록 성공');
 
     }
 
@@ -163,7 +166,7 @@ const GameAddPage = () => {
             <h1>경기등록</h1>
             <form onSubmit={handleSubmit}>
                 <div className="gameAddParts">
-                    <label>경기날짜 : </label><br/>
+                    <label className="inputLabel">경기날짜 :&nbsp;</label><br/>
                     <input
                     className="inputDate"
                     type="text"
@@ -172,7 +175,7 @@ const GameAddPage = () => {
                     />    
                 </div>
                 <div className="gameAddParts">
-                    <label>경기번호 : </label><br/>
+                    <label className="inputLabel">경기번호 :&nbsp;</label><br/>
                     <input type="text"
                     value={codeNo}
                     onChange={(e) => setCodeNo(e.target.value)
@@ -181,33 +184,49 @@ const GameAddPage = () => {
                     />
                     
                 </div>
+
                 <div className="gameAddParts">
-                    <label>홈팀 : </label><br/>
+                    <label className="inputLabel">구장번호 :&nbsp;</label><br/>
+                    <input type="number"
+                    value={gamePlaygroundId}
+                    onChange={(e) => setGamePlaygroundId(e.target.value)}
+                    required
+                    />
+                </div>
+
+                <div className="gameAddParts">
+                    <label className="inputLabel">Home :&nbsp;</label><br/>
                     <Select
                         className="selectBox"
                         options={options}
                         onChange={handleHomeChange}
                     />
+                    <label>
+                        <button type="button"
+                        onClick={()=>handleHomeOption()}>선수불러오기</button>
+                    </label>
                 </div>
                 <div className="gameAddParts">
-                    <label>원정팀 : </label><br/>
+                    <label className="inputLabel">Away :&nbsp;</label><br/>
                     <Select
                         className="selectBox"
                         options={options}
                         onChange={handleAwayChange}
                     />
-                    <button 
+                    <label>
+                        <button type="button"
+                        onClick={()=>handleAwayOption()}>선수불러오기</button>
+                    </label>
+                </div>
+                
+                <button 
                     id="lineupToggleButton"
                     type="button" 
                     onClick={hideList}>{toggleButtonText}</button>
-                </div>
                 <div className="gameAddParts allPlayersHomeAway">
                     <div className="allPlayers">
                     
-                    <label>
-                        <button type="button"
-                        onClick={()=>handleHomeOption()}>홈선수불러오기</button>
-                    </label><br/>
+                    <br/>
                     {allPlayersHome &&
                     <table style={tableStyle} className="lineUpCheckTable">
                         <thead>
@@ -223,7 +242,8 @@ const GameAddPage = () => {
                                         "select":""} 
                                     key={v.playerBackNo}
                                     >
-                                        <td><input type="checkbox"
+                                        <td className="playerCheckBoxTd"><input 
+                                        type="checkbox"
                                         onChange={(e)=>handlePlayersCheckHome(e, v)}/></td>
                                         <td>{v.playerBackNo}</td>
                                         <td>{v.playerName}</td>
@@ -240,10 +260,7 @@ const GameAddPage = () => {
                     <p>{gamePlayerListHome}</p>
                     </div>
                     <div className="allPlayers">
-                    <label>
-                        <button type="button"
-                        onClick={()=>handleAwayOption()}>원정선수불러오기</button>
-                    </label><br/>
+                    <br/>
                     {allPlayersAway &&
                     <table style={tableStyle} className="lineUpCheckTable">
                     <thead>
@@ -259,7 +276,8 @@ const GameAddPage = () => {
                                         "select":""} 
                                     key={v.playerBackNo}
                                     >
-                                        <td><input type="checkbox"
+                                        <td className="playerCheckBoxTd"><input
+                                        type="checkbox"
                                         id="labelBox"
                                         onChange={(e)=>handlePlayersCheckAway(e, v)}/></td>
                                         <td>{v.playerBackNo}</td>
@@ -276,16 +294,9 @@ const GameAddPage = () => {
                     </div>
                     
                 </div>
-                <div className="gameAddParts">
-                    <label>구장번호 : </label><br/>
-                    <input type="number"
-                    value={gamePlaygroundId}
-                    onChange={(e) => setGamePlaygroundId(e.target.value)}
-                    required
-                    />
-                </div>
+                
                 <button hidden type="submit">경기추가하기</button>
-                <button onClick={()=>setGameCode(dateNoHyphen+codeNo)}>코드생성및추가</button>
+                <button className="gameAddButtonSubmit" onClick={()=>setGameCode(dateNoHyphen+codeNo)}>등록하기</button>
             </form>
         </div>
     )
