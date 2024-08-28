@@ -141,11 +141,18 @@ button:hover {
 .board-container th,
 .board-container td {
   border: 1px solid #ddd;
+  text-align: center;
+}
+/********************/
+.board .board-container-boardcontents {
+  min-width: 200px;
 }
 .board .images {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border: none;
+  min-width: 400px;
 }
 .board .images img {
   max-width: 180px;
@@ -153,4 +160,16 @@ button:hover {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
+}
+/********************/
+
+.board-container-modify-button,
+.board-container-delete-button {
+  background: #002063;
+  width: 100%;
+  padding: 5px 10px;
+  color: white;
+  border: none ;
+  border-radius: 10px;
+  cursor: pointer;
 }

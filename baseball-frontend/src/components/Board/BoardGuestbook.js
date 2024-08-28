@@ -56,6 +56,18 @@ function BoardGuestbook() {
       setFiles(fileList);
     };
     
+    /*************************/
+    /* 0827 수정버튼 추가하기 */
+    const handleModify = () => {
+
+    }
+
+    /* 0827 삭제버튼 추가하기 */
+    const handleDelete = () => {
+
+    }
+
+    /*************************/
 
   return (
     <> 
@@ -78,8 +90,8 @@ function BoardGuestbook() {
             <div className='guestbook-writer'>
               <label>작성자</label>
               <input type="text"
-                       value={name}
-                       readOnly/>
+                     value={name}
+                     readOnly/>
             </div>
 
             <div className='guestbook-image'>
@@ -117,9 +129,13 @@ function BoardGuestbook() {
               <th>번호</th>
               <th>제목</th>
               <th>작성자</th>
+              {/* ******************** */}
               <th>내용</th>
               <th>이미지</th>
+              {/* ******************** */}
               <th>작성일자</th>
+              <th style={{color: "orange"}}>수정</th>
+              <th style={{color: "red"}}>삭제</th>
             </tr>
           </thead>
           <tbody>
@@ -128,13 +144,35 @@ function BoardGuestbook() {
               <td>{b.boardNo}</td>
               <td>{b.boardTitle}</td>
               <td>{b.boardMemberName}</td>
-              <td>{b.boardContents}</td>
+              {/* ******************** */}
+              <td className="board-container-boardcontents">
+                {b.boardContents}
+              </td>
               <td className="images">
                 {b.boardImageUrl.split(',').map(image => 
                   <img key={image} src={`http://localhost:9090/images/${image}`}/>
                 )}
               </td>
-              <td>{b.createdAt}</td>
+              {/* ******************** */}
+              <td  className="board-container-createdat">
+                {b.createdAt}
+              </td>
+              {name == b.boardMemberName &&
+              <>
+                <td className="board-container-modify">
+                  <button className="board-container-modify-button"
+                          onClick={handleModify}>
+                    수정
+                  </button>
+                </td>
+                <td className="board-container-delete">
+                  <button className="board-container-delete-button"
+                          onClick={handleDelete}>
+                    삭제
+                  </button>
+                </td>
+              </>
+              }
             </tr>
             ))}
           </tbody>

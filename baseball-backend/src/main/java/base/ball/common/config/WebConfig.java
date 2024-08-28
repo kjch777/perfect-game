@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry r) {
 		r.addResourceHandler("/images/**")
-		 .addResourceLocations("file:C:/Users/user1/Desktop/final-project-test/perfect-game/baseball-frontend/public/board-images/");
+		 .addResourceLocations("file:C:/Users/user1/Desktop/final-perfect-game/baseball-frontend/public/board-images/");
 	}
 	
 	@Override

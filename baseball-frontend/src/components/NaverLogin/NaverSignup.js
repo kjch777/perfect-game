@@ -82,10 +82,12 @@ function NaverSignup() {
             <label>이름</label>
             <input type="text" value={userInfo.response.name} disabled/>
           </div>
+{/*
           <div>
             <label>핸드폰 번호</label>
             <input type="text" value={userInfo.response.mobile} disabled/>
           </div>
+ */}
           <div>
             <label>프로필 이미지</label>
             <img src={userInfo.response.profile_image} disabled/>
@@ -94,7 +96,7 @@ function NaverSignup() {
       ) : (
         <p>유저를 찾을 수 없습니다.</p>
       )}
-
+{/*
       <div>
         <h2>회원가입에 필요한 아이디 및 비밀번호 작성하기</h2>
         <div>
@@ -107,6 +109,7 @@ function NaverSignup() {
         </div>
         <button onClick={회원가입기능}>회원가입하기</button>
       </div>
+*/}
     </>
   );
 }
