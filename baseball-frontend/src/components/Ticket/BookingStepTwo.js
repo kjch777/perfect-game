@@ -16,8 +16,7 @@ export const BookingStepTwo = () => {
         const formatter = new Intl.DateTimeFormat('ko-KR', options);
         const [month, day] = formatter.format(date).split('.');
         return `${month}월 ${day}일`
-      }
-
+    }
       
     const handlePrevStep = () => {
         const isConfirmed = window.confirm("선택하신 좌석이 취소됩니다. 이전 단계로 이동하시겠습니까?");
@@ -28,7 +27,7 @@ export const BookingStepTwo = () => {
         
     const seatFormat = (seats) => {
         return seats.map(seat => 
-            `${seat.id}번 좌석 (${seat.section})`
+            `${seat.id}번 좌석(${seat.section})`
         ).join(', ');
     };
     
@@ -53,7 +52,7 @@ export const BookingStepTwo = () => {
 
         navigate('/ticket/payment/checkout', {
             state: {
-                selectedSeats: `${dateFormat(date)} ${homeTeamName} VS ${awayTeamName} 경기 / ${loadSeatFormat} / 총 ${count}석`,
+                selectedSeats: `${dateFormat(date)} ${homeTeamName} VS ${awayTeamName}/${loadSeatFormat}/총 ${count}석`,
                 selectSeatCount: count,
                 memberNo: loginMember.memberNo,
                 gameCode,

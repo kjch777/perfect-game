@@ -9,9 +9,11 @@
 	</select>
 	
 	<select id="selectTicket" resultType="Ticket">
-		SELECT *
-		FROM ticket
-		WHERE member_no = #{memberNo}
+		SELECT t.booking_id, t.game_title, t.pay_date, t.seat_id_one, t.seat_section_one, t.seat_price_one, t.seat_id_two, t.seat_section_two, t.seat_price_two, t.seat_id_three, t.seat_section_three, t.seat_price_three, t.seat_id_four, t.seat_section_four, t.seat_price_four, t.member_no, t.game_code, g.game_date
+    	FROM ticket t
+    	JOIN game g 
+    	ON t.game_code = g.game_code
+    	WHERE t.member_no = #{memberNo}
 	</select>
 	
 	<insert id="insertTicket" parameterType="Ticket" useGeneratedKeys="true" keyProperty="bookingId">
@@ -20,7 +22,8 @@
 	</insert>
 	
 	<delete id="deleteTicket" parameterType="int">
-		delete from ticket where booking_id = #{bookingId}
+		DELETE FROM ticket 
+		WHERE booking_id = #{bookingId}
 	</delete>
 	
 	<!-- Seat -->

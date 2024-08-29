@@ -27,8 +27,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 	
 	@Override
-	public List<Ticket> selectTicket() {
-		return ticketMapper.selectTicket();
+	public List<Ticket> selectTicket(int memberNo) {
+		return ticketMapper.selectTicket(memberNo);
 	}
 	
 	@Override

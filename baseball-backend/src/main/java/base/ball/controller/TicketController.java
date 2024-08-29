@@ -36,8 +36,8 @@ public class TicketController {
 	}
 	
 	@GetMapping("/bookingInfoView")
-	public List<Ticket> selectTicket() {
-		return ticketService.selectTicket();
+	public List<Ticket> selectTicket(@RequestParam("memberNo") int memberNo) {
+		return ticketService.selectTicket(memberNo);
 	}
 	
 	@DeleteMapping("/deleteTicket")
