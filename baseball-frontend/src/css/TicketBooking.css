@@ -69,6 +69,8 @@ svg text {
   font-size: 25px;
 }
 
+
+
 /********** ▼ 예매 메인 페이지 **********/
 
 /***** ▼ 배너 *****/
@@ -179,13 +181,25 @@ svg text {
 }
 
 .ticketCard-button {
-  margin-left: 20px;
   width: 150px;
+}
+
+.pagination {
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.page-info {
+  font-weight: bold;
+  margin: 25px;
 }
 
 /***** ▲ 예매 정보 *****/
 
 /********** ▲ 예매 메인 페이지 **********/
+
+
+
 
 /* TicketBookingSub 새로고침 시 상하/좌우 스크롤 바 생성 문제 해결하기 */
 
@@ -234,7 +248,8 @@ svg text {
 
 .booking-info {
   width: 240px;
-  height: 390px;
+  height: 380px;
+  justify-content: flex-start;
 }
 
 .bookingInfo-seatInfo {
@@ -253,7 +268,16 @@ svg text {
   cursor: default;
 }
 
+input.noCursorChange::-webkit-inner-spin-button,
+input.noCursorChange::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+
+
 /********** **********/
+
+
 
 .payPage-container {
   border-right: 1px solid rgba(0, 0, 0, 0.333);

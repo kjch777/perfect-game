@@ -2,8 +2,6 @@ package base.ball.service;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
 import base.ball.dto.Ticket;
 
 public interface TicketService {
@@ -16,4 +14,11 @@ public interface TicketService {
 	
 	void deleteTicket(int bookingId);
 	
+	/** Seat **/
+	
+	boolean lockSeat(String seatId, String memberNo);
+    
+	boolean isSeatLocked(String seatId);
+    
+	void unlockSeat(String seatId);
 }

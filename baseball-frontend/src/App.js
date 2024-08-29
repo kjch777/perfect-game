@@ -78,31 +78,31 @@ function App() {
         {!hideHeaderFooter && <Header />}
         <div id="main-content">
           <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/members/signup" element={<Signupp/>}></Route>
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/mypage/edit" element={<MyPageEdit />} />
-          <Route path="/foodmain" element={<FoodMain />} />
-          <Route path="/foodmapLG" element={<FoodMapLG />} />
-          <Route path="/foodmapSSG" element={<FoodMapSSG />} />
-          <Route path="/foodmapKIWOOM" element={<FoodMapKIWOOM />} />
-          <Route path="/foodmapKIA" element={<FoodMapKIA />} />
-          <Route path="/fooddetail/:foodId" element={<FoodDetail />} />
-          <Route path="/foodComment" element={<FoodComment />} />
-          <Route path='/mypage/delete' element={<MyPageDelete />} />
-          <Route path='/goods' element={<GoodsMain goods={goods} />} />
-          <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />} />
-          <Route path='/goods/orders' element={<GoodsOrder />} />
-          <Route path='/order-check' element={<OrderCheck />} />
-          <Route path='/weather' element={<Weather />} />
-          <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
-          <Route path="/payment/success" element={<PaymentSuccessPage />} />
-          <Route path="/payment/fail" element={<PaymentFailPage />} />
-          <Route path='/' element={<MainApp/>}>메인페이지(달력,경기)</Route>
-          <Route path='/gameDetail' element={<GameDetail/>}>경기상세페이지</Route>
-          <Route path='/gameAddPage' element={<GameAddPage/>}>경기추가페이지</Route>
-          <Route path="/board/*" element={<BoardMain/>}></Route>
-          <Route path="/Chat" element={<Chat/>}></Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/members/signup" element={<Signupp/>}></Route>
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/mypage/edit" element={<MyPageEdit />} />
+            <Route path="/foodmain" element={<FoodMain />} />
+            <Route path="/foodmapLG" element={<FoodMapLG />} />
+            <Route path="/foodmapSSG" element={<FoodMapSSG />} />
+            <Route path="/foodmapKIWOOM" element={<FoodMapKIWOOM />} />
+            <Route path="/foodmapKIA" element={<FoodMapKIA />} />
+            <Route path="/fooddetail/:foodId" element={<FoodDetail />} />
+            <Route path="/foodComment" element={<FoodComment />} />
+            <Route path='/mypage/delete' element={<MyPageDelete />} />
+            <Route path='/goods' element={<GoodsMain goods={goods} />} />
+            <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />} />
+            <Route path='/goods/orders' element={<GoodsOrder />} />
+            <Route path='/order-check' element={<OrderCheck />} />
+            <Route path='/weather' element={<Weather />} />
+            <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
+            <Route path="/payment/success" element={<PaymentSuccessPage />} />
+            <Route path="/payment/fail" element={<PaymentFailPage />} />
+            <Route path='/' element={<MainApp/>}>메인페이지(달력,경기)</Route>
+            <Route path='/gameDetail' element={<GameDetail/>}>경기상세페이지</Route>
+            <Route path='/gameAddPage' element={<GameAddPage/>}>경기추가페이지</Route>
+            <Route path="/board/*" element={<BoardMain/>}></Route>
+            <Route path="/Chat" element={<Chat/>}></Route>
             <Route path="/ticket/bookingMain" element={<TicketBookingMain />} />
             <Route path="/ticket/bookingSub/:gameCode" element={<TicketBookingSub />} />
             <Route path="/ticket/bookingSub/:gameCode/bookingStepTwo" element={<BookingStepTwo />} />
