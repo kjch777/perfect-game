@@ -108,13 +108,13 @@ function App() {
           <Route path='/gameAddPage' element={<GameAddPage/>}>경기추가페이지</Route>
           <Route path="/board/*" element={<BoardMain/>}></Route>
           <Route path="/Chat" element={<Chat/>}></Route>
-            <Route path="/ticket/bookingMain" element={<TicketBookingMain />} />
-            <Route path="/ticket/bookingSub/:gameCode" element={<TicketBookingSub />} />
-            <Route path="/ticket/bookingSub/:gameCode/bookingStepTwo" element={<BookingStepTwo />} />
-            <Route path="/ticket/payment/checkout" element={<TicketPaymentCheckoutPage />} />
-            <Route path="/ticket/payment/success" element={<TicketPaymentSuccessPage />} />
-            <Route path="/ticket/payment/fail" element={<TicketPaymentFailPage />} />
-            <Route path="/ticket/bookingInfoView" element={<BookingInfoView />} />
+          <Route path="/ticket/bookingMain" element={<TicketBookingMain />} />
+          <Route path="/ticket/bookingSub/:gameCode" element={<TicketBookingSub />} />
+          <Route path="/ticket/bookingSub/:gameCode/bookingStepTwo" element={<BookingStepTwo />} />
+          <Route path="/ticket/payment/checkout" element={<TicketPaymentCheckoutPage />} />
+          <Route path="/ticket/payment/success" element={<TicketPaymentSuccessPage />} />
+          <Route path="/ticket/payment/fail" element={<TicketPaymentFailPage />} />
+          <Route path="/ticket/bookingInfoView" element={<BookingInfoView />} />
           </Routes>
         </div>
         {!hideHeaderFooter && <Footer />}
