@@ -114,6 +114,7 @@ function BoardGuestbook() {
               <th>번호</th>
               <th>제목</th>
               <th>작성자</th>
+              <th>아이디</th>
               <th>작성일자</th>
               <th>자세히보기</th>
               <th style={{color: "orange"}}>수정</th>
@@ -126,6 +127,7 @@ function BoardGuestbook() {
                 <td>{b.boardNo}</td>
                 <td>{b.boardTitle}</td>
                 <td>{b.boardMemberName}</td>
+                <td>{b.boardMemberId}</td>
                 <td className="board-container-createdat">
                   {b.createdAt}
                 </td>
@@ -135,7 +137,7 @@ function BoardGuestbook() {
                 </button>
                   </td>
                 
-                {name === b.boardMemberName &&
+                {writerId === b.boardMemberId &&
                 <>
                   <td className="board-container-modify">
                     <button className="board-container-modify-button"

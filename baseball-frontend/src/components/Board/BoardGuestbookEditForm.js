@@ -28,8 +28,8 @@ function BoardGuestbookEditForm({ boardToEdit, closeModal, setBoard }) {
       // 게시글 목록 업데이트
       const response = await axios.get('http://localhost:9090/board/lists');
       setBoard(response.data);
-
-      closeModal(); // 모달 닫기
+      closeModal();
+      window.location.reload();
     } catch (error) {
       console.error("게시글 수정 중 오류 발생:", error);
     }
