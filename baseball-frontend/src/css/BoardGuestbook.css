@@ -1,9 +1,11 @@
 /*.App {
   text-align: center;
 }*/
-
-
 /*************/
+.board-main-header h1 {
+  font-weight: 700;
+}
+
 .guestbook-container {
   width: 80%;
   margin: 0 auto;

@@ -119,7 +119,15 @@ function BoardGuestbook() {
   /***** ***** ***** ***** ***** *****/
 
   return (
-    <>
+    <div className='board-guestbook-main-container'>
+      <div className='board-main-header'>
+            {/*<h1 className='board-main-h0'>게시판</h1>
+            <h1 className='board-main-h1'>공지사항</h1>
+            <h1 className='board-main-h2'>구단별 소개</h1>
+            <h1 className='board-main-h4'>규정, 자료실</h1>*/}
+            <h1 className='board-main-h3'>방명록</h1>
+            <hr className='board-main-hr'/>
+      </div>
       <button className='form-button' onClick={handleAddPost}>
         방명록 작성하기
       </button>
@@ -196,7 +204,7 @@ function BoardGuestbook() {
           <button onClick={cancelEdit}>수정 취소</button>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

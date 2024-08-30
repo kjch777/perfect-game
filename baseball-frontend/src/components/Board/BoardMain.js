@@ -4,7 +4,6 @@ import '../../css/BoardMain.css';
 import Sidebar from './Sidebar';
 import BoardTeamIntroduce from './BoardTeamIntroduce';
 import BoardGuestbook from './BoardGuestbook';
-import BoardHeader from './BoardHeader';
 
 function BoardMain() {
 
@@ -12,7 +11,6 @@ function BoardMain() {
     <div className='board-main-container'>
       <Sidebar/>
       <div className='board-main-link-container'>
-        <BoardHeader/>
         <Routes>
           <Route path="team" element={<BoardTeamIntroduce/>}></Route>
           <Route path="guestbook" element={<BoardGuestbook/>}></Route>

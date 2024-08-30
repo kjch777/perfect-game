@@ -11,9 +11,10 @@
     width: 100%;
     border: 0;
     height: 5px;
-    background-color: #000;
+    background-color: black;
     margin-top: 15px;
     margin-bottom: 15px;
+    opacity: 1;
 }
 
 .sidebar-board-link {
