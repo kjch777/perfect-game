@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.2'
+	id 'org.springframework.boot' version '3.3.3'
 	id 'io.spring.dependency-management' version '1.1.6'
 }
 group = 'base.ball'
@@ -44,4 +44,45 @@ dependencies {
 }
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+
+def reactAppDir = "$projectDir/src/main/baseball-frontend"
+sourceSets {
+	main {
+		resources {
+			srcDirs = ["$projectDir/src/main/resources"]
+		}
+	}
+}
+processResources {
+	dependsOn "copyReactFile"
+}
+task installReact(type: Exec) {
+	workingDir "$reactAppDir"
+	inputs.dir "$reactAppDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "audit", "fix"
+		commandLine 'npm.cmd', 'install'
+	} else {
+		commandLine "npm", "audit", "fix"
+		commandLine 'npm', 'install'
+	}
+}
+task buildReact(type: Exec) {
+	dependsOn "installReact"
+	workingDir "$reactAppDir"
+	inputs.dir "$reactAppDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "run-script", "build"
+	} else {
+		commandLine "npm", "run-script", "build"
+	}
+}
+task copyReactFile(type: Copy) {
+	dependsOn "buildReact"
+	from "$reactAppDir/build"
+	into "$buildDir/resources/main/static"
 }
