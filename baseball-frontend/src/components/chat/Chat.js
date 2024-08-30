@@ -16,10 +16,11 @@ const Chat = () => {
     const [connected, setConnected] = useState(false);
     const [fontSize, setFontSize] = useState('16px');
     const chatContainerRef = useRef(null);
-    const { loginMember } = useContext(LoginContext);       
+    const { loginMember, setLoginMember } = useContext(LoginContext);       
     const [deleteMessage, setDeleteMessage] = useState(null);
     const [emojiPick, setEmojiPick] = useState(false);
-   
+    
+    
     // STOMP 클라이언트 연결 설정
     useEffect(() => {
         const socket = new SockJS('http://localhost:9090/ws');
@@ -78,6 +79,11 @@ const Chat = () => {
 
     // 메시지 전송 함수
     const sendMessage = () => {
+        if (!loginMember || !loginMember.memberId) {
+            alert('로그인 후 이용하세요.');
+            return;
+        }
+
         if (stompClient && connected && message) {
             const memberProfile = loginMember.memberId;
             const sender = loginMember.memberId;
@@ -104,6 +110,18 @@ const Chat = () => {
             return;
         }
     };
+    // 컴포넌트가 처음 렌더링될 때 로컬 스토리지에서 데이터 불러오기
+  useEffect(() => {
+    const savedMessages = localStorage.getItem('chatMessages');
+    if (savedMessages) {
+      setMessages(JSON.parse(savedMessages));
+    }
+  }, []);
+
+  // 메시지가 업데이트될 때마다 로컬 스토리지에 저장
+  useEffect(() => {
+    localStorage.setItem('chatMessages', JSON.stringify(messages));
+  }, [messages]);
 
     // Enter 키로 메시지 전송
     const pressEnter = (e) => {
@@ -181,6 +199,21 @@ const Chat = () => {
         setFontSize(e.target.value);
     };
 
+    const handleLogout = () => {
+        // STOMP 연결 해제
+        if (stompClient) {
+            stompClient.deactivate();
+            setStompClient(null);
+            setConnected(false);
+        }
+    
+        // 로그인 멤버 상태 초기화
+        setLoginMember(null);
+        
+        // 메시지 상태 초기화
+        setMessages([]);
+    };
+
     return (
         <>
         <div className="chat-icon">
@@ -191,6 +224,7 @@ const Chat = () => {
             <div className="chat-container" ref={chatContainerRef} style={{ fontSize }}>
                 {emojiPick && <Emoji onSelect={emojiMessage} />}
                     {messages.map((msg, chatNo) => (
+                       loginMember && loginMember.memberId ? ( 
                         <div key={chatNo}>
                             <strong>{msg.sender}</strong>: {msg.content}
                             <span className="chat-time">{msg.nowtime}</span>
@@ -202,8 +236,11 @@ const Chat = () => {
                                 &#10060;
                             </button>}
                         </div>
-                    ))}
+                  
+                    ) : null
+                ))}
             </div>
+          
             <div className="chat-input-section">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -228,7 +265,7 @@ const Chat = () => {
                     onKeyDown={pressEnter}
                 />
 
-                <button className="button-chat" onClick={sendMessage} disabled={!loginMember || !connected}>
+                <button className="button-chat" onClick={sendMessage} disabled={!loginMember || !connected ||!message}>
                     채팅
                 </button>
                 
