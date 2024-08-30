@@ -10,4 +10,6 @@ import base.ball.dto.Board;
 public interface BoardMapper {
 	List<Board> findAllBoard();
 	void insertBoard(Board board);
+	void deleteBoard(int boardNo);
+	void updateBoard(Board board);
 }
