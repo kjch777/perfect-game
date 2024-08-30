@@ -167,6 +167,11 @@
     margin-top: 10px;
 }
 
+.gameWinnerArea:hover{
+    background-color: blueviolet;
+    cursor: pointer;
+}
+
 /************ side hss chat ****************/
 .calendarSideDiv{
     margin-right: 20px;

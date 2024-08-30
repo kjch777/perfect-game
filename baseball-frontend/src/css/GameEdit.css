@@ -1,0 +1,37 @@
+.game-edit-container{
+    margin-top: 50px;
+}
+
+.gameInfo{
+    text-align: center;
+}
+
+.gameInfo h1{
+    color: rebeccapurple;
+    font-weight: bold;
+}
+
+.gameInfo label{
+    border: 2px solid #ccc;
+    width: 400px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.gameInfo button{
+    color: white;
+    background-color: rgb(185, 157, 212);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    box-shadow: 2px 4px 5px #ccc;
+}
+
+.gameInfo button:hover{
+    background-color: rgb(152, 121, 182);
+}
+
+.gameInfo input{
+    border: none;
+}

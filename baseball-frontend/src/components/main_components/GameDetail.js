@@ -28,7 +28,7 @@ const GameDetail = () => {
     const homeLineUp = async() => {
 
         //console.log('-------1 homeLineUp start-------');
-        const res = await axios.get(`/game/home/${loStCode}`)//state->loStCode
+        const res = await axios.get(`/game/home/${loStCode}`);//state->loStCode
         setHomePlayers(res.data);
         //console.log('homePlayers:');
         //console.log(homePlayers);

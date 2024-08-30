@@ -21,6 +21,15 @@ const CalendarMonth = ( {cmy, cmm, cmd}) => {
   let yearVar = cmy;
   let monthVar = cmm;
   let dayVar = cmd;
+
+  const winnerClick = (code) => {
+    navigate("/gameEdit", {
+      state : {
+        code
+      }
+    });
+
+  }
   
   const dayClick = async(d) => {
 
@@ -253,7 +262,7 @@ const CalendarMonth = ( {cmy, cmm, cmd}) => {
             {games.map((game)=>(
               <tr key={game.gameCode}>
               <td className='gameCodeArea' onClick={()=>gameClick(game.gameCode)}>{game.gameCode}</td>
-              <td>{game.gameWinnerTeamName}</td>
+              <td className='gameWinnerArea' onClick={()=>winnerClick(game.gameCode)}>{game.gameWinnerTeamName}</td>
               {/*<td>{game.gameDate}</td>*/}
               <td>{game.gameTeamNameHome}</td>
               <td>{game.gameTeamNameAway}</td>
