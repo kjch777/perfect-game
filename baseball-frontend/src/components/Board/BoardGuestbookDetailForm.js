@@ -63,8 +63,8 @@ function BoardGuestbookDetailForm({ boardNo }) {
     };
 
     const closeModal = () => {
-        setIsModalOpen(false); // 모달 닫기
-        setBoardToEdit(null); // 모달 닫을 때 수정 상태 초기화
+        setIsModalOpen(false);
+        setBoardToEdit(null);
     }
 
     if (!selectedBoard) {

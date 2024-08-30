@@ -4,8 +4,6 @@ import '../../css/BoardGuestbook.css';
 import LoginContext from '../../components/Login/LoginContext';
 import BoardGuestbookForm from './BoardGuestbookForm';
 import BoardGuestbookDetailForm from './BoardGuestbookDetailForm';
-import BoardGuestbookEditForm from './BoardGuestbookEditForm';
-import BoardModal from './BoardModal';
 
 function BoardGuestbook() {
   const { loginMember } = useContext(LoginContext);
@@ -21,8 +19,7 @@ function BoardGuestbook() {
 
   const [board, setBoard] = useState([]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [boardToEdit, setBoardToEdit] = useState(null); // 수정할 게시글의 상태 추가
+  const [boardToEdit, setBoardToEdit] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [showDetailForm, setDetailShowForm] = useState(false);
   const [selectedBoardNo, setSelectedBoardNo] = useState(null);
@@ -58,21 +55,11 @@ function BoardGuestbook() {
   }, [loginMember]);
 
   /***** 0828 게시글 수정 *****/
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setBoardToEdit(null); // 모달 닫을 때 수정 상태 초기화
-  };
-
   /* 수정버튼 */
   const handleModify = (board) => {
     setBoardToEdit(board); // 수정할 게시글 상태 설정
     setTitle(board.boardTitle);
     setContent(board.boardContents);
-    openModal(); // 모달 열기
   }
 
   /***** 0828 게시글 삭제 *****/
@@ -117,7 +104,6 @@ function BoardGuestbook() {
               <th>아이디</th>
               <th>작성일자</th>
               <th>자세히보기</th>
-              <th style={{color: "orange"}}>수정</th>
               <th style={{color: "red"}}>삭제</th>
             </tr>
           </thead>
@@ -139,12 +125,6 @@ function BoardGuestbook() {
                 
                 {writerId === b.boardMemberId &&
                 <>
-                  <td className="board-container-modify">
-                    <button className="board-container-modify-button"
-                            onClick={() => handleModify(b)}>
-                      수정
-                    </button>
-                  </td>
                   <td className="board-container-delete">
                     <button className="board-container-delete-button"
                             onClick={() => handleDelete(b.boardNo)}>
@@ -157,18 +137,6 @@ function BoardGuestbook() {
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div className='modal-container'>
-        <BoardModal isOpen={isModalOpen} onClose={closeModal}>
-          {boardToEdit && (
-            <BoardGuestbookEditForm
-              boardToEdit={boardToEdit}
-              closeModal={closeModal}
-              setBoard={setBoard}
-            />
-          )}
-        </BoardModal>
       </div>
     </div>
   );
