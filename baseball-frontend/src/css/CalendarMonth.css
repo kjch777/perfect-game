@@ -1,10 +1,12 @@
 .calendarTable{
     margin: 0 auto;
-    background-color: rgb(255, 252, 246);
+    background-color: rgb(255, 255, 255);
     color: rebeccapurple;
     font-weight: bold;
     box-shadow: 0 0 10px gray;
     border-radius: 5px;
+    background: url('../components/main_components/baseball-7985433_1280.jpg'), linear-gradient(to right, rgba(0, 0, 0, 0.911), rgba(248, 4, 4, 0.699));
+    background-size: cover;
     
 }
 
@@ -14,7 +16,9 @@
 }
 
 .ctd_tableDiv{
-    margin-top: 20px;
+    margin: 0;
+    padding: 0px;
+    width: 100%;
 }
 
 .calendarTable{
@@ -22,6 +26,10 @@
     margin: 0 30px;
 
     border-collapse: collapse;/**/
+    width: 80%;
+    height: 500px;
+
+    margin-bottom: 10px;
     
 }
 
@@ -32,7 +40,7 @@
 
 .calendarTable th{
     padding: 15px;
-    color: rgb(38, 112, 106);
+    color: rgb(7, 75, 21);
 
 }
 
@@ -67,8 +75,9 @@
 }
 
 .calendarGameDiv h2{
-    color: rgb(91, 50, 205);
+    color: rgb(169, 153, 212);
     font-weight: bold;
+    text-align: right;
     
 }
 
@@ -77,10 +86,10 @@
     box-shadow: 0 0 5px gray;
     margin: 0 auto;
     margin-bottom: 10px;
-    padding: 20px;
+    /*padding: 20px;*/
     color: gray;
 
-    width: 900px;
+    width: 600px;
     table-layout: fixed;
     text-align: center;
 }
@@ -90,12 +99,12 @@
 }
 
 .gameTable th, .gameTable td{
-    padding: 15px;
-    width: 95px;
+    padding: 10px 15px;
+    /*width: 95px;*/
     border-bottom: 1px solid #ccc;/*내부 크기 보기위한 임시 선*/
     
 }
-
+/*
 .gameTable th:nth-child(1){
     width: 130px;
     
@@ -103,15 +112,15 @@
 .gameTable th:nth-child(3){
     width: 150px;
     
-}
+}*/
 
 .gameTable button{
     border: none;
-    padding: 10px;
+    padding: 5px;
     color: aliceblue;
     background-color: rgb(0, 81, 255);
     border-radius: 7px;
-    font-size: small;
+    font-size: 9px;
 }
 
 .gameTable button:hover{
@@ -156,12 +165,7 @@
     margin-top: 10px;
 }
 
-
-
-
-
 /************ side hss chat ****************/
 .calendarSideDiv{
-    margin-top: 20px;
     margin-right: 20px;
 }

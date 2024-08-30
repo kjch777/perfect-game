@@ -51,8 +51,5 @@ public class GoodsController {
 	        return new ResponseEntity<>("주소 업데이트 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
-
-	
-	
-	
+		
 }

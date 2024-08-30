@@ -22,4 +22,24 @@
 	<delete id="deleteTicket" parameterType="int">
 		delete from ticket where booking_id = #{bookingId}
 	</delete>
+	
+	<!-- Seat -->
+	
+	<select id="findById" parameterType="String" resultType="Ticket">
+		SELECT * 
+		FROM seats WHERE seat_id = #{seatId}
+	</select>
+	
+	<update id="updateSeat" parameterType="Ticket">
+		UPDATE seats
+		SET lock_status = #{lockStatus},
+			lock_time = #{lockTime},
+			reserved_by = #{reservedBy}
+		WHERE seat_id = #{seatId}
+	</update>
+	
+	<insert id="insertSeat" parameterType="Ticket">
+		INSERT INTO seats (seat_id, section, lock_status, lock_time, reserved_by)
+		VALUES (#{seatId}, #{section}, #{lockStatus}, #{lockTime}, #{reservedBy})
+	</insert>
 </mapper>

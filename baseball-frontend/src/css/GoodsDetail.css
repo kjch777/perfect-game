@@ -33,7 +33,9 @@
   padding: 20px;
   background-color: #fff;
 }
-
+.show-detail-h4 {
+  text-align: center;
+}
 /* 상품 정보 스타일 */
 .goods-detail-info {
   display: flex;

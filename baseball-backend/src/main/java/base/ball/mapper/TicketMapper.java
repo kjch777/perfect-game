@@ -18,4 +18,11 @@ public interface TicketMapper {
 	
 	void deleteTicket(int bookingId);
 	
+	/** Seat **/
+	
+	Ticket findById(@Param("seatId") String seatId);
+    
+	void updateSeat(Ticket ticket);
+    
+	void insertSeat(Ticket ticket);
 }

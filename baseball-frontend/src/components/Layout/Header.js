@@ -52,7 +52,7 @@ const Header = () => {
                         </ul>
                     </li>
                     <li>
-                        <Link to="#">예매</Link>
+                        <Link to="/ticket/bookingMain">예매</Link>
                     </li>
                     <li>
                         <Link to="/goods">굿즈샵</Link>
