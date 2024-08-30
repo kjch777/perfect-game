@@ -60,20 +60,50 @@ function BoardGuestbook() {
   /***** 0828 게시글 수정 *****/
   const openModal = () => {
     setIsModalOpen(true);
-  };
-  
+  }
   const closeModal = () => {
     setIsModalOpen(false);
-    setBoardToEdit(null); // 모달 닫을 때 수정 상태 초기화
-  };
+  }
 
   /* 수정버튼 */
   const handleModify = (board) => {
     setBoardToEdit(board); // 수정할 게시글 상태 설정
     setTitle(board.boardTitle);
     setContent(board.boardContents);
-    openModal(); // 모달 열기
   }
+
+  /* 수정완료버튼 */
+  const handleUpdate = async () => {
+    try {
+      if (!boardToEdit || !boardToEdit.boardNo) {
+        throw new Error('수정할 게시글 정보를 찾을 수 없습니다.');
+      }
+
+      const updatedBoard = {
+        ...boardToEdit,
+        boardTitle: title, // 제목 업데이트
+        boardContents: content // 내용 업데이트
+      };
+
+      await axios.put(`/board/lists/${updatedBoard.boardNo}`, updatedBoard, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      alert('게시글이 수정되었습니다.');
+      getBoard();
+      setBoardToEdit(null);
+    } catch (error) {
+      console.error("게시글 수정 중 오류 발생:", error);
+    }
+  };
+
+  /* 수정취소버튼 */
+  const cancelEdit = () => {
+    setBoardToEdit(null); // 수정 취소할 때 상태 초기화
+  }
+  /***** ***** ***** ***** ***** *****/
 
   /***** 0828 게시글 삭제 *****/
   const handleDelete = async (boardNo) => {
@@ -159,15 +189,31 @@ function BoardGuestbook() {
 
       <div className='modal-container'>
         <BoardModal isOpen={isModalOpen} onClose={closeModal}>
-          {boardToEdit && (
-            <BoardGuestbookEditForm
-              boardToEdit={boardToEdit}
-              closeModal={closeModal}
-              setBoard={setBoard}
-            />
-          )}
+          <BoardGuestbookEditForm />
         </BoardModal>
       </div>
+
+
+
+      {/* 수정 폼 표시: 현재 수정 중인 게시글만 표시 */}
+      {boardToEdit && (
+        <div className='edit-form'>
+          <h3>게시글 수정</h3>
+          <div>
+            <label>제목</label>
+            <input type='text'
+                   value={title}
+                   onChange={(e) => setTitle(e.target.value)} />
+          </div>
+          <div>
+            <label>내용</label>
+            <textarea value={content}
+                      onChange={(e) => setContent(e.target.value)} />
+          </div>
+          <button onClick={handleUpdate}>수정 완료</button>
+          <button onClick={cancelEdit}>수정 취소</button>
+        </div>
+      )}
     </div>
   );
 }
