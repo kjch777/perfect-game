@@ -70,6 +70,7 @@ function BoardGuestbook() {
       }
   
       await axios.delete(`/board/lists?boardNo=${encodeURIComponent(boardNo)}`);
+      alert('게시글이 삭제되었습니다.');
       setBoard(board.filter(b => b.boardNo !== boardNo));
     } catch (error) {
       console.error("게시글 삭제 중 오류 발생:", error);
