@@ -29,6 +29,7 @@ import MyPageDelete from './components/MyPage/myPageDelete';
 import MainApp from './components/main_components/MainApp';
 import GameDetail from './components/main_components/GameDetail';
 import GameAddPage from './components/main_components/GameAddPage';
+import GameEdit from './components/main_components/GameEdit';
 import BoardMain from './components/Board/BoardMain';
 import Chat from './components/chat/Chat';
 import NaverApi from './components/NaverLogin/NaverApi.js';
@@ -106,6 +107,7 @@ function App() {
           <Route path='/' element={<MainApp/>}>메인페이지(달력,경기)</Route>
           <Route path='/gameDetail' element={<GameDetail/>}>경기상세페이지</Route>
           <Route path='/gameAddPage' element={<GameAddPage/>}>경기추가페이지</Route>
+          <Route path='/gameEdit' element={<GameEdit/>}>경기수정페이지</Route>
           <Route path="/board/*" element={<BoardMain/>}></Route>
           <Route path="/Chat" element={<Chat/>}></Route>
           <Route path="/ticket/bookingMain" element={<TicketBookingMain />} />
