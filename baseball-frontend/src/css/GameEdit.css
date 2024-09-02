@@ -4,6 +4,7 @@
 
 .gameInfo{
     text-align: center;
+    font-weight: bold;
 }
 
 .gameInfo h1{
@@ -13,9 +14,10 @@
 
 .gameInfo label{
     border: 2px solid #ccc;
-    width: 400px;
+    width: 300px;
     margin-bottom: 5px;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .gameInfo button{
@@ -34,4 +36,16 @@
 
 .gameInfo input{
     border: none;
+}
+
+.nonfixInput:focus{
+    outline-style: none;
+    border: 2px solid #4dcdd1;
+    border-radius: 5px;
+}
+
+.fixedInput:focus{
+    outline-style: none;
+    cursor:not-allowed;
+    color: red;
 }

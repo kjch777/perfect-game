@@ -80,22 +80,22 @@ const GameEdit = () => {
         {
             isEditing ? (
                 <div className="gameInfo">
-                    <input type="text" name="gameCode" value={editData.gameCode}
-                    /><br/>
+                    <label>코드 : <input className="fixedInput" type="text" name="gameCode" value={editData.gameCode}
+                    /></label><br/>
 
-                    <label>승리팀:<input type="text" name="gameWinnerTeamName" value={editData.gameWinnerTeamName}
+                    <label>승리팀 : <input className="nonfixInput" type="text" name="gameWinnerTeamName" value={editData.gameWinnerTeamName}
                     onChange={(e) => setEditData({...editData, gameWinnerTeamName:e.target.value})}/>
                     </label><br/>
 {/*
                     <input type="text" name="gameDate" value={editData.gameDate}
                     onChange={(e) => setEditData({...editData, gameDate:e.target.value})}/><br/>
 */}
-                    <label>Home :<input type="text" name="gameTeamNameHome" value={editData.gameTeamNameHome}
-                    onChange={(e) => setEditData({...editData, gameTeamNameHome:e.target.value})}/>
+                    <label>Home : <input className="fixedInput" type="text" name="gameTeamNameHome" value={editData.gameTeamNameHome}
+                    />
                     </label><br/>
 
-                    <label>Away :<input type="text" name="gameTeamNameAway" value={editData.gameTeamNameAway}
-                    onChange={(e) => setEditData({...editData, gameTeamNameAway:e.target.value})}/>
+                    <label>Away : <input className="fixedInput" type="text" name="gameTeamNameAway" value={editData.gameTeamNameAway}
+                    />
                     </label><br/>
 {/*
                     <input type="text" name="gamePlayerListHome" value={editData.gamePlayerListHome}
@@ -113,14 +113,14 @@ const GameEdit = () => {
                 </div>
             ):(
                 <div className="gameInfo">
-                    <label>경기코드 : {game.gameCode} </label><br/>
-                    <label>승리팀 : {game.gameWinnerTeamName}</label><br/>
-                    <label>경기날짜 : {game.gameDate}</label><br/>
-                    <label>Home : {game.gameTeamNameHome}</label><br/>
-                    <label>Away : {game.gameTeamNameAway}</label><br/>
-                    <label>홈라인업 : {game.gamePlayerListHome}</label><br/>
-                    <label>원정라인업 : {game.gamePlayerListAway}</label><br/>
-                    <label>구장번호 : {game.gamePlaygroundId}</label><br/>
+                    코드 : <label>{game.gameCode} </label><br/>
+                    승리 : <label>{game.gameWinnerTeamName}</label><br/>
+                    날짜 : <label>{game.gameDate}</label><br/>
+                    Home : <label>{game.gameTeamNameHome}</label><br/>
+                    Away : <label>{game.gameTeamNameAway}</label><br/>
+                    라인업(H) : <label>{game.gamePlayerListHome}</label><br/>
+                    라인업(A) : <label>{game.gamePlayerListAway}</label><br/>
+                    구장번호 : <label>{game.gamePlaygroundId}</label><br/>
                     <button onClick={handleEditGame}>수정하기</button>
                 </div>
             )
