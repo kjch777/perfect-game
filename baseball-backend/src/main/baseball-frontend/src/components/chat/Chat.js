@@ -9,7 +9,6 @@ import axios from 'axios';
 import '../../css/Emoji.css';
 
 
-
 const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
@@ -20,7 +19,6 @@ const Chat = () => {
     const { loginMember, setLoginMember } = useContext(LoginContext);       
     const [deleteMessage, setDeleteMessage] = useState(null);
     const [emojiPick, setEmojiPick] = useState(false);
-    
     
     
     // STOMP 클라이언트 연결 설정
@@ -35,12 +33,10 @@ const Chat = () => {
             onConnect: function (frame) {
                 console.log('STOMP Connected:', frame);
                 setConnected(true);
-                // 메시지 수신
                 client.subscribe('/topic/messages', (response) => {
                     const newMessage = JSON.parse(response.body);
                     setMessages((prevMessages) => [...prevMessages, newMessage]);
                 });
-                // 메시지 삭제 수신
                 client.subscribe('/topic/deleteMessage', (response) => {
                     const deleteMessage = JSON.parse(response.body);
                     console.log('Received deleteMessage:', deleteMessage); // 추가된 로그
@@ -48,8 +44,6 @@ const Chat = () => {
                         setDeleteMessage(deleteMessage);
                     }
                 });
-                
-
             },
             onStompError: function (frame) {
                 console.error('STOMP Error:', frame);
@@ -218,8 +212,8 @@ const Chat = () => {
         
         // 메시지 상태 초기화
         setMessages([]);
-    };     
-    
+    };
+
     return (
         <>
         <div className="chat-icon">
@@ -286,7 +280,6 @@ const Chat = () => {
                 </select>
             </div>
             {!connected && <p>서버 연결중...</p>}
-            
         </>
     );
 };

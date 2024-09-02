@@ -1,0 +1,116 @@
+.mypage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.mypage-icon {
+    margin-bottom: -30px;
+}
+
+.mypage-icon img {
+    width: 150px;
+    height: auto;
+}
+
+.mypage-card {
+    background-color: #F3F3F3;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.mypage-label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+}
+.select-box{
+    width: 100%;
+    max-width: 800px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group .mypageInput {
+    width: 100%;
+    max-width: 800px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group .mypageInput:focus,
+.select-box:focus {
+    border-color: #8A1A4D;
+    outline: none;
+}
+
+.select-box {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4zM0 3l2 2 2-2z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 10px;
+    padding-right: 40px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mypage-edit-btn {
+    background-color: #8A1A4D;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 30%;
+    max-width: 450px;
+    margin-top: 20px;
+
+    transition: background-color 0.3s ease;
+}
+
+.mypage-edit-btn:hover {
+    background-color: #70153e;
+}
