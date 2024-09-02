@@ -15,24 +15,40 @@
   padding: 0;
   margin: 0;
 }
-
 .guestbook-form-container li {
   margin-bottom: 20px;
 }
 
-.guestbook-title,
-.guestbook-content,
-.guestbook-writer,
-.guestbook-image {
+.guestbook-form-item {
   margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.guestbook-form-item label {
+  width: 180px;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+.guestbook-form-item input, 
+.guestbook-form-item textarea {
+  width: calc((100% - 15px * 2));;
 }
 
-.guestbook-title label,
-.guestbook-content label,
-.guestbook-writer label,
-.guestbook-image label {
-  font-weight: bold;
-  color: #555;
+.guestbook-select-private {
+  display: flex;
+}
+.guestbook-select-private label {
+  width: 146px;
+}
+.guestbook-select-private-checkbox {
+  margin: 0;
+  margin-left: 33px;
+}
+
+.guestbook-password {
+  display: flex;
 }
 
 .guestbook-cancel-submit-button {
@@ -59,7 +75,7 @@
   cursor: pointer;
   font-size: 16px;
 }
-.guestbook-submit-buttonbutton:hover {
+.guestbook-submit-button:hover {
   background-color: #070063;
   color: white;
 }
