@@ -95,7 +95,9 @@ function BoardGuestbookForm() {
                     <div className='guestbook-form-item'>
                         <label>제목</label>
                         <div>
-                            <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} />
+                            <input type='text'
+                                   value={title}
+                                   onChange={(e) => setTitle(e.target.value)} />
                         </div>
                     </div>
 
@@ -121,17 +123,14 @@ function BoardGuestbookForm() {
                     </div>
 
                     <div className='guestbook-form-item'>
-                        <div className='guestbook-image'>
-                            <label>이미지선택</label>
-                            <br />
-                            <div>
-                                <input multiple
-                                       type="file"
-                                       className='img-input'
-                                       id="a"
-                                       accept="image/*"
-                                       onChange={handleFileChange} />
-                            </div>
+                        <label>이미지선택</label>
+                        <div>
+                            <input multiple
+                                    type="file"
+                                    className='img-input'
+                                    id="a"
+                                    accept="image/*"
+                                    onChange={handleFileChange} />
                         </div>
                     </div>
 
@@ -148,7 +147,6 @@ function BoardGuestbookForm() {
                         </div>
                     </div>
 
-                    {/*<div className='guestbook-form-item'></div>*/}
                     <div className='guestbook-form-item'>
                         <div className='guestbook-select-private'>
                             <label>비밀 글 설정</label>

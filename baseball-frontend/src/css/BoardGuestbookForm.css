@@ -1,13 +1,15 @@
 .guestbook-form-container {
   width: 80%;
+  /*min-width: 800px;*/
   margin: auto;
   margin-top: 20px;
   position: relative;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .guestbook-form-container ul {
@@ -24,6 +26,11 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+.guestbook-form-item:last-child {
+  margin-bottom: 60px;
 }
 .guestbook-form-item label {
   width: 180px;
@@ -31,24 +38,25 @@
   font-size: 20px;
   color: black;
 }
-.guestbook-form-item input, 
-.guestbook-form-item textarea {
-  width: calc((100% - 15px * 2));;
+.guestbook-form-item div {
+  width: 100%
+}
+.guestbook-form-item div input,
+.guestbook-form-item div textarea {
+  width: 100%;
+}
+.guestbook-form-item div textarea {
+  height: 130px;
+}
+
+
+.guestbook-form-item .guestbook-image .img-input {
+  width: 100%;
 }
 
 .guestbook-select-private {
   display: flex;
-}
-.guestbook-select-private label {
-  width: 146px;
-}
-.guestbook-select-private-checkbox {
-  margin: 0;
-  margin-left: 33px;
-}
-
-.guestbook-password {
-  display: flex;
+  align-items: center;
 }
 
 .guestbook-cancel-submit-button {
@@ -67,6 +75,9 @@
 }
 
 .guestbook-submit-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
   background-color: #002063;
   color: white;
   border: none;

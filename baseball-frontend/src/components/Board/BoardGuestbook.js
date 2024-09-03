@@ -9,33 +9,56 @@ function BoardGuestbook() {
   const { loginMember } = useContext(LoginContext);
   const boardListAPI = "http://localhost:9090/board/lists";
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
   const [writerId, setWriterId] = useState('');
   const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [selectPrivate, setSelectPrivate] = useState('N');
-  const [files, setFiles] = useState([]);
 
   const [board, setBoard] = useState([]);
-
-  const [boardToEdit, setBoardToEdit] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [showDetailForm, setDetailShowForm] = useState(false);
   const [selectedBoardNo, setSelectedBoardNo] = useState(null);
+  const [selectedSelectPrivate, setSelectedSelectPrivate] = useState(null);
+  const [selectedPassword, setSelectedPassword] = useState(null);
+
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordPrompt, setPasswordPrompt] = useState(false);
 
   /* 방명록 작성하기 버튼 클릭 시 폼 토글 */
   const handleAddPost = () => {
     setShowForm(true);
+    setDetailShowForm(false);
   }
 
-  /* 자세히보기 버튼 클릭 시 게시글 세부정보 표시 */
-  const handleShowDetailForm = (boardNo) => {
-    setSelectedBoardNo(boardNo);
-    setDetailShowForm(true);
+  /* 자세히보기 버튼 클릭 시 게시글 비밀번호 검증 */
+  const handleShowDetailForm = (boardNo, boardPrivate, boardPassword) => {
+    setDetailShowForm(false);
+    if (boardPrivate === 'Y') {
+      alert('비밀 글 입니다. 비밀번호를 입력하세요.')
+      setSelectedBoardNo(boardNo);
+      setSelectedSelectPrivate(boardPrivate);
+      setSelectedPassword(boardPassword);
+      setPasswordPrompt(true);
+    } else {
+      setSelectedBoardNo(boardNo);
+      setSelectedSelectPrivate(boardPrivate);
+      setSelectedPassword(boardPassword);
+      setDetailShowForm(true);
+      setShowForm(false);
+      setPasswordPrompt(false);
+    }
   }
 
-  /* 게시글 보기 */
+  const handlePasswordSubmit = () => {
+    if (passwordInput === selectedPassword) {
+      setDetailShowForm(true);
+      setPasswordPrompt(false);
+      setShowForm(false);
+      setPasswordInput('');
+    } else {
+      alert('비밀번호가 일치하지 않습니다.');
+    }
+  }
+
+  /* 게시글 목록 가져오기 */
   const getBoard = () => {
     axios.get(boardListAPI)
     .then(response => {
@@ -53,14 +76,6 @@ function BoardGuestbook() {
     }
     getBoard();
   }, [loginMember]);
-
-  /***** 0828 게시글 수정 *****/
-  /* 수정버튼 */
-  const handleModify = (board) => {
-    setBoardToEdit(board); // 수정할 게시글 상태 설정
-    setTitle(board.boardTitle);
-    setContent(board.boardContents);
-  }
 
   /***** 0828 게시글 삭제 *****/
   const handleDelete = async (boardNo) => {
@@ -81,19 +96,33 @@ function BoardGuestbook() {
   return (
     <div className='board-guestbook-main-container'>
       <div className='board-main-header'>
-            {/*<h1 className='board-main-h0'>게시판</h1>
-            <h1 className='board-main-h1'>공지사항</h1>
-            <h1 className='board-main-h2'>구단별 소개</h1>
-            <h1 className='board-main-h4'>규정, 자료실</h1>*/}
             <h1 className='board-main-h3'>방명록</h1>
             <hr className='board-main-hr'/>
       </div>
       <button className='form-button' onClick={handleAddPost}>
         방명록 작성하기
       </button>
-      {showForm && <BoardGuestbookForm />}
+      {showForm && 
+        <BoardGuestbookForm />
+      }
+      {passwordPrompt && (
+        <div className="password-prompt">
+          <input 
+            type="password" 
+            placeholder="비밀번호 입력" 
+            value={passwordInput}
+            onChange={(e) => setPasswordInput(e.target.value)}
+          />
+          <button onClick={handlePasswordSubmit}>확인</button>
+          <button onClick={() => setPasswordPrompt(false)}>취소</button>
+        </div>
+      )}
       {showDetailForm && selectedBoardNo && (
-        <BoardGuestbookDetailForm boardNo={selectedBoardNo} />
+        <BoardGuestbookDetailForm 
+          boardNo={selectedBoardNo}
+          selectPrivate={selectedSelectPrivate}
+          password={selectedPassword}
+        />
       )}
       <div>
         <table className="board-container">
@@ -119,10 +148,10 @@ function BoardGuestbook() {
                   {b.createdAt}
                 </td>
                 <td>
-                <button onClick={() => handleShowDetailForm(b.boardNo)}>
-                  자세히보기
-                </button>
-                  </td>
+                  <button onClick={() => handleShowDetailForm(b.boardNo, b.boardPrivate, b.boardPassword)}>
+                    자세히보기
+                  </button>
+                </td>
                 
                 {writerId === b.boardMemberId &&
                 <>
