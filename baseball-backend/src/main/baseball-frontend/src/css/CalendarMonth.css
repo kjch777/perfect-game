@@ -1,0 +1,171 @@
+.calendarTable{
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    color: rebeccapurple;
+    font-weight: bold;
+    box-shadow: 0 0 10px gray;
+    border-radius: 5px;
+    background: url('../components/main_components/baseball-7985433_1280.jpg'), linear-gradient(to right, rgba(0, 0, 0, 0.911), rgba(248, 4, 4, 0.699));
+    background-size: cover;
+    
+}
+
+.calendarTableDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ctd_tableDiv{
+    margin: 0;
+    padding: 0px;
+    width: 100%;
+}
+
+.calendarTable{
+    padding: 0px;
+    margin: 0 30px;
+
+    border-collapse: collapse;/**/
+    width: 80%;
+    height: 500px;
+
+    margin-bottom: 10px;
+    
+}
+
+.calendarTable th{
+    border-bottom: 2px solid rgb(96, 147, 204);
+    
+}
+
+.calendarTable th{
+    padding: 15px;
+    color: rgb(7, 75, 21);
+
+}
+
+.calendarTable th:nth-child(1){
+    color: red;
+}
+
+.calendarTable td:nth-child(1){
+    color: red;
+}
+
+.calendarTable td{
+    font-size: 20px;
+    padding: 15px;/**/
+
+    font-size: 15px;    
+}
+
+.calendarTable td:hover{
+    box-shadow: 0 0 5px gray;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 0px;/**/
+    
+
+}
+
+.calendarGameDiv{
+    margin-top: 20px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.calendarGameDiv h2{
+    color: rgb(169, 153, 212);
+    font-weight: bold;
+    text-align: right;
+    
+}
+
+.gameTable{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 5px gray;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    /*padding: 20px;*/
+    color: gray;
+
+    width: 600px;
+    table-layout: fixed;
+    text-align: center;
+}
+
+.gameTable th{
+    color: rgb(0, 81, 255);
+}
+
+.gameTable th, .gameTable td{
+    padding: 10px 15px;
+    /*width: 95px;*/
+    border-bottom: 1px solid #ccc;/*내부 크기 보기위한 임시 선*/
+    
+}
+/*
+.gameTable th:nth-child(1){
+    width: 130px;
+    
+}
+.gameTable th:nth-child(3){
+    width: 150px;
+    
+}*/
+
+.gameTable button{
+    border: none;
+    padding: 5px;
+    color: aliceblue;
+    background-color: rgb(0, 81, 255);
+    border-radius: 7px;
+    font-size: 9px;
+}
+
+.gameTable button:hover{
+    cursor: pointer;
+    background-color: rgb(19, 81, 139);
+}
+
+.gameTable .deleteButton{
+    background-color: rgb(245, 69, 24);
+}
+
+.gameTable .deleteButton:hover{
+    background-color: rgb(248, 23, 23);
+}
+
+.gameTable tr:hover{
+    font-weight: bold;
+}
+
+.gameAddButton{
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px gray;
+}
+
+.gameAddButton:hover{
+    background-color: green;
+    cursor: pointer;
+}
+
+/******center image ********/
+.calendarCenterDiv{
+    margin: 10px;
+}
+.calendarCenterDiv img{
+    width: 800px;
+    margin-top: 10px;
+}
+
+/************ side hss chat ****************/
+.calendarSideDiv{
+    margin-right: 20px;
+}

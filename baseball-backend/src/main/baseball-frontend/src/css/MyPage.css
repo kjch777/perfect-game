@@ -1,0 +1,68 @@
+.mypage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh; 
+    padding: 20px;
+}
+
+.mypage-icon {
+    margin-bottom: -20px;
+}
+
+.mypage-icon img {
+    width: 120px;
+    height: auto;
+}
+
+.mypage-card {
+    background-color: #F3F3F3;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.mypage-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.mypage-info p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.mypage-info p strong {
+    margin-right: 8px;
+}
+
+.mypage-edit-btn {
+    background-color: #8A1A4D;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.mypage-edit-btn:hover {
+    background-color: #70153e;
+}
