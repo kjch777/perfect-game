@@ -16,7 +16,6 @@ import base.ball.service.MypageService;
 
 @RestController
 @RequestMapping("/mypage")
-@CrossOrigin(origins = "http://localhost:3000")
 public class MypageController {
 
 	@Autowired

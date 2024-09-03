@@ -1,3 +1,4 @@
+/*
 package base.ball.common.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
 		r.addResourceHandler("/images/**")
 		 .addResourceLocations("file:C:/Users/user1/Desktop/final-perfect-game/baseball-frontend/public/board-images/");
 	}
+	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
@@ -19,4 +21,6 @@ public class WebConfig implements WebMvcConfigurer {
 		.allowedHeaders("*")
 		.allowCredentials(true);
 	}
+	
 }
+*/
