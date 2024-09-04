@@ -3,23 +3,28 @@ plugins {
 	id 'org.springframework.boot' version '3.3.3'
 	id 'io.spring.dependency-management' version '1.1.6'
 }
+
 group = 'base.ball'
 version = '0.0.1-SNAPSHOT'
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
 }
+
 repositories {
 	mavenCentral()
 }
+
 dependencies {
-     implementation 'org.webjars:jquery:3.6.4'
+    implementation 'org.webjars:jquery:3.6.4'
     implementation 'org.webjars:bootstrap:5.2.3'
     implementation 'org.webjars:sockjs-client:1.5.1'
     implementation 'org.projectlombok:lombok:1.18.26'
@@ -42,10 +47,10 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
 }
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
 
 def reactAppDir = "$projectDir/src/main/baseball-frontend"
 

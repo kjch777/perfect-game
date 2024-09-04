@@ -40,6 +40,11 @@ public class Ticket {
 	private String seatSectionFour; 
 	private String seatPriceFour;
 	
+	private boolean locked;
+	
+	private int bookedSeats; 
+	private int totalSeats;
+	
 	/** Seat **/
 	
 	private String seatId;

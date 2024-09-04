@@ -9,19 +9,39 @@
 	</select>
 	
 	<select id="selectTicket" resultType="Ticket">
-		SELECT *
-		FROM ticket
-		WHERE member_no = #{memberNo}
+		SELECT t.booking_id, t.game_title, t.pay_date, t.seat_id_one, t.seat_section_one, t.seat_price_one, t.seat_id_two, t.seat_section_two, t.seat_price_two, t.seat_id_three, t.seat_section_three, t.seat_price_three, t.seat_id_four, t.seat_section_four, t.seat_price_four, t.member_no, t.game_code, g.game_date
+    	FROM ticket t
+    	JOIN game g 
+    	ON t.game_code = g.game_code
+    	WHERE t.member_no = #{memberNo}
 	</select>
 	
 	<insert id="insertTicket" parameterType="Ticket" useGeneratedKeys="true" keyProperty="bookingId">
-		INSERT INTO ticket(game_title, pay_date, member_no, game_code, seat_id_one, seat_section_one, seat_price_one, seat_id_two, seat_section_two, seat_price_two, seat_id_three, seat_section_three, seat_price_three, seat_id_four, seat_section_four, seat_price_four)
-		VALUES (#{gameTitle}, #{payDate}, #{memberNo}, #{gameCode}, #{seatIdOne}, #{seatSectionOne}, #{seatPriceOne}, #{seatIdTwo}, #{seatSectionTwo}, #{seatPriceTwo}, #{seatIdThree}, #{seatSectionThree}, #{seatPriceThree}, #{seatIdFour}, #{seatSectionFour}, #{seatPriceFour})
+		INSERT INTO ticket(game_title, pay_date, member_no, game_code, seat_id_one, seat_section_one, seat_price_one, seat_id_two, seat_section_two, seat_price_two, seat_id_three, seat_section_three, seat_price_three, seat_id_four, seat_section_four, seat_price_four, locked)
+		VALUES (#{gameTitle}, #{payDate}, #{memberNo}, #{gameCode}, #{seatIdOne}, #{seatSectionOne}, #{seatPriceOne}, #{seatIdTwo}, #{seatSectionTwo}, #{seatPriceTwo}, #{seatIdThree}, #{seatSectionThree}, #{seatPriceThree}, #{seatIdFour}, #{seatSectionFour}, #{seatPriceFour}, #{locked})
 	</insert>
 	
-	<delete id="deleteTicket" parameterType="int">
-		delete from ticket where booking_id = #{bookingId}
+	<delete id="deleteTicket" parameterType="list">
+    	DELETE FROM ticket
+    	WHERE booking_id 
+    	IN <foreach collection="list" item="bookingId" open="(" separator="," close=")">
+           		#{bookingId}
+    	   </foreach>
 	</delete>
+	
+	<select id="checkSeatStatus" parameterType="String" resultType="Ticket">
+		SELECT seat_id_one, seat_id_two, seat_id_three, seat_id_four, game_code, locked
+		FROM ticket
+		WHERE game_code = #{gameCode}
+	</select>
+	
+	<select id="checkBookingStatus" resultType="Ticket">
+		SELECT game_code, (COUNT(seat_id_one) + COUNT(seat_id_two) + COUNT(seat_id_three) + COUNT(seat_id_four)) AS booked_seats, 59 AS total_seats
+        FROM ticket
+        WHERE game_code = #{gameCode}
+        GROUP BY game_code
+        HAVING booked_seats >= total_seats
+	</select>
 	
 	<!-- Seat -->
 	
