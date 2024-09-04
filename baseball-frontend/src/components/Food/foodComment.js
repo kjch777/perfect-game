@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import LoginContext from '../../components/Login/LoginContext';
 import '../../css/foodComment.css';
 
-const API_URL = 'http://localhost:9090/comments';
+const API_URL = '/comments';
 
 function FoodComment({ foodId }) {
     const [commentList, setCommentList] = useState([]);
@@ -11,6 +11,7 @@ function FoodComment({ foodId }) {
     const [editCommentId, setEditCommentId] = useState(null);
     const [editContent, setEditContent] = useState('');
     const { loginMember } = useContext(LoginContext);
+    const editInputRef = useRef(null);
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -100,15 +101,26 @@ function FoodComment({ foodId }) {
         setter(e.target.value);
     };
 
+    const handleEditClick = (comment) => {
+        setEditCommentId(comment.commentId);
+        setEditContent(comment.commentText);
+        setTimeout(() => {
+            if (editInputRef.current) {
+                editInputRef.current.focus();
+            }
+        }, 0);
+    };
+
     const Comment = ({ comment }) => (
         <div className="comment">
             <span className="food-userName">{comment.memberId}</span>
             {editCommentId === comment.commentId ? (
                 <div>
-                    <input
-                        type="text"
-                        value={editContent}
-                        onChange={handleInputChange(setEditContent)}
+                    <textarea
+                        ref={editInputRef}
+                        defaultValue={editContent}
+                        onBlur={(e) => setEditContent(e.target.value)}
+                        className="edit-input"
                         autoFocus
                     />
                     <button onClick={handleEditComment} className="comment-button">저장</button>
@@ -120,10 +132,7 @@ function FoodComment({ foodId }) {
                     <span className="comment-time">{new Date(comment.createdAt).toLocaleString()}</span>
                     {loginMember && loginMember.memberId === comment.memberId && (
                         <div>
-                            <button onClick={() => {
-                                setEditCommentId(comment.commentId);
-                                setEditContent(comment.commentText);
-                            }} className="comment-button">수정</button>
+                            <button onClick={() => handleEditClick(comment)} className="comment-button">수정</button>
                             <button onClick={() => handleDeleteComment(comment.commentId)} className="comment-button">삭제</button>
                         </div>
                     )}

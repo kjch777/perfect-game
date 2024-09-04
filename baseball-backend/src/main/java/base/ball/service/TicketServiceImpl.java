@@ -27,14 +27,29 @@ public class TicketServiceImpl implements TicketService {
 	}
 	
 	@Override
-	public List<Ticket> selectTicket() {
-		return ticketMapper.selectTicket();
+	public List<Ticket> selectTicket(int memberNo) {
+		return ticketMapper.selectTicket(memberNo);
 	}
 	
 	@Override
-	public void deleteTicket(int bookingId) {
-		ticketMapper.deleteTicket(bookingId);
+	public void deleteTicket(List<Integer> bookingIds) {
+		ticketMapper.deleteTicket(bookingIds);
 	}
+	
+	@Override
+	public List<Ticket> checkSeatStatus(String gameCode) {
+		return ticketMapper.checkSeatStatus(gameCode);
+	}
+	
+	@Override
+    public Ticket checkBookingStatus(String gameCode) {
+        Ticket ticket = ticketMapper.checkBookingStatus(gameCode);
+        // 매진 상태 계산
+        if (ticket != null) {
+            boolean isSoldOut = ticket.getBookedSeats() >= ticket.getTotalSeats();
+        }
+        return ticket;
+    }
 	
 	/** Seat **/
 	

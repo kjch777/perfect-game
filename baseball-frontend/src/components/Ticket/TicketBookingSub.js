@@ -107,6 +107,7 @@ const sections = {
   green: lightenColor("#008000", 0.15),
   blue: lightenColor("#0000FF", 0.3),
   purple: lightenColor("#800080", 0.3),
+  disabled: "#D3D3D3"
 };
 
 export const TicketBookingSub = () => {
@@ -117,6 +118,8 @@ export const TicketBookingSub = () => {
   const [maxSeats, setMaxSeats] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [countAlert, setCountAlert] = useState(null); // 여기엔 null 만 사용 가능(' ' 또는 " " 사용 시 페이지를 로드하자마자 공백 alert 가 출력되는 문제 발생)
+  
+  const [canClick, setCanClick] = useState({});
 
   const location = useLocation(); // 현재 URL의 위치 객체 가져오기
   const query = new URLSearchParams(location.search); // 쿼리 문자열에서 데이터 가져오기
@@ -149,9 +152,47 @@ export const TicketBookingSub = () => {
     return `${month}월 ${day}일`
   }
 
+  useEffect(() => {
+    const loadCanClick = async () => {
+      try {
+        const response = await axios.get(`/ticket/checkSeatStatus`, {
+          params: { gameCode },
+        });
+        console.log(response.data);
+        const seatStatus = response.data.reduce((acc, seat) => {
+          // 필드 이름이 실제와 맞는지 확인
+          if (seat.seatIdOne) {
+            acc[seat.seatIdOne] = seat.locked;
+          }
+          if (seat.seatIdTwo) {
+            acc[seat.seatIdTwo] = seat.locked;
+          }
+          if (seat.seatIdThree) {
+            acc[seat.seatIdThree] = seat.locked;
+          }
+          if (seat.seatIdFour) {
+            acc[seat.seatIdFour] = seat.locked;
+          }
+          return acc;
+        }, {});        
+        console.log(seatStatus);
+        setCanClick(seatStatus);
+      } catch (error) {
+        console.error("좌석 상태 가져오기 실패", error);
+      }
+    };
+    loadCanClick();
+  }, [gameCode])
+ 
   /********** Seat **********/
   // 비동기적으로 좌석 클릭을 처리하는 함수
   const handleSeatClick = async (id, section) => {
+
+    // if (canClick[id]) {
+    //   setCountAlert('이미 예약이 완료된 좌석입니다.');
+    //   return;
+    // }
+
     try {
         // 선택된 좌석 목록에 이미 해당 좌석이 있는 경우
         if (selectedSeats.includes(id)) {
@@ -358,12 +399,14 @@ export const TicketBookingSub = () => {
     
           {seats.map(({ id, section, angle, y }) => {
             const isSelected = selectedSeats.includes(id);
-            const fillColor = isSelected ? "#FFD700" : sections[section];
+            // const fillColor = isSelected ? "#FFD700" : sections[section]; ▼ 코드 변경
+            const fillColor = canClick[id] ? sections['disabled'] : (isSelected ? "#FFD700" : sections[section]);
+            const cursorStyle = canClick[id] ? "not-allowed" : "pointer"; // 코드 추가
 
             return (
               <g key={id} transform={`translate(600,600) rotate(${angle})`}>
-                <rect className={`seat ${isSelected ? "selected" : ""}`} x="-20" y={y} width="40" height="40" rx="8" ry="8" fill={fillColor} onClick={() => handleSeatClick(id, section)} />
-                <text className="seat-text" x="0" y={parseInt(y, 10) + 25} fontFamily="Arial" fontSize="15" fill="black" textAnchor="middle" onClick={() => handleSeatClick(id, section)}>
+                <rect className={`seat ${isSelected ? "selected" : ""}`} x="-20" y={y} width="40" height="40" rx="8" ry="8" fill={fillColor} onClick={() => !canClick[id] && handleSeatClick(id, section)} style={{ cursor: cursorStyle }} />
+                <text className="seat-text" x="0" y={parseInt(y, 10) + 25} fontFamily="Arial" fontSize="15" fill="black" textAnchor="middle" onClick={() => !canClick[id] && handleSeatClick(id, section)} style={{ cursor: cursorStyle }}>
                   {id}
                 </text>
               </g>

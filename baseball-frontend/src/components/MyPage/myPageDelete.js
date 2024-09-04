@@ -12,11 +12,15 @@ function MyPageDelete() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loginMember) {
+    const storedMember = JSON.parse(localStorage.getItem("loginMember"));
+
+    if (!loginMember && !storedMember) {
       alert("로그인 하세요.");
       navigate('/login');
+    } else if (!loginMember && storedMember) {
+      setLoginMember(storedMember);
     }
-  }, [loginMember, navigate]);
+  }, [loginMember, navigate, setLoginMember]);
 
   const handleDelete = async () => {
     if (!isChecked) {
@@ -29,7 +33,7 @@ function MyPageDelete() {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:9090/mypage/${loginMember.memberId}`, {
+      const response = await axios.delete(`/mypage/${loginMember.memberId}`, {
         params: { memberPw: password },
         headers: {
           "Content-Type": "application/json",
@@ -39,6 +43,7 @@ function MyPageDelete() {
       if (response.data.includes("회원 탈퇴가 성공적으로 처리되었습니다.")) {
         alert("회원 탈퇴가 완료되었습니다.");
         setLoginMember(null);
+        localStorage.removeItem("loginMember");
         navigate('/');
       } else {
         setError(response.data || "비밀번호가 올바르지 않습니다.");

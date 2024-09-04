@@ -69,4 +69,20 @@
 		from player
 		where player_team_name = #{playerTeamName}
 	</select>
+	
+	<select id="getOneGame" parameterType="Game">
+		select *
+		from game
+		where game_code = #{gameCode}
+	</select>
+	
+	<update id="updateGame" parameterType="Game">
+		UPDATE game
+		SET
+		
+		game_winner_team_name = #{gameWinnerTeamName}
+		
+		
+		WHERE game_code = #{gameCode}
+	</update>
 </mapper>

@@ -23,4 +23,8 @@ public interface GameService {
 
 	List<Player> allPlayer(String playerTeamName);
 
+	Game getOneGame(String gameCode);
+
+	Game updateGame(String gameCode, Game game);
+
 }
