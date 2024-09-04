@@ -5,10 +5,10 @@
 
 <mapper namespace="base.ball.mapper.BoardMapper">
 	<select id ="findAllBoard" resultType="base.ball.dto.Board">
-		SELECT * FROM board3
+		SELECT * FROM guestbook
 	</select>
 	<insert id="insertBoard" parameterType="base.ball.dto.Board" useGeneratedKeys="true" keyProperty="boardNo">
-		INSERT INTO board3 (
+		INSERT INTO guestbook (
 			board_member_id, board_member_name, board_title, board_contents, board_image_url,
 			board_hits, board_likes, board_private, board_password)
 		VALUES (
@@ -16,10 +16,10 @@
 			#{boardHits}, #{boardLikes}, #{boardPrivate}, #{boardPassword})
 	</insert>
 	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM board3 WHERE board_no = #{boardNo}
+		DELETE FROM guestbook WHERE board_no = #{boardNo}
 	</delete>
 	<update id="updateBoard" parameterType="base.ball.dto.Board">
-		UPDATE board3
+		UPDATE guestbook
 		SET board_title = #{boardTitle}, board_contents = #{boardContents}
 		WHERE board_no = #{boardNo}
 	</update>

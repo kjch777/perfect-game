@@ -68,7 +68,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/files/{filename}")
-	public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
+	public ResponseEntity<Resource> downloadFile(@PathVariable("filename") String filename) {
 	    File file = new File(uploadDir, filename);
 	    if (!file.exists()) {
 	        return ResponseEntity.notFound().build();
