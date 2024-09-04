@@ -1,5 +1,6 @@
 package base.ball.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.*;
@@ -11,17 +12,17 @@ import lombok.*;
 @AllArgsConstructor
 public class Ticket {
 	
-	/** °æ±â SELECT **/
-	private String gameCode; // °æ±â ¹øÈ£
-	private String gameDate; // °æ±â ÀÏÀÚ
-	private String gameTeamNameHome; // ÁÖÀÎÆÀ ÀÌ¸§
-	private String gameTeamNameAway; // ¿øÁ¤ÆÀ ÀÌ¸§
+	/** ï¿½ï¿½ï¿½ SELECT **/
+	private String gameCode; // ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private String gameDate; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String gameTeamNameHome; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	private String gameTeamNameAway; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
 
-	/** ¿¹¸Å INSERT & SELECT & DELETE **/
-	private int bookingId; // ¿¹¸Å id
+	/** ï¿½ï¿½ï¿½ï¿½ INSERT & SELECT & DELETE **/
+	private int bookingId; // ï¿½ï¿½ï¿½ï¿½ id
 	private String gameTitle;
-	private Date payDate; // °áÁ¦ ÀÏÀÚ // import java.util.Date; ¡ç ½Ã/ºÐ/ÃÊ ±îÁö °¡´ÉÇØ¼­ ¼±ÅÃÇß´Ù.
-	private int memberNo; // È¸¿ø ¹øÈ£
+	private Date payDate; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ // import java.util.Date; ï¿½ï¿½ ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½.
+	private int memberNo; // È¸ï¿½ï¿½ ï¿½ï¿½È£
 	
 	private String seatIdOne; 
 	private String seatSectionOne; 
@@ -38,4 +39,12 @@ public class Ticket {
 	private String seatIdFour; 
 	private String seatSectionFour; 
 	private String seatPriceFour;
+	
+	/** Seat **/
+	
+	private String seatId;
+    private String section;
+    private boolean lockStatus;
+    private LocalDateTime lockTime;
+    private String reservedBy;
 }

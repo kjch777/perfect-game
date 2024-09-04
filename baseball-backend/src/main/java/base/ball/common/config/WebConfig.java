@@ -1,3 +1,4 @@
+/*
 package base.ball.common.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -22,5 +23,9 @@ public class WebConfig implements WebMvcConfigurer {
 		.allowedHeaders("*")
 		.allowCredentials(true);
 	}
+
 	 	
 }
+	
+}
+*/

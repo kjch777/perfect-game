@@ -52,7 +52,7 @@ public class DBConfig {
 		return new SqlSessionTemplate(sf);
 	}
 	
-	@Bean
+	@Bean(name="transactionManager")
 	public DataSourceTransactionManager dataSourceTransactionManager(DataSource ds) {
 		return new DataSourceTransactionManager(ds);
 	}
