@@ -17,6 +17,7 @@ function MainApp() {//App.js는 공통파일이므로 바꿔야 할수도 있음
   
   const [yearVar, setYearVar] = useState(today.getFullYear());
   const [monthVar, setMonthVar] = useState(today.getMonth()+1);
+  const [dayVar, setDayVar] = useState(today.getDate());
 
   //왼쪽버튼
   const monthMinus = () => {
@@ -65,7 +66,7 @@ function MainApp() {//App.js는 공통파일이므로 바꿔야 할수도 있음
         
         <div className="gameFrame">
           
-          <CalendarMonth cmy={yearVar} cmm={monthVar} />
+          <CalendarMonth cmy={yearVar} cmm={monthVar} cmd={dayVar} />
           
         </div>
         

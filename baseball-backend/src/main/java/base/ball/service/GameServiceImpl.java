@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import base.ball.dto.Game;
 import base.ball.dto.Player;
 import base.ball.mapper.GameMapper;
+import base.ball.repository.GameRepository;
 
 @Service
 public class GameServiceImpl implements GameService {
 	
 	@Autowired
 	GameMapper gameMapper;
+	
+	@Autowired
+	private GameRepository gameRepository;
 	
 	@Override
 	public List<Game> gameAll(){
@@ -58,5 +62,26 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public List<Player> allPlayer(String playerTeamName) {
 		return gameMapper.allPlayer(playerTeamName);
+	}
+	
+	@Override
+	public Game getOneGame(String gameCode) {
+		return gameMapper.getOneGame(gameCode);
+	}
+	
+	public Game updateGame(String gameCode, Game gm) {
+		Game game = gameRepository.findById(gameCode)
+				.orElseThrow(()->new RuntimeException("수정할gameCode찾을수없음"));
+		
+		game.setGameCode(gm.getGameCode());
+		game.setGameWinnerTeamName(gm.getGameWinnerTeamName());
+		game.setGameDate(gm.getGameDate());
+		game.setGameTeamNameHome(gm.getGameTeamNameHome());
+		game.setGameTeamNameAway(gm.getGameTeamNameAway());
+		game.setGamePlayerListHome(gm.getGamePlayerListHome());
+		game.setGamePlayerListAway(gm.getGamePlayerListAway());
+		game.setGamePlaygroundId(gm.getGamePlaygroundId());
+
+		return gameRepository.save(game);
 	}
 }

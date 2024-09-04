@@ -1,0 +1,48 @@
+.guestbook-detail-container {
+  margin-top: 20px;
+  position: relative;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hide-detail-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease, font-weight 0.3s ease;
+}
+.hide-detail-button:hover {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
+  gap: 15px;
+  border: none;
+  padding: 10px 0;
+}
+
+.images img {
+  max-width: 180px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import base.ball.dto.Game;
 import base.ball.dto.Player;
@@ -27,6 +29,10 @@ public interface GameMapper {
 	void deleteGame(@Param("gameCode") String gameCode);
 
 	List<Player> allPlayer(@Param("playerTeamName") String playerTeamName);
+
+	Game getOneGame(@Param("gameCode") String gameCode);
+
+	Game updateGame(@Param("gameCode") String gameCode, @RequestBody Game game);
 	
 	
 

@@ -5,6 +5,10 @@ function BoardTeamIntroduce() {
 
   return (
     <>
+        <div className='board-main-header'>
+            <h1 className='board-main-h2'>구단별 소개</h1>
+            <hr className='board-main-hr'/>
+        </div>
         <div className='board-team-container'>
             <ul className='board-team-link-list-ul'>
                 <li className='board-team-link-list-li'>

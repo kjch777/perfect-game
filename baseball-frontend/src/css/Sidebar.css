@@ -1,7 +1,7 @@
 .sidebar-container {
     margin-top: 50px;
     margin-left: 20px;
-    width: 140px;
+    width: 180px;
     height: 186px;
     text-align: left;
     padding: 20px;
@@ -11,12 +11,14 @@
     width: 100%;
     border: 0;
     height: 5px;
-    background-color: #000;
+    background-color: black;
     margin-top: 15px;
     margin-bottom: 15px;
+    opacity: 1;
 }
 
 .sidebar-board-link {
+    display: block;
     text-align: left;
     font-weight: bold;
     font-size: 20px;
@@ -25,10 +27,14 @@
     margin: 10px 0;
 }
 
+.sidebar-link-list-ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
 .sidebar-link-list-li{
     text-align: left;
     margin-bottom: 10px;
-    list-style: none;
 }
 .sidebar-link-list-li a {
     font-size: 16px;

@@ -20,7 +20,7 @@ const Login = () => {
       return;
     }
 
-    fetch('http://localhost:9090/members/login', {
+    fetch('/members/login', {
       method : "POST",
       headers : {"Content-Type" : "application/json",
                  "Accept" : "application/json" },
@@ -76,6 +76,13 @@ const Login = () => {
               </div>
               <div className="button-container">
                 <button onClick={handleLogin} >Login</button>
+                <a href="http://localhost:9090/api/naverLogin">
+                  <img
+                    height="50"
+                    src="http://static.nid.naver.com/oauth/small_g_in.PNG"
+                    alt="Naver Login"
+                  />
+                </a>
               </div>
             </form>
         </div>

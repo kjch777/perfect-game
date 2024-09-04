@@ -17,7 +17,7 @@ function MyPageEdit() {
   useEffect(() => {
     if (loginMember) {
       axios
-        .get(`http://localhost:9090/mypage/${loginMember.memberId}`)
+        .get(`/mypage/${loginMember.memberId}`)
         .then((response) => {
           setFormData(response.data);
         })
@@ -39,7 +39,7 @@ function MyPageEdit() {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:9090/mypage`, formData)
+      .put(`/mypage`, formData)
       .then((response) => {
         alert("회원 정보가 성공적으로 수정되었습니다.");
         navigate("/mypage");

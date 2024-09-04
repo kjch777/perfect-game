@@ -33,12 +33,12 @@
 }
 
 .arrowButton{
-  color: rgb(211, 235, 145);
+  color: rgb(145, 159, 235);
   font-size: 35px;
 }
 
 .arrowButton:hover{
-  color: mediumseagreen;
+  color: rgb(92, 60, 179);
   cursor: pointer;
 
 }
