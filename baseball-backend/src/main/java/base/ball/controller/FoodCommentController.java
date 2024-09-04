@@ -19,7 +19,6 @@ import base.ball.service.FoodCommentService;
 
 @RestController
 @RequestMapping("/comments")
-@CrossOrigin(origins = "http://localhost:3000")
 public class FoodCommentController {
 	@Autowired
 	private FoodCommentService foodCommentService;

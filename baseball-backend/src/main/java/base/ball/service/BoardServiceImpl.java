@@ -35,12 +35,15 @@ public class BoardServiceImpl implements BoardService {
 	public void uploadImages(MultipartFile[] files,
 			                 String title,
 			                 String content,
+			                 String writerId,
+			                 String password,
+			                 String selectPrivate,
 			                 String name) {
 		File uploadDirFile = new File(uploadDir);
 		if(!uploadDirFile.exists()) {
-			System.out.println("Æú´õ¸¦ »ý¼ºÇÕ´Ï´Ù.");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 			if(!uploadDirFile.mkdirs()) {
-				throw new RuntimeException("Æú´õ »ý¼º ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+				throw new RuntimeException("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 		}
 		List<String> fileNames = null;
@@ -51,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
 				try {
 					file.transferTo(df);
 				} catch (Exception e) {
-					throw new RuntimeException("ÆÄÀÏ ¾÷·Îµå ½ÇÆÐ", e);
+					throw new RuntimeException("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½", e);
 				}
 				return fileName;
 			}).collect(Collectors.toList());
@@ -60,15 +63,26 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		Board board = new Board();
+		board.setBoardMemberId(writerId);
 		board.setBoardMemberName(name);
 		board.setBoardTitle(title);
 		board.setBoardContents(content);
+		board.setBoardPassword(password);
 		board.setBoardImageUrl(String.join(",", fileNames));
+		board.setBoardPrivate(selectPrivate);
 		//board.setBoardHits(hits);
 		//board.setBoardLikes(likes);
-		//board.setBoardPrivate(private);
-		//board.setBoardPassword(password);
 		
 		insertBoard(board);
+	}
+	
+	@Override
+	public void deleteBoard(int boardNo) {
+		boardMapper.deleteBoard(boardNo);
+	}
+	
+	@Override
+	public void updateBoard(Board board) {
+		boardMapper.updateBoard(board);
 	}
 }

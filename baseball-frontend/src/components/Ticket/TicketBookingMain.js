@@ -4,12 +4,17 @@ import axios from 'axios';
 import { TicketBookingBanner } from './TicketBookingBanner';
 import LoginContext from '../Login/LoginContext';
 import '../../css/TicketBooking.css';
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col } from "react-bootstrap";
 
 export const TicketBookingMain = () => {
     const [games, setGames] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
     const { loginMember } = useContext(LoginContext);
+    
+    const [soldOut, setSoldOut] = useState({}); // 코드 추가
+
+    const cardsPerPage = 16;
     
     const teamNameMapping = {
         doosan: '두산 베어스',
@@ -28,7 +33,18 @@ export const TicketBookingMain = () => {
         const gameData = async () => {
             const response = await axios.get('http://localhost:9090/ticket/bookingMain');
             setGames(response.data);
+        // };
+
+        // 코드 추가
+        const soldOutStatus = {};
+            for (const game of response.data) {
+                const res = await axios.get(`http://localhost:9090/ticket/status?gameCode=${game.gameCode}`);
+                const ticket = res.data;
+                soldOutStatus[game.gameCode] = ticket.bookedSeats >= ticket.totalSeats;
+            }
+            setSoldOut(soldOutStatus);
         };
+
         gameData();
     }, []);
 
@@ -65,6 +81,24 @@ export const TicketBookingMain = () => {
             alert('팝업이 차단되어 있습니다. 팝업 허용 후 다시 시도해 주세요.');
         }
     }
+
+    // 페이지네이션 관련 계산
+    const indexOfLastGame = currentPage * cardsPerPage;
+    const indexOfFirstGame = indexOfLastGame - cardsPerPage;
+    const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
+    const totalPages = Math.ceil(games.length / cardsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
     
     return (
         <div className="ticket-container">
@@ -75,7 +109,7 @@ export const TicketBookingMain = () => {
                 </div>
                 <div className="content-content">
                     <div className="ticketDiv-flex">
-                        {games.map((game) => (
+                        {currentGames.map((game) => (
                             <div key={game.gameCode} className="ticketDiv-calc">
                                 <Card className="ticket-card">
                                     <Card.Body>
@@ -96,14 +130,26 @@ export const TicketBookingMain = () => {
                                         <Card.Text className="ticketCard-textVS">
                                             {teamNameMapping[game.gameTeamNameHome]} VS {teamNameMapping[game.gameTeamNameAway]}
                                         </Card.Text>
-                                        <Button onClick={() => handleBooking(game.gameCode, game.gameDate, game.gameTeamNameHome, game.gameTeamNameAway)} className="ticketCard-button">예매하기</Button>
+                                        <Button onClick={() => handleBooking(game.gameCode, game.gameDate, game.gameTeamNameHome, game.gameTeamNameAway)} className="ticketCard-button" disabled={soldOut[game.gameCode]}>
+                                            {soldOut[game.gameCode] ? "매진" : "예매하기"}
+                                        </Button>
                                     </Card.Body>
                                 </Card>
                             </div>
                         ))}
                     </div>
+                    {/* 페이지네이션 버튼 */}
+                    <div className="pagination">
+                        {totalPages > 1 && (
+                            <>
+                                <Button onClick={handlePrevPage} disabled={currentPage === 1} className="page-button">이전</Button>
+                                <span className="page-info">{currentPage} / {totalPages}</span>
+                                <Button onClick={handleNextPage} disabled={currentPage === totalPages} className="page-button">다음</Button>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

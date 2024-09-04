@@ -29,21 +29,18 @@ public class GoodsController {
 	@GetMapping
 	public List<Goods> findAll(){
 		List<Goods> goodsList = goodsService.findAll();
-		System.out.println("goods list : " + goodsList);
 		//return goodsService.findAll();
 		return goodsList;
 	}
 	
 	@PostMapping("/order")
 	public void insertOrder(@RequestBody Orders orders) { //@RequestBody 전체
-		System.out.println("Received Order: " + orders);
 		goodsService.insertOrder(orders);
 	}
 	
 	@PutMapping("/order")
 	public ResponseEntity<String> updateAddress(@RequestBody Member member) {
 	    try {
-	        System.out.println("Received Member: " + member); // Debugging log
 	        goodsService.updateAddress(member);
 	        return new ResponseEntity<>("주소 업데이트 완료", HttpStatus.OK);
 	    } catch (Exception e) {

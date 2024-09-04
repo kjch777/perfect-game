@@ -14,8 +14,19 @@ public interface TicketMapper {
 
 	void insertTicket(Ticket ticket);
 	
-	List<Ticket> selectTicket();
+	List<Ticket> selectTicket(int memberNo);
 	
-	void deleteTicket(int bookingId);
+	void deleteTicket(List<Integer> bookingIds);
 	
+	List<Ticket> checkSeatStatus(String gameCode);
+	
+	Ticket checkBookingStatus(String gameCode);
+	
+	/** Seat **/
+	
+	Ticket findById(@Param("seatId") String seatId);
+    
+	void updateSeat(Ticket ticket);
+    
+	void insertSeat(Ticket ticket);
 }

@@ -2,114 +2,98 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../../css/BoardGuestbook.css';
 import LoginContext from '../../components/Login/LoginContext';
+import BoardGuestbookForm from './BoardGuestbookForm';
+import BoardGuestbookDetailForm from './BoardGuestbookDetailForm';
 
 function BoardGuestbook() {
-  const { loginMember, setLoginMember } = useContext(LoginContext);
+  const { loginMember } = useContext(LoginContext);
   const boardListAPI = "http://localhost:9090/board/lists";
-  const boardUploadAPI = "http://localhost:9090/board/upload";
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [writerId, setWriterId] = useState('');
   const [name, setName] = useState('');
-
+  const [password, setPassword] = useState('');
+  const [selectPrivate, setSelectPrivate] = useState('N');
   const [files, setFiles] = useState([]);
+
   const [board, setBoard] = useState([]);
 
-  const uploadToJava = () => {
-    const formData = new FormData();
+  const [boardToEdit, setBoardToEdit] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [showDetailForm, setDetailShowForm] = useState(false);
+  const [selectedBoardNo, setSelectedBoardNo] = useState(null);
 
-    Array.from(files).forEach((file) => {
-      formData.append("files", file);
-    });
-
-    formData.append("title", title);
-    formData.append("content", content);
-    formData.append("name", name);
-
-    axios.post(boardUploadAPI, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-    alert("게시글 작성 완료!");
-    getBoard();
+  /* 방명록 작성하기 버튼 클릭 시 폼 토글 */
+  const handleAddPost = () => {
+    setShowForm(true);
   }
 
+  /* 자세히보기 버튼 클릭 시 게시글 세부정보 표시 */
+  const handleShowDetailForm = (boardNo) => {
+    setSelectedBoardNo(boardNo);
+    setDetailShowForm(true);
+  }
+
+  /* 게시글 보기 */
   const getBoard = () => {
     axios.get(boardListAPI)
     .then(response => {
         setBoard(response.data);
-        console.log(response.data);
     })
+    .catch(error => {
+      console.error("게시글 목록 가져오기 중 오류 발생:", error);
+    });
   }
 
   useEffect(() => {
     if (loginMember) {
+      setWriterId(loginMember.memberId);
       setName(loginMember.memberName);
     }
     getBoard();
   }, [loginMember]);
 
-    //이미지 파일 여러 개 입력 시 files를 배열을 변화
-    const handleFileChange = (e) => {
-      const fileList = Array.from(e.target.files);
-      setFiles(fileList);
-    };
-    
+  /***** 0828 게시글 수정 *****/
+  /* 수정버튼 */
+  const handleModify = (board) => {
+    setBoardToEdit(board); // 수정할 게시글 상태 설정
+    setTitle(board.boardTitle);
+    setContent(board.boardContents);
+  }
+
+  /***** 0828 게시글 삭제 *****/
+  const handleDelete = async (boardNo) => {
+    try {
+      if (typeof boardNo !== 'number') {
+        throw new Error('유효하지 않은 boardNo');
+      }
+  
+      await axios.delete(`/board/lists?boardNo=${encodeURIComponent(boardNo)}`);
+      setBoard(board.filter(b => b.boardNo !== boardNo));
+    } catch (error) {
+      console.error("게시글 삭제 중 오류 발생:", error);
+    }
+  };
+  /***** ***** ***** ***** ***** *****/
 
   return (
-    <> 
-      <div className='guestbook-container'>
-        <ul>
-          <li className='guestbook-item'>
-            <div className='guestbook-title'>
-              <label>제목</label>
-              <input type='text'
-                     value={title}
-                     onChange={(e) => setTitle(e.target.value)}/>
-            </div>
-
-            <div className='guestbook-content'>
-              <label>내용</label>
-              <textarea value={content}
-                        onChange={(e) => setContent(e.target.value)}/>
-            </div>
-
-            <div className='guestbook-writer'>
-              <label>작성자</label>
-              <input type="text"
-                       value={name}
-                       readOnly/>
-            </div>
-
-            <div className='guestbook-image'>
-              <label>이미지선택</label>
-              <br/>
-              <input multiple
-                      type="file"
-                      className='img-input'
-                      id="a"
-                      accept="image.*" 
-                      onChange={handleFileChange}/>
-            </div>
-
-            <div className='guestbook-image-preview-list'>
-                {files.length > 0 && 
-                    files.map((file, index) => (
-                        <div key={index}  className='guestbook-image-preview'>
-                            <img src={URL.createObjectURL(file)} alt='이미지 미리보기'/>
-                        </div>
-                    ))
-                }
-            </div>
-
-            <button className='guestbook-submit-button'
-                    onClick={uploadToJava}>작성하기</button>
-          </li>
-        </ul>
+    <div className='board-guestbook-main-container'>
+      <div className='board-main-header'>
+            {/*<h1 className='board-main-h0'>게시판</h1>
+            <h1 className='board-main-h1'>공지사항</h1>
+            <h1 className='board-main-h2'>구단별 소개</h1>
+            <h1 className='board-main-h4'>규정, 자료실</h1>*/}
+            <h1 className='board-main-h3'>방명록</h1>
+            <hr className='board-main-hr'/>
       </div>
-
-
+      <button className='form-button' onClick={handleAddPost}>
+        방명록 작성하기
+      </button>
+      {showForm && <BoardGuestbookForm />}
+      {showDetailForm && selectedBoardNo && (
+        <BoardGuestbookDetailForm boardNo={selectedBoardNo} />
+      )}
       <div>
         <table className="board-container">
           <thead>
@@ -117,30 +101,44 @@ function BoardGuestbook() {
               <th>번호</th>
               <th>제목</th>
               <th>작성자</th>
-              <th>내용</th>
-              <th>이미지</th>
+              <th>아이디</th>
               <th>작성일자</th>
+              <th>자세히보기</th>
+              <th style={{color: "red"}}>삭제</th>
             </tr>
           </thead>
           <tbody>
             {board.map(b => (
-            <tr key={b.boardNo} className="board">
-              <td>{b.boardNo}</td>
-              <td>{b.boardTitle}</td>
-              <td>{b.boardMemberName}</td>
-              <td>{b.boardContents}</td>
-              <td className="images">
-                {b.boardImageUrl.split(',').map(image => 
-                  <img key={image} src={`http://localhost:9090/images/${image}`}/>
-                )}
-              </td>
-              <td>{b.createdAt}</td>
-            </tr>
+              <tr key={b.boardNo} className="board">
+                <td>{b.boardNo}</td>
+                <td>{b.boardTitle}</td>
+                <td>{b.boardMemberName}</td>
+                <td>{b.boardMemberId}</td>
+                <td className="board-container-createdat">
+                  {b.createdAt}
+                </td>
+                <td>
+                <button onClick={() => handleShowDetailForm(b.boardNo)}>
+                  자세히보기
+                </button>
+                  </td>
+                
+                {writerId === b.boardMemberId &&
+                <>
+                  <td className="board-container-delete">
+                    <button className="board-container-delete-button"
+                            onClick={() => handleDelete(b.boardNo)}>
+                      삭제
+                    </button>
+                  </td>
+                </>
+                }
+              </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
 

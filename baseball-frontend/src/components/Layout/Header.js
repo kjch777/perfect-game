@@ -52,7 +52,7 @@ const Header = () => {
                         </ul>
                     </li>
                     <li>
-                        <Link to="#">예매</Link>
+                        <Link to="/ticket/bookingMain">예매</Link>
                     </li>
                     <li>
                         <Link to="/goods">굿즈샵</Link>
@@ -70,7 +70,7 @@ const Header = () => {
                         <Link to="#">마이페이지</Link>
                         <ul id="ul-num-3">
                             <li><Link to="/mypage">내 정보</Link></li>
-                            <li><Link to="#">예매 내역</Link></li>
+                            <li><Link to="/ticket/bookingInfoView">예매 내역</Link></li>
                             <li><Link to="#">주문 내역</Link></li>
                             <li><Link to="/mypage/delete">회원 탈퇴</Link></li>
                         </ul>
