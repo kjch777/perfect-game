@@ -14,7 +14,7 @@ function FoodDetail() {
     const fetchFoodData = async () => {
       try {
         console.log(`Fetching data for foodId: ${foodId}`);
-        const response = await axios.get(`http://localhost:9090/foods/${foodId}`);
+        const response = await axios.get(`/foods/${foodId}`);
         console.log("Response data:", response.data);
         setFood(response.data);
       } catch (error) {

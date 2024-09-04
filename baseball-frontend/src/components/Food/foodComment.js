@@ -3,7 +3,7 @@ import axios from "axios";
 import LoginContext from '../../components/Login/LoginContext';
 import '../../css/foodComment.css';
 
-const API_URL = 'http://localhost:9090/comments';
+const API_URL = '/comments';
 
 function FoodComment({ foodId }) {
     const [commentList, setCommentList] = useState([]);

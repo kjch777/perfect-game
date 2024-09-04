@@ -23,7 +23,7 @@ function MyPage() {
       return;
     }
 
-    axios.get(`http://localhost:9090/mypage/${loginMember.memberId}`)
+    axios.get(`/mypage/${loginMember.memberId}`)
       .then((response) => {
         setMember(response.data);
         setLoading(false);
