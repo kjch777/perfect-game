@@ -14,6 +14,8 @@ import base.ball.service.FoodService;
 
 @RestController
 @RequestMapping("/foods")
+//@CrossOrigin(origins = "http://localhost:3000")
+
 public class FoodController {
 	@Autowired
 	private FoodService foodService;

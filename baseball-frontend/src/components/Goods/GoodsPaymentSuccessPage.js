@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useNavigate, useSearchParams, Link,useLocation } from "react-router-dom";
 import '../../css/PaySuccess.css';
 
 export function PaymentSuccessPage() {
@@ -41,12 +41,16 @@ export function PaymentSuccessPage() {
       });
   }, [searchParams, navigate]);
 
+  const goToGoodsPage = () => {
+    navigate("/goods");
+  };
+
   return (
     <div class="page-wrapper">
     <div class="box_section">
         <img src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png" alt="Success" />
         <h2>결제를 완료했어요</h2>
-        <Link to="/goods"><button className="goMain">메인으로</button></Link>
+        <Link to="/goods" className="goMain">메인으로</Link>
     </div>
 </div>
   );

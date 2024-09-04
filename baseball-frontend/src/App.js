@@ -15,7 +15,6 @@ import Login from './components/Login/Login.js';
 import LoginContext from './components/Login/LoginContext';
 import Signupp from './components/Signup/Signupp.js';
 import Footer from './components/Layout/Footer.js';
-import OrderCheck from './components/Goods/OrderCheck.js';
 import FoodMain from "./components/Food/foodMain";
 import FoodMapLG from "./components/Food/foodMapLG";
 import FoodMapKIWOOM from "./components/Food/foodMapKIWOOM";
@@ -99,7 +98,6 @@ function App() {
           <Route path='/goods' element={<GoodsMain goods={goods} />} />
           <Route path='/goods/:goodsId' element={<GoodsDetail goods={goods} />} />
           <Route path='/goods/orders' element={<GoodsOrder />} />
-          <Route path='/order-check' element={<OrderCheck />} />
           <Route path='/weather' element={<Weather />} />
           <Route path="/payment/checkout" element={<PaymentCheckoutPage />} />
           <Route path="/payment/success" element={<PaymentSuccessPage />} />

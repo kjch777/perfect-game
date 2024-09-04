@@ -48,6 +48,7 @@ tasks.named('test') {
 
 
 def reactAppDir = "$projectDir/src/main/baseball-frontend"
+
 sourceSets {
 	main {
 		resources {
@@ -55,9 +56,11 @@ sourceSets {
 		}
 	}
 }
+
 processResources {
 	dependsOn "copyReactFile"
 }
+
 task installReact(type: Exec) {
 	workingDir "$reactAppDir"
 	inputs.dir "$reactAppDir"
@@ -70,6 +73,7 @@ task installReact(type: Exec) {
 		commandLine 'npm', 'install'
 	}
 }
+
 task buildReact(type: Exec) {
 	dependsOn "installReact"
 	workingDir "$reactAppDir"
@@ -81,6 +85,7 @@ task buildReact(type: Exec) {
 		commandLine "npm", "run-script", "build"
 	}
 }
+
 task copyReactFile(type: Copy) {
 	dependsOn "buildReact"
 	from "$reactAppDir/build"
