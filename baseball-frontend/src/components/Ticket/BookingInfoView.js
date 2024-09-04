@@ -9,7 +9,7 @@ export const BookingInfoView = () => {
     const { loginMember } = useContext(LoginContext);
     const [ticketInfo, setTicketInfo] = useState([]);
     const [selectedBookings, setSelectedBookings] = useState([]);
-    const [totalAmount, setTotalAmount] = useState(0); // 총 결제 금액 상태
+    const [totalAmount, setTotalAmount] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,12 +21,13 @@ export const BookingInfoView = () => {
             return;
         }
 
-        const memberNo = loginMember.memberNo;
+        // const memberNo = loginMember.memberNo;
+        // console.log(memberNo);
 
         const ticketData = async () => {
             try {
                 const response = await axios.get('http://localhost:9090/ticket/bookingInfoView', {
-                    params: { memberNo }
+                    params: { memberNo: loginMember.memberNo }
                 });
                 setTicketInfo(response.data);
             } catch (error) {
@@ -37,17 +38,26 @@ export const BookingInfoView = () => {
     }, [loginMember, navigate]);
 
     useEffect(() => {
-        // 총 결제 금액 계산
         const calculateTotalAmount = () => {
             const amount = ticketInfo.reduce((total, ticket) => {
-                let sum = 0;
-                // 각 가격 정보를 가져와서 더합니다.
-                if (ticket.seatPriceOne) sum += parseInt(ticket.seatPriceOne) || 0;
-                if (ticket.seatPriceTwo) sum += parseInt(ticket.seatPriceTwo) || 0;
-                if (ticket.seatPriceThree) sum += parseInt(ticket.seatPriceThree) || 0;
-                if (ticket.seatPriceFour) sum += parseInt(ticket.seatPriceFour) || 0;
-                return total + sum;
+                // 여기부터
+                const prices = [
+                    ticket.seatPriceOne,
+                    ticket.seatPriceTwo,
+                    ticket.seatPriceThree,
+                    ticket.seatPriceFour
+                ];
+                return total + prices.reduce((sum, price) => sum + (parseInt(price) || 0), 0);
             }, 0);
+            // 여기까지 
+            // let sum = 0;
+            // 각 가격 정보를 가져와서 더합니다.
+            // if (ticket.seatPriceOne) sum += parseInt(ticket.seatPriceOne) || 0;
+            // if (ticket.seatPriceTwo) sum += parseInt(ticket.seatPriceTwo) || 0;
+            // if (ticket.seatPriceThree) sum += parseInt(ticket.seatPriceThree) || 0;
+            // if (ticket.seatPriceFour) sum += parseInt(ticket.seatPriceFour) || 0;
+            // return total + sum;
+            // }, 0);
             setTotalAmount(amount);
         };
         calculateTotalAmount();
@@ -62,9 +72,9 @@ export const BookingInfoView = () => {
         ];
 
         return seats
-            .filter(seat => seat.id) // 필터링하여 ID가 있는 경우만 포함
+            .filter(seat => seat.id)
             .map(seat => `${seat.id}번(${seat.section})`)
-            .join(" / "); // 각 좌석 정보를 " / "로 구분
+            .join(" / ");
     };
 
     const dateFormat = (dateString) => {
@@ -72,8 +82,14 @@ export const BookingInfoView = () => {
         const options = { month: 'numeric', day: 'numeric' };
         const formatter = new Intl.DateTimeFormat('ko-KR', options);
         const [month, day] = formatter.format(date).split('.');
-        return `${month}월 ${day}일`
+        return `${month}월 ${day}일`;
     }
+
+    const isPastOrToday = (dateString) => {
+        const today = new Date();
+        const gameDate = new Date(dateString);
+        return gameDate <= today;
+    };
 
     const handleCheckboxChange = (bookingId) => {
         setSelectedBookings(prevSelected =>
@@ -84,7 +100,10 @@ export const BookingInfoView = () => {
     };
 
     const handleSelectAll = () => {
-        setSelectedBookings(ticketInfo.map(ticket => ticket.bookingId));
+        const selectableBookings = ticketInfo
+            .filter(ticket => !isPastOrToday(ticket.gameDate))
+            .map(ticket => ticket.bookingId);
+        setSelectedBookings(selectableBookings);
     };
 
     const handleDeselectAll = () => {
@@ -99,7 +118,7 @@ export const BookingInfoView = () => {
 
         try {
             await axios.delete('http://localhost:9090/ticket/deleteTicket', {
-                data: { bookingIds: selectedBookings }
+                data: selectedBookings // DELETE 요청에 data를 담아 전송
             });
             alert("선택된 예매가 취소되었습니다.");
             setTicketInfo(ticketInfo.filter(ticket => !selectedBookings.includes(ticket.bookingId)));
@@ -110,15 +129,25 @@ export const BookingInfoView = () => {
         }
     };
 
-    // 개별 예매의 총 결제 금액 계산 함수
     const calculateTicketAmount = (ticket) => {
-        let sum = 0;
-        if (ticket.seatPriceOne) sum += parseInt(ticket.seatPriceOne) || 0;
-        if (ticket.seatPriceTwo) sum += parseInt(ticket.seatPriceTwo) || 0;
-        if (ticket.seatPriceThree) sum += parseInt(ticket.seatPriceThree) || 0;
-        if (ticket.seatPriceFour) sum += parseInt(ticket.seatPriceFour) || 0;
-        return sum;
+        const prices = [
+            ticket.seatPriceOne,
+            ticket.seatPriceTwo,
+            ticket.seatPriceThree,
+            ticket.seatPriceFour
+        ];
+        return prices.reduce((sum, price) => sum + (parseInt(price) || 0), 0);
     };
+
+    // 개별 예매의 총 결제 금액 계산 함수
+    // const calculateTicketAmount = (ticket) => {
+    //     let sum = 0;
+    //     if (ticket.seatPriceOne) sum += parseInt(ticket.seatPriceOne) || 0;
+    //     if (ticket.seatPriceTwo) sum += parseInt(ticket.seatPriceTwo) || 0;
+    //     if (ticket.seatPriceThree) sum += parseInt(ticket.seatPriceThree) || 0;
+    //     if (ticket.seatPriceFour) sum += parseInt(ticket.seatPriceFour) || 0;
+    //     return sum;
+    // };
 
     return (
         <div className="infoView-container">
@@ -126,7 +155,7 @@ export const BookingInfoView = () => {
                 <div className="infoView-div">
                     <div className="infoView-actions">
                         <Button onClick={handleSelectAll}>모두 선택</Button>
-                        <Button onClick={handleDeselectAll}>모두 해제</Button>
+                        <Button onClick={handleDeselectAll} className="infoView-btnMl">모두 해제</Button>
                     </div>
                     <table className="infoView-table">
                         <thead>
@@ -140,10 +169,15 @@ export const BookingInfoView = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {ticketInfo.map((ticket) => (
+                            {ticketInfo.map(ticket => (
                                 <tr key={ticket.bookingId}>
                                     <td>
-                                        <input type="checkbox" checked={selectedBookings.includes(ticket.bookingId)} onChange={() => handleCheckboxChange(ticket.bookingId)} />
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedBookings.includes(ticket.bookingId)}
+                                            onChange={() => handleCheckboxChange(ticket.bookingId)}
+                                            disabled={isPastOrToday(ticket.gameDate)}
+                                        />
                                     </td>
                                     <td>{ticket.gameTitle}</td>
                                     <td>{dateFormat(ticket.gameDate)}</td>
@@ -155,7 +189,7 @@ export const BookingInfoView = () => {
                         </tbody>
                     </table>
                     <div className="infoView-action">
-                        <Button onClick={handleCancel}>선택된 예매 취소</Button>
+                        <Button onClick={handleCancel}>선택된 예매 취소하기</Button>
                     </div>
                 </div>
             ) : (

@@ -41,8 +41,19 @@ public class TicketController {
 	}
 	
 	@DeleteMapping("/deleteTicket")
-	public void deleteTicket(@RequestParam int bookingId) {
-		ticketService.deleteTicket(bookingId);
+	public ResponseEntity<Void> deleteTicket(@RequestBody List<Integer> bookingIds) {
+		ticketService.deleteTicket(bookingIds);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/checkSeatStatus")
+	public List<Ticket> checkSeatStatus(@RequestParam("gameCode") String gameCode) {
+		return ticketService.checkSeatStatus(gameCode);
+	}
+	
+	@GetMapping("/status")
+	public Ticket checkBookingStatus(@RequestParam("gameCode") String gameCode) {
+		return ticketService.checkBookingStatus(gameCode);
 	}
 	
 	/** Seat **/

@@ -11,6 +11,8 @@ export const TicketBookingMain = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
     const { loginMember } = useContext(LoginContext);
+    
+    const [soldOut, setSoldOut] = useState({}); // 코드 추가
 
     const cardsPerPage = 16;
     
@@ -31,7 +33,18 @@ export const TicketBookingMain = () => {
         const gameData = async () => {
             const response = await axios.get('http://localhost:9090/ticket/bookingMain');
             setGames(response.data);
+        // };
+
+        // 코드 추가
+        const soldOutStatus = {};
+            for (const game of response.data) {
+                const res = await axios.get(`http://localhost:9090/ticket/status?gameCode=${game.gameCode}`);
+                const ticket = res.data;
+                soldOutStatus[game.gameCode] = ticket.bookedSeats >= ticket.totalSeats;
+            }
+            setSoldOut(soldOutStatus);
         };
+
         gameData();
     }, []);
 
@@ -117,7 +130,9 @@ export const TicketBookingMain = () => {
                                         <Card.Text className="ticketCard-textVS">
                                             {teamNameMapping[game.gameTeamNameHome]} VS {teamNameMapping[game.gameTeamNameAway]}
                                         </Card.Text>
-                                        <Button onClick={() => handleBooking(game.gameCode, game.gameDate, game.gameTeamNameHome, game.gameTeamNameAway)} className="ticketCard-button">예매하기</Button>
+                                        <Button onClick={() => handleBooking(game.gameCode, game.gameDate, game.gameTeamNameHome, game.gameTeamNameAway)} className="ticketCard-button" disabled={soldOut[game.gameCode]}>
+                                            {soldOut[game.gameCode] ? "매진" : "예매하기"}
+                                        </Button>
                                     </Card.Body>
                                 </Card>
                             </div>

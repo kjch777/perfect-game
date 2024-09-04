@@ -42,6 +42,8 @@ export function TicketPaymentSuccessPage() {
         seatIdFour: ticketInfo.seatIdFour,
         seatSectionFour: ticketInfo.seatSectionFour,
         seatPriceFour: ticketInfo.seatPriceFour,
+
+        locked: 1
       };
 
       await axios.post('/ticket/insertTicket', requestData);
@@ -51,9 +53,9 @@ export function TicketPaymentSuccessPage() {
     }
   };
 
-  const handleSelect = () => {
+  const handleOpen = () => {
     if (window.opener) {
-      window.opener.location.href = '/ticket/bookingInfoView';
+      window.opener.location.href = '/';
       window.close();
     }
   }
@@ -67,9 +69,7 @@ export function TicketPaymentSuccessPage() {
           alt="Success" 
         />
         <h2>예매가 완료되었습니다.</h2>
-        <Link to="/ticket/bookingInfoView">
-          <Button className="" onClick={handleSelect}>예매 내역 조회하기</Button>
-        </Link>
+        <Button onClick={handleOpen}>메인 페이지로 이동하기</Button>
       </div>
     </div>
   );

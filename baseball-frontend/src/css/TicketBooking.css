@@ -452,10 +452,31 @@ input.noCursorChange::-webkit-outer-spin-button {
 
 /***** ▼ BookingInfoView.js ▼ *****/
 
+.infoView-div {
+  display: grid;
+}
+
+.infoView-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-left: 190px;
+}
+
+.infoView-btnMl {
+  margin-left: 10px;
+}
+
 .infoView-table {
   text-align: center;
   padding: 25px;
-  margin: 25px;
+  margin: 0 auto;
+  cursor: default;
+}
+
+.infoView-table input[type="checkbox"] {
+  cursor: pointer;
 }
 
 .infoView-table th {
@@ -465,8 +486,8 @@ input.noCursorChange::-webkit-outer-spin-button {
   font-weight: bold;
 }
 
-.infoView-table td {
-
+.infoView-table td:hover {
+  background-color: #f4f4f4;
 }
 
 .infoView-table th,
@@ -474,6 +495,14 @@ input.noCursorChange::-webkit-outer-spin-button {
   padding: 10px;
   margin: 10px;
   border: 1px solid #dddddd;
+}
+
+.infoView-action {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 188px;
 }
 
 /***** ▲ BookingInfoView.js ▲ *****/
