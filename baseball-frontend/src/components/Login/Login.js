@@ -20,7 +20,7 @@ const Login = () => {
       return;
     }
 
-    fetch('http://localhost:9090/members/login', {
+    fetch('/members/login', {
       method : "POST",
       headers : {"Content-Type" : "application/json",
                  "Accept" : "application/json" },

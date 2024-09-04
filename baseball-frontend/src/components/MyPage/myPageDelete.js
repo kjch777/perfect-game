@@ -29,7 +29,7 @@ function MyPageDelete() {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:9090/mypage/${loginMember.memberId}`, {
+      const response = await axios.delete(`/mypage/${loginMember.memberId}`, {
         params: { memberPw: password },
         headers: {
           "Content-Type": "application/json",
