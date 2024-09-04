@@ -195,7 +195,7 @@ function BoardGuestbook() {
                 </td>
                 <td className='board-container-title'>
                   <div className='board-private-img-container'>
-                    <img src={b.boardPrivate === 'Y' ? '/images/board/board-locked.png' : '/images/board/board-unlocked.png'}
+                    <img src={b.boardPrivate === 'Y' ? '/board-images/board-locked.png' : '/board-images/board-unlocked.png'}
                         className='board-private-img'
                         alt="Board Private Image"/>
                   </div>

@@ -41,9 +41,9 @@ public class BoardServiceImpl implements BoardService {
 			                 String name) {
 		File uploadDirFile = new File(uploadDir);
 		if(!uploadDirFile.exists()) {
-			System.out.println("������ �����մϴ�.");
+            System.out.println("Upload directory does not exist.");
 			if(!uploadDirFile.mkdirs()) {
-				throw new RuntimeException("���� ���� �����Ͽ����ϴ�.");
+                throw new RuntimeException("Failed to create upload directory.");
 			}
 		}
 		List<String> fileNames = null;
@@ -54,12 +54,13 @@ public class BoardServiceImpl implements BoardService {
 				try {
 					file.transferTo(df);
 				} catch (Exception e) {
-					throw new RuntimeException("���� ���ε� ����", e);
+					throw new RuntimeException("Failed to save file", e);
 				}
 				return fileName;
 			}).collect(Collectors.toList());
 		} catch (Exception e) {
 			e.printStackTrace();
+	        throw new RuntimeException("Failed to process files", e);
 		}
 		
 		Board board = new Board();

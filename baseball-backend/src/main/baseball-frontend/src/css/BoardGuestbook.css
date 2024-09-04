@@ -72,6 +72,9 @@
 .board-container-no {
   width: 60px;
 }
+.board-container-title {
+  min-width: 220px;
+}
 .board-container-name {
   width: 100px;
 }

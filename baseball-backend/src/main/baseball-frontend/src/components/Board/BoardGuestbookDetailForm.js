@@ -102,7 +102,7 @@ function BoardGuestbookDetailForm({ boardNo }) {
                 <div className="images-list">
                     {selectedBoard.boardImageUrl.split(',').map(image =>
                         <div key={image}>
-                            <img src={`http://localhost:9090/board-images/${image}`} alt="" />
+                            <img src={`http://localhost:9090/board/files/${image}`} alt="" />
                         </div>
                     )}
                 </div>

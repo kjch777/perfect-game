@@ -57,6 +57,9 @@ function BoardGuestbookForm() {
             return;
         }
         const formData = new FormData();
+        if (files.length < 0 ) {
+            alert('이미지를 1개 이상 선택하세요.');
+        }
         Array.from(files).forEach((file) => {
             formData.append("files", file);
         });
