@@ -1,12 +1,16 @@
 .calendarTable{
     margin: 0 auto;
     background-color: rgb(255, 255, 255);
-    color: rebeccapurple;
+    color: #002063;
     font-weight: bold;
     box-shadow: 0 0 10px gray;
     border-radius: 5px;
-    background: url('../components/main_components/baseball-7985433_1280.jpg'), linear-gradient(to right, rgba(0, 0, 0, 0.911), rgba(248, 4, 4, 0.699));
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), 
+        url('../components/main_components/baseball-7985433_1280.jpg'), 
+        linear-gradient(to right, rgba(0, 0, 0, 0.911), rgba(248, 4, 4, 0.699));
     background-size: cover;
+    width: 80%;
     
 }
 
@@ -34,13 +38,13 @@
 }
 
 .calendarTable th{
-    border-bottom: 2px solid rgb(96, 147, 204);
+    border-bottom: 2px solid #002063;
     
 }
 
 .calendarTable th{
     padding: 15px;
-    color: rgb(7, 75, 21);
+    color: #002063;
 
 }
 
@@ -75,9 +79,9 @@
 }
 
 .calendarGameDiv h2{
-    color: rgb(169, 153, 212);
+    color: #002063;
     font-weight: bold;
-    text-align: right;
+    text-align: center;
     
 }
 
@@ -96,7 +100,7 @@
 }
 
 .gameTable th{
-    color: rgb(0, 81, 255);
+    color: #751641;
 }
 
 .gameTable th, .gameTable td{

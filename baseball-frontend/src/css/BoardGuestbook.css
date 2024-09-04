@@ -16,7 +16,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.board-main-header-contents {
+  display: flex;
+  position: relative;
+}
 .form-button {
+  position: absolute;
+  top: 0;
+  right: 10px;
   background: #002063;
   padding: 15px 25px;
   color: white;
@@ -51,21 +58,88 @@
 .board-container td {
   border: 1px solid #ddd;
   text-align: center;
+  padding: 5px;
+}
+.board-container th {
+  font-size: 20px;
+  height: 50px;
+}
+.board-container td {
+  font-size: 16px;
+  color: #555;
 }
 
+.board-container-no {
+  width: 60px;
+}
+.board-container-title {
+  min-width: 220px;
+}
+.board-container-name {
+  width: 100px;
+}
+.board-container-id {
+  width: 150px;
+}
+.board-container-createdat {
+  width: 180px;
+}
+.board-container-detail {
+  width: 120px;
+}
+.board-container-delete {
+  width: 60px;
+}
 
-.board-container-modify-button,
-.board-container-delete-button {
-  background: #002063;
-  width: 100%;
-  padding: 5px 10px;
-  color: white;
-  border: none ;
-  border-radius: 10px;
+.board-private-img-container {
+  position: relative;
+}
+.board-private-img {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+}
+
+.board-link {
+  text-decoration: none;
+  color: #555;
   cursor: pointer;
+  transition: font-weight 0.3s ease, color 0.3s ease;
 }
-.board-container-modify-button:hover,
+
+.board-link:hover {
+  color: black;
+  font-weight: bold;
+}
+
+.board-container-detail-button {
+  width: 100%;
+  height: fit-content;
+  border: none;
+  background-color: #fff;
+  color: #555;
+  transition: font-weight 0.3s ease, color 0.3s ease;
+}
+.board-container-detail-button:hover {
+  color: black;
+  font-weight: bold;
+}
+
+.board-container-delete-button {
+  background-color: #fff;
+  color: red;
+  border: none;
+  transition: font-weight 0.3s ease;
+}
 .board-container-delete-button:hover {
-  background: #070063;
-  color: white;
+  font-weight: bold;
+}
+
+.board-main-pagination {
+  margin: 0 5px;
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+  background-color: #fff;
 }

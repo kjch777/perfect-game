@@ -1,8 +1,13 @@
 package base.ball.controller;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +28,9 @@ import base.ball.service.BoardService;
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
+	
+	@Value("${file.upload-dir}")
+	private String uploadDir;
 	
 	@PostMapping("/upload")
 	public ResponseEntity<String> uploadImages(@RequestParam("files") MultipartFile[] files,
@@ -57,5 +65,17 @@ public class BoardController {
 	    board.setBoardNo(boardNo);
 	    boardService.updateBoard(board);
 	    return ResponseEntity.ok("게시글 수정 완료!");
+	}
+	
+	@GetMapping("/files/{filename}")
+	public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
+	    File file = new File(uploadDir, filename);
+	    if (!file.exists()) {
+	        return ResponseEntity.notFound().build();
+	    }
+	    Resource resource = new FileSystemResource(file);
+	    return ResponseEntity.ok()
+	            .contentType(MediaType.APPLICATION_OCTET_STREAM)
+	            .body(resource);
 	}
 }
