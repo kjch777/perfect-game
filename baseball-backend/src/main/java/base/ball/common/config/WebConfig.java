@@ -10,7 +10,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/board/files/**")
-                .addResourceLocations("C:/Users/user1/Desktop/final-perfect-game/baseball-backend/build/resources/main/static/board/files/");
+                .addResourceLocations("file:/home/ec2-user/board/files/");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
