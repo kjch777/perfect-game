@@ -1,0 +1,508 @@
+.stadium-container {
+  width: 1250px; 
+  height: 1250px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+}
+
+.controls {
+  text-align: end;
+}
+
+.controls label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.controls input {
+  font-size: 18px;
+  width: 50px;
+  text-align: center;
+}
+
+.svgAndBtn { /* 추후 수정 */
+  display: flex;
+  justify-content: space-between;
+}
+
+.stadium-svg {
+  width: 50%;
+  height: 50%;
+}
+
+.bookingInfo-rightView { /* 추후 수정 */
+  width: 50%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.seat {
+  cursor: pointer;
+}
+
+/* 커서 이동 시 좌석 테두리 효과*/
+.seat:hover {
+  stroke: #000;
+  stroke-width: 2;
+}
+
+/* 좌석 선택 시 효과*/
+.selected {
+  fill: #ffd700 !important;
+}
+
+.seat-text {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+svg text {
+  cursor: default;
+  font-size: 25px;
+}
+
+
+
+/********** ▼ 예매 메인 페이지 **********/
+
+/***** ▼ 배너 *****/
+
+.banner-container {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.overlay {
+  display: flex;
+  position: relative;
+  align-items: end;
+  justify-content: center;
+}
+
+.overlay-text {
+  position: absolute;
+  margin-bottom: 25px;
+  cursor: default;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+}
+
+.swiper-slide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-links {
+  display: flex;
+  justify-content: center;
+}
+
+.slide-img {
+  max-width: 80%;
+  width: 960px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  /* 추후 추가 */
+}
+
+.swiper-pagination {
+  /* 추후 추가 */
+}
+
+/***** ▲ 배너 *****/
+
+
+
+/***** ▼ 예매 정보 *****/
+
+.ticket-container,
+.ticketMain-Contents {
+  margin-top: 25px;
+}
+
+.ticket-container {
+  /* width: 1500px; */
+  width: 1500px;
+  margin: 0 auto;
+  margin-top: 25px;
+}
+
+.content-title {
+  margin-left: 100px;
+  margin-right: 100px;
+  text-align: center;
+}
+
+.content-title img {
+  width: 960px;
+  height: 65px;
+  margin-bottom: 25px;
+}
+
+.content-content {
+  margin-top: 25px;
+  width: 960px;
+  margin: 0 auto;
+}
+
+.ticketDiv-flex {
+  display: flex;
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+  justify-content: flex-start; /* 카드들이 왼쪽부터 오른쪽으로 차례대로 배치 */
+}
+
+.ticketDiv-calc {
+  margin-bottom: 25px;
+  margin-right: 25px;
+  width: calc(23.04%); /* 카드 3개가 한 줄에 나오도록, 간격을 포함해 크기 계산 */
+}
+
+/* 한 줄의 마지막 카드에서만 margin-right 제거 */
+.ticketDiv-calc:nth-child(4n) {
+  margin-right: 0;
+}
+
+.sort-images {
+  /* 브라우저를 가로로 줄여도 CSS 깨지지 않게 만들기 */
+  display: flex;
+}
+
+.sort-images img {
+  width: 60px;
+  height: 60px;
+}
+
+.ticketCard-textDate {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.ticketCard-textVS {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.ticketCard-button {
+  width: 150px;
+}
+
+.pagination {
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.page-info {
+  font-weight: bold;
+  margin: 25px;
+}
+
+/***** ▲ 예매 정보 *****/
+
+/********** ▲ 예매 메인 페이지 **********/
+
+
+
+
+/* TicketBookingSub 새로고침 시 상하/좌우 스크롤 바 생성 문제 해결하기 */
+
+.ticketingSub-header {
+  margin: 0 auto;
+  background-color: #e7f3ff;
+  border-radius: 0px;
+  border-bottom: 2px solid #a7d1ff;
+  border-right: 2px solid #a7d1ff;
+  cursor: default;
+}
+
+.teamName-section {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.gameDate-section {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 35px;
+}
+
+.imgSmall-Change {
+  
+}
+
+.imgSmall-Change img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.booking-card {
+  border: 2px solid #a7d1ff;
+  cursor: default;
+}
+
+.bookingInfo-cardHeader {
+  border-bottom: 2px solid #a7d1ff;
+  background-color: #e7f3ff;
+  text-align: center;
+}
+
+.booking-info {
+  width: 240px;
+  height: 380px;
+  justify-content: flex-start;
+}
+
+.bookingInfo-seatInfo {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.total-price {
+  border-top: 2px solid #a7d1ff;
+  background-color: #e7f3ff;
+  text-align: center;
+}
+
+.noCursorChange {
+  cursor: default;
+}
+
+input.noCursorChange::-webkit-inner-spin-button,
+input.noCursorChange::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+/* ▲ TicketBookingSub.js ▲ */
+
+
+
+/********** ▼ BookingStepTwo.js ▼ **********/
+
+.payPage-container {
+  border-right: 1px solid rgba(0, 0, 0, 0.333);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.333);
+}
+
+.payPage-title {
+  background-color: rgba(0, 0, 0, 0.777);
+  color: white;
+  padding: 25px;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  cursor: default;
+}
+
+.payPage-info {
+  background-color: rgba(0, 0, 0, 0.333);
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  margin-right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.333);
+  cursor: default;
+}
+
+.payPage-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background-color: black;
+  transform: translateX(-50%);
+  z-index: 2; /* 선이 가장 위에 표시되도록 설정 */
+}
+
+.payPage-infoOne {
+  background-color: #f0f0f0; /* 왼쪽 배경색 */
+  padding: 14px;
+  z-index: 1; /* 선 아래에 있도록 설정 */
+}
+
+.payPage-infoOne:hover {
+  background-color: #f9f9f9;
+}
+
+.payPage-infoTwo {
+  background-color: #b0b0b0; /* 오른쪽 배경색 */
+  padding: 14px;
+  z-index: 1; /* 선 아래에 있도록 설정 */
+}
+
+.payPage-infoTwo:hover {
+  background-color: #b9b9b9;
+}
+
+.payPage-contentRow {
+  display: flex;
+  cursor: default;
+}
+
+.payPage-halfView {
+  flex: 1;
+  border-right: 2px solid rgba(0, 0, 0, 0.555);
+  padding: 0;
+  padding-left: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
+
+.gameInfo-table, 
+.seatInfo-table,
+.theOther-payInfo,
+.theOther-memberInfo {
+  width: 85%;
+  margin: 35px;
+}
+
+.gameInfo-table,
+.theOther-payInfo {
+  margin-bottom: 0;
+}
+
+.gameInfo-table th, 
+.seatInfo-table th, 
+.theOther-payInfo th, 
+.theOther-memberInfo th,
+.gameInfo-table td, 
+.seatInfo-table td, 
+.theOther-payInfo td, 
+.theOther-memberInfo td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.gameInfo-table th, 
+.seatInfo-table th, 
+.theOther-payInfo th, 
+.theOther-memberInfo th {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.gameInfo-table th,
+.theOther-memberInfo th {
+  background-color: #002063;
+  color: white;
+}
+
+.seatInfo-table th,
+.theOther-payInfo th {
+  background-color: #8A1A4D;
+  color: white;
+}
+
+.gameInfo-table tr:hover, 
+.seatInfo-table tr:hover, 
+.theOther-payInfo tr:hover, 
+.theOther-memberInfo tr:hover {
+  background-color: #f4f4f4;
+}
+
+.payPage-theOther {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
+
+.payPage-buttons {
+  margin-bottom: 35px;
+}
+
+.prev-step {
+  margin-right: 15px;
+  margin-left: 288px;
+}
+
+/********** ▲ BookingStepTwo.js ▲ **********/
+
+
+
+/***** ▼ BookingInfoView.js ▼ *****/
+
+.infoView-div {
+  display: grid;
+}
+
+.infoView-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-left: 190px;
+}
+
+.infoView-btnMl {
+  margin-left: 10px;
+}
+
+.infoView-table {
+  text-align: center;
+  padding: 25px;
+  margin: 0 auto;
+  cursor: default;
+}
+
+.infoView-table input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.infoView-table th {
+  background-color: #8A1A4D;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.infoView-table td:hover {
+  background-color: #f4f4f4;
+}
+
+.infoView-table th,
+.infoView-table td {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #dddddd;
+}
+
+.infoView-action {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 188px;
+}
+
+/***** ▲ BookingInfoView.js ▲ *****/
