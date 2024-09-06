@@ -3,7 +3,7 @@ import React from "react";
 const NaverApi = () => {
   return (
     <div>
-      <a href="http:///api/naverLogin">
+      <a href="/api/naverLogin">
         <img
           height="50"
           src="http://static.nid.naver.com/oauth/small_g_in.PNG"

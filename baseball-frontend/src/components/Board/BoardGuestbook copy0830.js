@@ -9,7 +9,7 @@ import BoardModal from './BoardModal';
 
 function BoardGuestbook() {
   const { loginMember } = useContext(LoginContext);
-  const boardListAPI = "http:///board/lists";
+  const boardListAPI = "/board/lists";
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');

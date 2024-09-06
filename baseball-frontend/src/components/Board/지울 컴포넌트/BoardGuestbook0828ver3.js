@@ -11,8 +11,8 @@ function BoardGuestbook() {
 
 
 
-  const boardListAPI = "http:///board/lists";
-  const boardUploadAPI = "http:///board/upload";
+  const boardListAPI = "/board/lists";
+  const boardUploadAPI = "/board/upload";
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -203,7 +203,7 @@ function BoardGuestbook() {
               </td>
               <td className="images">
                 {b.boardImageUrl.split(',').map(image => 
-                  <img key={image} src={`http:///images/${image}`}/>
+                  <img key={image} src={`/images/${image}`}/>
                 )}
               </td>
               {/* ******************** */}

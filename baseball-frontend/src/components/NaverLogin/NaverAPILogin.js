@@ -5,7 +5,7 @@ const Login = () => {
     
     useEffect(() => {
         const 유저정보 = () => {
-            fetch('http:///userInfo')
+            fetch('/userInfo')
             .then(가져온응답결과 => {
                 return 가져온응답결과.json();
             })
@@ -29,7 +29,7 @@ const Login = () => {
                 </div>
             )
             : (
-                <a href="http:///api/naverLogin">
+                <a href="/api/naverLogin">
                     <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
                 </a>
             )}
