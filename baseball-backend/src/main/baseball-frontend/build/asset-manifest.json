@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.7a7beed8.css",
-    "main.js": "/static/js/main.e4f41250.js",
+    "main.js": "/static/js/main.852e49e5.js",
     "static/js/453.aaa9cecc.chunk.js": "/static/js/453.aaa9cecc.chunk.js",
     "static/media/baseball-7985433_1280.jpg": "/static/media/baseball-7985433_1280.5e94bdf16e101ac8b781.jpg",
     "static/media/ground_architecture.jpg": "/static/media/ground_architecture.d725765cccf9b64480fb.jpg",
     "index.html": "/index.html",
     "main.7a7beed8.css.map": "/static/css/main.7a7beed8.css.map",
-    "main.e4f41250.js.map": "/static/js/main.e4f41250.js.map",
+    "main.852e49e5.js.map": "/static/js/main.852e49e5.js.map",
     "453.aaa9cecc.chunk.js.map": "/static/js/453.aaa9cecc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7a7beed8.css",
-    "static/js/main.e4f41250.js"
+    "static/js/main.852e49e5.js"
   ]
 }
