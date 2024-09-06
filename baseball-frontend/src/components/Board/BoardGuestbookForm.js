@@ -5,7 +5,7 @@ import LoginContext from '../../components/Login/LoginContext';
 
 function BoardGuestbookForm() {
     const { loginMember } = useContext(LoginContext);
-    const boardUploadAPI = "http://localhost:9090/board/upload";
+    const boardUploadAPI = "/board/upload";
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');

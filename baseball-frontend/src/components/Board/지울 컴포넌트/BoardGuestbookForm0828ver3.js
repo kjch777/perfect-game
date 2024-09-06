@@ -4,8 +4,8 @@ import '../../css/BoardGuestbook.css';
 
 const BoardGuestbookForm0828ver3 = () => {
     const { loginMember } = useContext(LoginContext);
-    const boardListAPI = "http://localhost:9090/board/lists";
-    const boardUploadAPI = "http://localhost:9090/board/upload";
+    const boardListAPI = "/board/lists";
+    const boardUploadAPI = "/board/upload";
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState('');

@@ -44,7 +44,7 @@ function NaverSignup() {
       return;
     }
 
-    axios.post('http://localhost:9090/NaverAPI/register', {
+    axios.post('/NaverAPI/register', {
       id : userInfo.response.id,
       email : userInfo.response.email,
       nickname : userInfo.response.nickname,

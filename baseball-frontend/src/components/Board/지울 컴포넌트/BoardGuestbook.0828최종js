@@ -5,8 +5,8 @@ import LoginContext from '../../components/Login/LoginContext';
 
 function BoardGuestbook() {
   const { loginMember } = useContext(LoginContext);
-  const boardListAPI = "http://localhost:9090/board/lists";
-  const boardUploadAPI = "http://localhost:9090/board/upload";
+  const boardListAPI = "/board/lists";
+  const boardUploadAPI = "/board/upload";
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -33,7 +33,7 @@ function BoardGuestbook() {
 
 /*
   useEffect (() => {
-    axios.get(`http://localhost:9090/board/lists/${id}`)
+    axios.get(`/board/lists/${id}`)
     .then(response => {
         setBoardDetail(response.data);
         setEditData({
@@ -283,7 +283,7 @@ function BoardGuestbook() {
               <div className='board-item-writerName'>{b.boardMemberName}</div>
               <div className='board-item-image'>
                 {b.boardImageUrl.split(',').map(image => 
-                  <img key={image} src={`http://localhost:9090/images/${image}`}/>
+                  <img key={image} src={`/images/${image}`}/>
                 )}
               </div>
               <div className='board-item-createdAt'>{b.createdAt}</div>
