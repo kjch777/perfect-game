@@ -1,0 +1,42 @@
+.board-main-container {
+  width: 80%;
+  margin: 20px auto; /* margin을 auto로 설정하여 중앙 정렬 */
+  display: flex;
+}
+
+.board-main-hr {
+  width: 100%;
+  border: 0;
+  height: 5px;
+  background-color: #000;
+  margin: 15px 0;
+  opacity: 1;
+}
+
+.board-main-link-container {
+  width: 80%;
+  padding: 20px;
+  min-height: 660px;
+}
+
+.board-main-link-list-li {
+  text-align: center;
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.board-main-link-list-a {
+  flex-basis: 25%;
+}
+.board-main-link-list-li a {
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+.board-main-link-list-li a:hover {
+  font-weight: bold;
+}
