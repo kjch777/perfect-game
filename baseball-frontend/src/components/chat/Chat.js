@@ -25,7 +25,7 @@ const Chat = () => {
     
     // STOMP 클라이언트 연결 설정
     useEffect(() => {
-        const socket = new SockJS('http:///ws');
+        const socket = new SockJS('/ws');
         const client = new Client({
             webSocketFactory: () => socket,
             connectHeaders: {},

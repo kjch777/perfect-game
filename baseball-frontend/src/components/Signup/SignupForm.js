@@ -100,7 +100,7 @@ const SignupForm = ({ addMember }) => {
             return;
         }
         try {
-          const response = await axios.get('http:///members/idCheck', {
+          const response = await axios.get('/members/idCheck', {
             params: { id: memberId },
           });
           setIsDuplicate(response.data > 0);
