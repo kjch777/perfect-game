@@ -15,7 +15,7 @@ function BoardGuestbookDetailForm({ boardNo }) {
     const [writerId, setWriterId] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:9090/board/lists?boardNo=${encodeURIComponent(boardNo)}`)
+        axios.get(`http:///board/lists?boardNo=${encodeURIComponent(boardNo)}`)
             .then(response => {
                 setBoardList(response.data);
             })
@@ -53,7 +53,7 @@ function BoardGuestbookDetailForm({ boardNo }) {
                 throw new Error('유효하지 않은 boardNo');
             }
     
-            await axios.delete(`http://localhost:9090/board/lists?boardNo=${encodeURIComponent(boardNo)}`);
+            await axios.delete(`http:///board/lists?boardNo=${encodeURIComponent(boardNo)}`);
             alert('게시글이 삭제되었습니다.');
             setBoardList(boardList.filter(b => b.boardNo !== boardNo));
             setSelectedBoard(null);
@@ -102,7 +102,7 @@ function BoardGuestbookDetailForm({ boardNo }) {
                 <div className="images-list">
                     {selectedBoard.boardImageUrl.split(',').map(image =>
                         <div key={image}>
-                            <img src={`http://localhost:9090/board/files/${image}`} alt="" />
+                            <img src={`http:///board/files/${image}`} alt="" />
                         </div>
                     )}
                 </div>

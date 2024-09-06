@@ -6,7 +6,7 @@ import BoardGuestbookForm from './BoardGuestbookForm';
 
 function BoardGuestbook() {
   const { loginMember } = useContext(LoginContext);
-  const boardListAPI = "http://localhost:9090/board/lists";
+  const boardListAPI = "http:///board/lists";
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -140,7 +140,7 @@ function BoardGuestbook() {
                 </td>
                 <td className="images">
                   {b.boardImageUrl.split(',').map(image => 
-                    <img key={image} src={`http://localhost:9090/images/${image}`}/>
+                    <img key={image} src={`http:///images/${image}`}/>
                   )}
                 </td>
                 <td className="board-container-createdat">

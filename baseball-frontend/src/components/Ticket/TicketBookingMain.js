@@ -31,14 +31,14 @@ export const TicketBookingMain = () => {
 
     useEffect(() => {
         const gameData = async () => {
-            const response = await axios.get('http://localhost:9090/ticket/bookingMain');
+            const response = await axios.get('http:///ticket/bookingMain');
             setGames(response.data);
         // };
 
         // 코드 추가
         const soldOutStatus = {};
             for (const game of response.data) {
-                const res = await axios.get(`http://localhost:9090/ticket/status?gameCode=${game.gameCode}`);
+                const res = await axios.get(`http:///ticket/status?gameCode=${game.gameCode}`);
                 const ticket = res.data;
                 soldOutStatus[game.gameCode] = ticket.bookedSeats >= ticket.totalSeats;
             }
