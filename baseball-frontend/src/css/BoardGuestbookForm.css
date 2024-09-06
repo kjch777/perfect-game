@@ -1,13 +1,15 @@
 .guestbook-form-container {
   width: 80%;
+  /*min-width: 800px;*/
   margin: auto;
   margin-top: 20px;
   position: relative;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .guestbook-form-container ul {
@@ -15,24 +17,46 @@
   padding: 0;
   margin: 0;
 }
-
 .guestbook-form-container li {
   margin-bottom: 20px;
 }
 
-.guestbook-title,
-.guestbook-content,
-.guestbook-writer,
-.guestbook-image {
+.guestbook-form-item {
   margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+.guestbook-form-item:last-child {
+  margin-bottom: 60px;
+}
+.guestbook-form-item label {
+  width: 180px;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+.guestbook-form-item div {
+  width: 100%
+}
+.guestbook-form-item div input,
+.guestbook-form-item div textarea {
+  width: 100%;
+}
+.guestbook-form-item div textarea {
+  height: 130px;
 }
 
-.guestbook-title label,
-.guestbook-content label,
-.guestbook-writer label,
-.guestbook-image label {
-  font-weight: bold;
-  color: #555;
+
+.guestbook-form-item .guestbook-image .img-input {
+  width: 100%;
+}
+
+.guestbook-select-private {
+  display: flex;
+  align-items: center;
 }
 
 .guestbook-cancel-submit-button {
@@ -51,6 +75,9 @@
 }
 
 .guestbook-submit-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
   background-color: #002063;
   color: white;
   border: none;
@@ -59,7 +86,7 @@
   cursor: pointer;
   font-size: 16px;
 }
-.guestbook-submit-buttonbutton:hover {
+.guestbook-submit-button:hover {
   background-color: #070063;
   color: white;
 }
@@ -103,9 +130,6 @@
   display: block; /* 이미지 주변의 불필요한 여백 제거 */
   background-color: #fff; /* 배경색 설정 */
 }
-
-
-
 
 .images {
   display: flex;

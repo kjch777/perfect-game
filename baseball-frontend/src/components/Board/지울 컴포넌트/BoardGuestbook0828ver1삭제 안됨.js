@@ -5,8 +5,8 @@ import LoginContext from '../../components/Login/LoginContext';
 
 function BoardGuestbook0828ver1() {
   const { loginMember, setLoginMember } = useContext(LoginContext);
-  const boardListAPI = "http://localhost:9090/board/lists";
-  const boardUploadAPI = "http://localhost:9090/board/upload";
+  const boardListAPI = "http:///board/lists";
+  const boardUploadAPI = "http:///board/upload";
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -188,7 +188,7 @@ function BoardGuestbook0828ver1() {
               </td>
               <td className="images">
                 {b.boardImageUrl.split(',').map(image => 
-                  <img key={image} src={`http://localhost:9090/images/${image}`}/>
+                  <img key={image} src={`http:///images/${image}`}/>
                 )}
               </td>
               {/* ******************** */}

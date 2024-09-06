@@ -2,6 +2,7 @@
 header {
   position: relative;
   z-index: 1000;
+  margin-bottom: 0;
 }
 header #login-signup {
   position: absolute;

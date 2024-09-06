@@ -76,7 +76,7 @@ const Login = () => {
               </div>
               <div className="button-container">
                 <button onClick={handleLogin} >Login</button>
-                <a href="http://localhost:9090/api/naverLogin">
+                <a href="http:///api/naverLogin">
                   <img
                     height="50"
                     src="http://static.nid.naver.com/oauth/small_g_in.PNG"

@@ -15,7 +15,7 @@ function BoardGuestbookDetailForm({ boardNo }) {
     const [writerId, setWriterId] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:9090/board/lists?boardNo=${encodeURIComponent(boardNo)}`)
+        axios.get(`http:///board/lists?boardNo=${encodeURIComponent(boardNo)}`)
             .then(response => {
                 setBoardList(response.data);
             })
@@ -53,7 +53,8 @@ function BoardGuestbookDetailForm({ boardNo }) {
                 throw new Error('유효하지 않은 boardNo');
             }
     
-            await axios.delete(`http://localhost:9090/board/lists?boardNo=${encodeURIComponent(boardNo)}`);
+            await axios.delete(`http:///board/lists?boardNo=${encodeURIComponent(boardNo)}`);
+            alert('게시글이 삭제되었습니다.');
             setBoardList(boardList.filter(b => b.boardNo !== boardNo));
             setSelectedBoard(null);
             window.location.reload();
@@ -76,40 +77,42 @@ function BoardGuestbookDetailForm({ boardNo }) {
             <button className='hide-detail-button' onClick={handleRefresh}>
                 &times;
             </button>
-            <div>
-                <label>번호 : </label>
+            <div className='guestbook-detail-item'>
+                <label>번호</label>
                 <div>{selectedBoard.boardNo}</div>
             </div>
-            <div>
-                <label>제목 : </label>
+            <div className='guestbook-detail-item'>
+                <label>제목 </label>
                 <div>{selectedBoard.boardTitle}</div>
             </div>
-            <div>
-                <label>작성자 : </label>
+            <div className='guestbook-detail-item'>
+                <label>작성자 이름</label>
                 <div>{selectedBoard.boardMemberName}</div>
             </div>
-            <div>
-                <label>작성자 아이디 : </label>
+            <div className='guestbook-detail-item'>
+                <label>작성자 아이디</label>
                 <div>{selectedBoard.boardMemberId}</div>
             </div>
-            <div>
-                <label>내용 : </label>
+            <div className='guestbook-detail-item'>
+                <label>내용</label>
                 <div>{selectedBoard.boardContents}</div>
             </div>
-            <div className='guestbook-detail-image-list'>
-                <label>이미지 : </label>
-                <div className="images">
-                    {selectedBoard.boardImageUrl.split(',').map(image => 
-                        <img key={image} src={`http://localhost:9090/images/${image}`} alt="" />
+            <div className='guestbook-detail-item'>
+                <label className='images-label'>이미지</label>
+                <div className="images-list">
+                    {selectedBoard.boardImageUrl.split(',').map(image =>
+                        <div key={image}>
+                            <img src={`http:///board/files/${image}`} alt="" />
+                        </div>
                     )}
                 </div>
             </div>
             {writerId === selectedBoard.boardMemberId && (
-                <div className="board-container-actions">
-                    <button className="board-container-modify-button" onClick={() => handleModify(selectedBoard)}>
+                <div className="guestbook-detail-container-actions">
+                    <button className="guestbook-detail-container-modify-button" onClick={() => handleModify(selectedBoard)}>
                         수정
                     </button>
-                    <button className="board-container-delete-button" onClick={() => handleDelete(selectedBoard.boardNo)}>
+                    <button className="guestbook-detail-container-delete-button" onClick={() => handleDelete(selectedBoard.boardNo)}>
                         삭제
                     </button>
                 </div>
