@@ -26,7 +26,7 @@ export const BookingInfoView = () => {
 
         const ticketData = async () => {
             try {
-                const response = await axios.get('http://localhost:9090/ticket/bookingInfoView', {
+                const response = await axios.get('http:///ticket/bookingInfoView', {
                     params: { memberNo: loginMember.memberNo }
                 });
                 setTicketInfo(response.data);
@@ -117,7 +117,7 @@ export const BookingInfoView = () => {
         }
 
         try {
-            await axios.delete('http://localhost:9090/ticket/deleteTicket', {
+            await axios.delete('http:///ticket/deleteTicket', {
                 data: selectedBookings // DELETE 요청에 data를 담아 전송
             });
             alert("선택된 예매가 취소되었습니다.");

@@ -7,7 +7,7 @@ import BoardGuestbookDetailForm from './BoardGuestbookDetailForm';
 
 function BoardGuestbook() {
   const { loginMember } = useContext(LoginContext);
-  const boardListAPI = "http://localhost:9090/board/lists";
+  const boardListAPI = "http:///board/lists";
 
   const [writerId, setWriterId] = useState('');
   const [name, setName] = useState('');
