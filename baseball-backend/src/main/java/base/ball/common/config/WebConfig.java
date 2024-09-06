@@ -14,13 +14,13 @@ public class WebConfig implements WebMvcConfigurer {
 		 .addResourceLocations("file:C:/Users/user1/Desktop/final-perfect-game/baseball-frontend/public/board-images/");
 	}
 	
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**")
-		.allowedOrigins("http://localhost:3000") /** 3000 ▶ 9090 **/
-		.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-		.allowedHeaders("*")
-		.allowCredentials(true);
-	}
-
+	//@Override
+	//public void addCorsMappings(CorsRegistry registry) {
+		//registry.addMapping("/**")
+		//.allowedOrigins("http://localhost:3000") /* 3000 ▶ 9090 */
+		//.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+		//.allowedHeaders("*")
+		//.allowCredentials(true);
+	//}
+		
 }

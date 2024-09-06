@@ -1,0 +1,71 @@
+/*.App {
+  text-align: center;
+}*/
+/*************/
+.board-main-header h1 {
+  font-weight: 700;
+}
+
+.guestbook-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-button {
+  background: #002063;
+  padding: 15px 25px;
+  color: white;
+  border: none ;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.form-button:hover {
+  background: #070063;
+  color: white;
+}
+
+.guestbook-container h1 {
+  text-align: center;
+  font-size: 2em; /*em = 16px, 2.5em = 40px*/
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.board-container {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  border-collapse: collapse;
+}
+.board-container tr,
+.board-container th,
+.board-container td {
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+
+.board-container-modify-button,
+.board-container-delete-button {
+  background: #002063;
+  width: 100%;
+  padding: 5px 10px;
+  color: white;
+  border: none ;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.board-container-modify-button:hover,
+.board-container-delete-button:hover {
+  background: #070063;
+  color: white;
+}
